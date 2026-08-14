@@ -1,0 +1,611 @@
+/* ============================================================
+   NAVREN, shared stylesheet
+   One file for every page. Change a token here and the whole
+   site follows.
+   ============================================================ */
+:root{
+  --paper:#F0F2F0;
+  --white:#FFFFFF;
+  --ink:#0E1513;
+  --jade:#0D6B54;
+  --jade-deep:#0A5744;
+  --jade-wash:rgba(13,107,84,.07);
+  --mist:#DCE3E0;
+  /* body copy sat too light against the porcelain and receded. Darker
+     reads better than heavier, which would fight the display face. */
+  --slate:#4A5854;
+  --slate-soft:#5E6B67;
+  --line:#C9D3CF;
+  --line-soft:#E3E8E6;
+
+  --display:"Jost","Century Gothic","Segoe UI",system-ui,sans-serif;
+  --body:"Karla","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+
+  --gut:clamp(20px,5vw,64px);
+  --maxw:1240px;
+  --navh:66px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,p,ul,ol,fieldset,legend,figure{margin:0;}
+fieldset{border:0;padding:0;min-width:0;}
+ul{list-style:none;padding:0;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+::selection{background:var(--jade);color:#fff;}
+:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:2px;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);}
+
+/* ---------- shared type ---------- */
+/* Uppercase plus wide tracking plus a mono face at 11px was three
+   things working against legibility at once. Bigger, heavier, and less
+   tracked fixes it without losing the label look. */
+.eyebrow{
+  font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--jade);display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--jade);flex:0 0 auto;}
+.h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,3.3vw,38px);line-height:1.04;text-wrap:balance;margin-top:14px;}
+.lede{color:var(--slate);max-width:58ch;margin-top:13px;font-size:17.5px;line-height:1.6;}
+.note{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--slate);margin-top:18px;}
+
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--jade);color:#fff;border-radius:4px;padding:12px 20px;font-weight:700;font-size:14.5px;transition:background .22s ease,transform .18s ease;}
+.btn:hover{background:var(--jade-deep);transform:translateY(-1px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:4px;padding:12px 20px;font-weight:700;font-size:14.5px;background:var(--white);transition:border-color .22s ease,color .22s ease;}
+.btn-ghost:hover{border-color:var(--jade);color:var(--jade);}
+.inline{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}
+/* green emphasis inside running copy */
+.hl{color:var(--jade);font-weight:700;}
+
+/* ============================================================
+   NAV + MEGA MENU
+   ============================================================ */
+.nav{position:sticky;top:0;z-index:80;background:rgba(240,242,240,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-bar{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);height:var(--navh);display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.word{display:inline-flex;align-items:center;}
+.word img{height:23px;width:auto;display:block;}
+
+.menu{display:flex;align-items:center;gap:4px;}
+.menu > li{position:static;}
+.menu-link,.menu-trigger{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 13px;border-radius:4px;
+  font-weight:600;font-size:14.5px;color:var(--slate);
+  transition:color .2s ease,background .2s ease;
+}
+.menu-link:hover,.menu-trigger:hover{color:var(--jade);background:var(--jade-wash);}
+.menu-link.current{color:var(--jade);}
+.menu-trigger .chev{width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s ease;}
+.has-mega.open > .menu-trigger{color:var(--jade);background:var(--jade-wash);}
+.has-mega.open > .menu-trigger .chev{transform:translateY(1px) rotate(225deg);}
+.nav-cta{margin-left:10px;}
+
+.mega{
+  position:absolute;left:0;right:0;top:100%;
+  background:var(--white);border-bottom:1px solid var(--line);
+  box-shadow:0 26px 50px -34px rgba(14,21,19,.5);
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+}
+.has-mega.open .mega{opacity:1;visibility:visible;transform:none;}
+.mega-in{max-width:var(--maxw);margin:0 auto;padding:26px var(--gut) 22px;}
+.mega-cols{display:grid;gap:12px;}
+.mega-cols.five{grid-template-columns:repeat(5,1fr);}
+.mega-cols.who{grid-template-columns:repeat(4,1fr);}
+.mega .seg{display:block;padding:15px 16px;border:1px solid var(--line);border-radius:6px;transition:border-color .22s ease,transform .22s ease;height:100%;}
+.mega .seg:hover{border-color:var(--jade);transform:translateY(-2px);}
+.mega .seg b{display:block;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.015em;}
+.mega .seg span{display:block;margin-top:6px;font-size:13.5px;color:var(--slate);line-height:1.55;}
+.mega-foot{
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line-soft);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+}
+.mega-foot p{font-size:14px;color:var(--slate);}
+.mega-foot b{color:var(--ink);}
+
+.nav-toggle{display:none;align-items:center;gap:8px;border:1px solid var(--line);border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ---------- sections ---------- */
+section{padding:clamp(46px,6vw,78px) 0;}
+.band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+/* a band that continues the section above it rather than starting a
+   new thought, so it doesn't need the full run-up of space */
+.band.tight{padding-top:clamp(28px,3.2vw,42px);}
+.band.tight .phases{margin-top:0;}
+.sec-head{max-width:60ch;}
+
+/* ---------- page hero (interior pages) ---------- */
+.phero{padding:clamp(42px,6vw,78px) 0 clamp(30px,3.5vw,46px);}
+.phero h1{font-family:var(--display);font-weight:700;letter-spacing:-.024em;font-size:clamp(32px,5vw,56px);line-height:1.0;margin-top:18px;max-width:17ch;text-wrap:balance;}
+.phero h1 mark{background:none;color:var(--jade);}
+.phero .sub{margin-top:20px;color:var(--slate);max-width:52ch;font-size:17px;}
+.phero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+/* Breadcrumb links have to look clickable at rest, not only on hover,
+   or the whole row reads as a label. Current page stays grey. */
+.crumb{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate-soft);margin-bottom:18px;}
+.crumb a{color:var(--jade);font-weight:500;}
+.crumb a:hover{color:var(--jade-deep);text-decoration:underline;text-underline-offset:3px;}
+
+/* ---------- cards ---------- */
+.cards{display:grid;gap:12px;margin-top:34px;}
+.cards.c4{grid-template-columns:repeat(4,1fr);}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.cards.c2{grid-template-columns:repeat(2,1fr);}
+.cards article{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .25s ease,transform .25s ease;}
+.cards article:hover{border-color:var(--jade);transform:translateY(-3px);}
+.cards h3{font-family:var(--display);font-weight:700;font-size:18.5px;letter-spacing:-.015em;}
+.cards p{font-size:15px;color:var(--slate);line-height:1.62;}
+.cards em{font-style:normal;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);}
+.cards .meta{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--jade);line-height:1.7;}
+
+/* audience icons, one per card in the top right. Decorative only, so they
+   sit quiet at low opacity and lift on hover. Scoped to #who so the other
+   card grids on the site keep their existing spacing. */
+#who .cards article{position:relative;}
+#who .cards h3{padding-right:30px;}
+.card-icon{
+  position:absolute;top:19px;right:18px;width:21px;height:21px;
+  color:var(--jade);opacity:.4;pointer-events:none;transition:opacity .25s ease;
+}
+.card-icon svg{
+  width:100%;height:100%;display:block;
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.cards article:hover .card-icon{opacity:.78;}
+.cards article.featured .card-icon{opacity:.62;}
+
+/* the same audience marks in the Who we help menu, scaled down to suit a
+   panel roughly half the size of the homepage cards */
+.mega-cols.who .seg{position:relative;}
+.mega-cols.who .seg b{padding-right:24px;}
+/* colour and margin are restated because `.mega .seg span` already claims
+   both for the description text, and it outranks .card-icon. Without this
+   the marks inherit slate instead of jade, since the SVGs stroke with
+   currentColor. */
+.mega-cols.who .seg .card-icon{
+  top:14px;right:14px;width:17px;height:17px;
+  margin-top:0;color:var(--jade);
+}
+.mega-cols.who .seg:hover .card-icon{opacity:.78;}
+
+/* the speciality. Marked out rather than just listed first, so it reads
+   as a deliberate focus instead of alphabetical accident. */
+.cards article.featured{
+  border-color:var(--jade);
+  background:linear-gradient(180deg,var(--jade-wash),var(--white) 55%);
+  box-shadow:0 20px 46px -34px rgba(13,107,84,.7);
+}
+.cards article.featured .flag,
+.mega .seg.featured .flag{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;background:var(--jade);border-radius:20px;padding:4px 10px;
+  align-self:flex-start;display:inline-block;
+}
+.mega .seg.featured{
+  border-color:var(--jade);
+  background:linear-gradient(180deg,var(--jade-wash),var(--white) 60%);
+}
+.mega .seg.featured .flag{margin-bottom:9px;}
+
+/* ---------- checklist ---------- */
+.ticks{display:grid;gap:9px;margin-top:14px;}
+.ticks li{font-size:15.5px;display:flex;gap:11px;align-items:baseline;color:var(--ink);}
+.ticks li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--jade);flex:0 0 auto;transform:translateY(-2px);}
+
+/* ---------- phases (approach / how we work) ---------- */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,28px);margin-top:34px;}
+.phases.four{grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,22px);}
+/* the four-step process is the same idea at a tighter measure */
+.phases.four h3{font-size:clamp(17px,1.9vw,20px);}
+.phases.four p{font-size:15px;}
+.phases article{padding-top:20px;border-top:2px solid var(--jade);}
+.phases .when{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--jade);}
+.phases h3{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.1vw,22px);letter-spacing:-.018em;margin:9px 0 9px;}
+.phases p{font-size:15.5px;color:var(--slate);line-height:1.62;}
+
+/* ---------- left spine ----------
+   One hairline holding the left edge of the content, capped in solid
+   jade at the top of each section. It sits in the gutter rather than
+   indenting anything, so no existing layout moves. Below 900px the
+   gutter is too narrow to hold it without crowding the text, so it
+   comes off rather than getting squeezed. */
+@media (min-width:900px){
+  section:not(.cta) > .wrap,
+  main > .wrap{position:relative;}
+  section:not(.cta) > .wrap::before,
+  main > .wrap::before{
+    content:"";position:absolute;top:0;bottom:0;
+    left:calc(var(--gut) - 26px);width:1px;background:var(--line);
+  }
+  section:not(.cta) > .wrap::after,
+  main > .wrap::after{
+    content:"";position:absolute;top:0;
+    left:calc(var(--gut) - 27px);width:3px;height:54px;background:var(--jade);
+  }
+}
+
+/* ============================================================
+   IMAGE BANDS  —  direction A + D  (DRAFT)
+   The photograph becomes the section rather than sitting in a box:
+   dropped to roughly 15% brightness under an ink veil, and recoloured
+   into ink / jade / porcelain so every image on the site shares one
+   finish regardless of where it came from.
+
+   There are no real photographs yet. The .sim-* classes below are CSS
+   gradient meshes standing in for them, marked "simulated" on the
+   page. Dropping a real shot in means replacing the contents of the
+   .shot div with an <img> and deleting the .sim-* class. Nothing else
+   changes.
+   ============================================================ */
+.imgband{position:relative;overflow:hidden;isolation:isolate;background:var(--ink);}
+.imgband > .shot{
+  position:absolute;inset:0;z-index:0;
+  filter:grayscale(1) contrast(1.12) brightness(1.04);
+}
+.imgband > .shot img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* D, the two-tone finish: jade into the midtones, porcelain lifting
+   the highlights back out so it doesn't go flat. Both layers are held
+   back from full strength, because at full strength the multiply
+   crushes the highlights and there is no tonal range left to see. */
+.imgband::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:var(--jade);mix-blend-mode:multiply;opacity:.88;}
+.imgband::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:#EAF2EE;mix-blend-mode:lighten;opacity:.26;}
+
+/* A, the veil that takes the picture down to a background.
+
+   The alpha here is the whole trick, and it is easy to get wrong in
+   the safe direction. At .94 the photograph spans nine levels out of
+   255 and is invisible; the section just looks like flat ink. So the
+   veil is heavy only where the copy actually sits, and clears to .34
+   on the right where nothing is on top of it. That keeps roughly a
+   hundred levels of image visible.
+
+   The corollary: a band can only host copy that stops before the veil
+   thins out. Anything full-width, like the four-step grid, needs its
+   own section on porcelain. */
+.imgband > .veil{position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:linear-gradient(96deg,
+    rgba(14,21,19,.93) 0%, rgba(14,21,19,.86) 30%,
+    rgba(14,21,19,.64) 58%, rgba(14,21,19,.34) 100%);}
+.imgband > .wrap{position:relative;z-index:4;}
+
+/* content sitting on a band goes light */
+.imgband .eyebrow{color:#5BD3A6;}
+.imgband .eyebrow::before{background:#5BD3A6;}
+.imgband .h2{color:#fff;}
+.imgband .lede{color:#B9CCC5;}
+/* hero copy, which uses its own set of elements */
+.imgband h1{color:#fff;}
+.imgband h1 mark{color:#5BD3A6;}
+.imgband .sub{color:#B9CCC5;}
+.imgband .hl{color:#5BD3A6;}
+.imgband .crumb{color:#8DA49D;}
+.imgband .crumb a{color:#5BD3A6;}
+.imgband .btn{background:#5BD3A6;color:var(--ink);}
+.imgband .btn:hover{background:#7DE0BA;}
+.imgband .phases article{border-top-color:#5BD3A6;}
+.imgband .phases .when{color:#5BD3A6;}
+.imgband .phases h3{color:#fff;}
+.imgband .phases p{color:#B9CCC5;}
+.imgband .btn-ghost{background:transparent;border-color:rgba(255,255,255,.28);color:#DCE7E2;}
+.imgband .btn-ghost:hover{border-color:#5BD3A6;color:#5BD3A6;}
+
+/* The spine survives onto a band, just inverted. Needs the element
+   qualifier to match the specificity of section:not(.cta) > .wrap
+   above, otherwise the grey line wins and sits on a dark photo. */
+@media (min-width:900px){
+  section.imgband > .wrap::before{background:rgba(255,255,255,.22);}
+  section.imgband > .wrap::after{background:#5BD3A6;}
+  /* a light band keeps the ordinary spine */
+  section.imgband.light > .wrap::before{background:var(--line);}
+  section.imgband.light > .wrap::after{background:var(--jade);}
+}
+
+/* ---------- split band ----------
+   Copy on a solid panel, photograph holding the right edge. Keeps the
+   .imgband class for its light-on-dark type rules and inverted spine,
+   but drops the jade/porcelain tinting layers: those exist to colour a
+   photograph and only mute a flat panel. */
+.splitband{background:linear-gradient(100deg,#16382C 0%,#113026 58%,#0D2620 100%);}
+.splitband::before,.splitband::after{content:none;}
+.splitband .split-media img{display:block;width:100%;height:100%;object-fit:cover;}
+
+@media (min-width:900px){
+  .splitband{min-height:clamp(360px,32vw,450px);display:flex;flex-direction:column;justify-content:center;}
+  /* the section is a flex container here, so .wrap needs an explicit width.
+     Its auto side margins are cross-axis margins in a column flex layout,
+     and those shrink-wrap the element instead of letting it fill the row. */
+  .splitband > .wrap{width:100%;}
+  /* pinned rather than made a grid column, so .wrap stays a direct child
+     of the section: both the spine and the page gutter alignment key off
+     that relationship. */
+  .splitband .split-media{position:absolute;top:0;right:0;bottom:0;width:45%;z-index:1;}
+  /* The copy has to stop before the photo starts, and the photo's left
+     edge is at 55vw while the copy's left edge is wherever the centred
+     .wrap begins. Past roughly 2200px those two diverge: .wrap is pinned
+     at --maxw and drifts right, so a plain vw cap lets the text run under
+     the photo. Subtracting the wrap offset and the gutter keeps a 40px
+     gap at every width instead. A page hero carries its copy straight in
+     .wrap rather than a .sec-head, so that case caps one level down. */
+  .splitband .sec-head,
+  .splitband.phero > .wrap > *{
+    max-width:min(46ch, calc(55vw - max(0px, (100vw - var(--maxw)) / 2) - var(--gut) - 40px));
+  }
+}
+@media (max-width:899px){
+  .splitband{padding-bottom:0;}
+  .splitband .split-media{margin-top:clamp(30px,6vw,44px);height:clamp(210px,46vw,300px);}
+}
+
+/* ---------- light variant ----------
+   Same idea, inverted: the photograph sits under a porcelain wash
+   instead of an ink one, so the section keeps the light background
+   and black text the rest of the site uses. The image reads as
+   texture rather than as a dark panel.
+
+   The photograph keeps its own colours. The duotone from the dark
+   variant is off entirely here: any strength of jade multiply turns
+   the picture green, and even a 10% tint reads once the rest of the
+   frame is washed this pale. */
+.imgband.light{background:var(--paper);}
+/* photograph stays in its own colours: no greyscale, no jade tint,
+   nothing on top of it but the wash */
+.imgband.light > .shot{filter:none;}
+.imgband.light::before{content:none;}
+.imgband.light::after{content:none;}
+/* Light copy on a light wash is the harder direction: body text is
+   --slate, a midtone, so the *dark* parts of the photo are what
+   threaten it, and this photo has a lot of dark wood.
+
+   So the wash is held heavy across the copy and dropped hard once
+   past it. The copy never reaches beyond about 56%, which is what
+   buys the steep fall to .22 at the right edge: that side carries no
+   text, so nothing there has to survive it. Measured worst case for
+   body copy is 4.79:1. */
+.imgband.light > .veil{background:linear-gradient(96deg,
+  rgba(240,242,240,.95) 0%, rgba(240,242,240,.92) 30%,
+  rgba(240,242,240,.85) 60%, rgba(240,242,240,.22) 100%);}
+
+/* everything goes back to the normal palette */
+.imgband.light .eyebrow{color:var(--jade);}
+.imgband.light .eyebrow::before{background:var(--jade);}
+.imgband.light h1,.imgband.light .h2{color:var(--ink);}
+.imgband.light h1 mark{color:var(--jade);}
+.imgband.light .sub,.imgband.light .lede{color:var(--slate);}
+.imgband.light .hl{color:var(--jade);}
+/* --slate-soft sits at only 4.35:1 over the darkest corner of a hero
+   photo, under the 4.5 floor. --slate is the same family, one step down. */
+.imgband.light .crumb{color:var(--slate);}
+.imgband.light .crumb a{color:var(--jade);}
+.imgband.light .btn{background:var(--jade);color:#fff;}
+.imgband.light .btn:hover{background:var(--jade-deep);}
+.imgband.light .btn-ghost{background:var(--white);border-color:var(--line);color:var(--ink);}
+.imgband.light .btn-ghost:hover{border-color:var(--jade);color:var(--jade);}
+.imgband.light .phases article{border-top-color:var(--jade);}
+.imgband.light .phases .when{color:var(--jade);}
+.imgband.light .phases h3{color:var(--ink);}
+.imgband.light .phases p{color:var(--slate);}
+.imgband.light .simnote{color:rgba(14,21,19,.3);}
+
+/* honesty marker while the pictures are fake */
+.simnote{
+  position:absolute;right:16px;bottom:13px;z-index:5;pointer-events:none;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.34);
+}
+
+/* ---------- direction C, detail crops (DRAFT) ---------- */
+.crops{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;}
+.crops figure{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:7px;isolation:isolate;}
+.crops .shot{position:absolute;inset:0;filter:grayscale(1) contrast(1.12) brightness(1.04);}
+.crops .shot img{width:100%;height:100%;object-fit:cover;display:block;}
+.crops figure::before{content:"";position:absolute;inset:0;z-index:1;background:var(--jade);mix-blend-mode:multiply;}
+.crops figure::after{content:"";position:absolute;inset:0;z-index:2;background:#EAF2EE;mix-blend-mode:lighten;opacity:.42;}
+.crops figcaption{
+  position:absolute;left:0;right:0;bottom:0;z-index:5;padding:30px 14px 12px;
+  background:linear-gradient(to top, rgba(14,21,19,.85), rgba(14,21,19,0));
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#DCE7E2;
+}
+
+/* ---------- simulated photography, delete when real shots land ---------- */
+.sim-desk{background-color:#6E736C;background-image:
+  radial-gradient(120% 90% at 74% 8%, rgba(255,247,228,.92), rgba(255,247,228,0) 55%),
+  radial-gradient(80% 70% at 18% 88%, rgba(28,32,30,.72), rgba(28,32,30,0) 60%),
+  radial-gradient(60% 50% at 44% 56%, rgba(150,138,116,.6), rgba(150,138,116,0) 70%),
+  linear-gradient(168deg, #9A9384 0%, #6B6A60 46%, #33362F 100%);}
+.sim-screen{background-color:#4A5A54;background-image:
+  radial-gradient(70% 60% at 62% 40%, rgba(120,205,175,.5), rgba(120,205,175,0) 62%),
+  radial-gradient(90% 80% at 12% 12%, rgba(226,233,229,.55), rgba(226,233,229,0) 58%),
+  radial-gradient(60% 70% at 88% 92%, rgba(10,18,16,.8), rgba(10,18,16,0) 66%),
+  linear-gradient(150deg, #5F6E68 0%, #3A4A44 52%, #18211E 100%);}
+.sim-street{background-color:#7C877F;background-image:
+  linear-gradient(90deg, rgba(20,26,24,.5) 0 6%, rgba(20,26,24,0) 6% 13%,
+    rgba(20,26,24,.38) 13% 17%, rgba(20,26,24,0) 17% 27%,
+    rgba(20,26,24,.55) 27% 33%, rgba(20,26,24,0) 33% 46%,
+    rgba(20,26,24,.3) 46% 52%, rgba(20,26,24,0) 52% 68%,
+    rgba(20,26,24,.48) 68% 74%, rgba(20,26,24,0) 74%),
+  radial-gradient(90% 70% at 50% 6%, rgba(246,244,232,.9), rgba(246,244,232,0) 62%),
+  linear-gradient(180deg, #B9BFB8 0%, #7C877F 58%, #2B332E 100%);}
+.sim-paper{background-color:#A9A99A;background-image:
+  radial-gradient(80% 70% at 24% 18%, rgba(255,253,244,.95), rgba(255,253,244,0) 62%),
+  radial-gradient(70% 60% at 84% 84%, rgba(40,46,42,.55), rgba(40,46,42,0) 64%),
+  linear-gradient(140deg, #E4E0D2 0%, #A9A99A 55%, #5B5F55 100%);}
+
+/* ---------- split (text + panel) ---------- */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,52px);align-items:start;}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:24px;}
+.panel.accent{border-left:3px solid var(--jade);border-radius:0 9px 9px 0;}
+.panel h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.018em;margin-bottom:10px;}
+.panel p{font-size:15px;color:var(--slate);line-height:1.65;}
+.panel .stat{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);margin-bottom:9px;}
+
+/* ---------- faq ---------- */
+.faq{margin-top:30px;border-top:1px solid var(--line);}
+.faq details{border-bottom:1px solid var(--line);}
+.faq summary{
+  list-style:none;cursor:pointer;padding:19px 44px 19px 0;position:relative;
+  font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.015em;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--jade);border-bottom:2px solid var(--jade);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s ease;
+}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(225deg);}
+.faq summary:hover{color:var(--jade);}
+.faq .answer{padding:0 44px 20px 0;color:var(--slate);font-size:16px;line-height:1.65;max-width:70ch;}
+
+/* ---------- closing CTA ---------- */
+.cta{background:var(--ink);color:#DCE7E2;}
+.cta .wrap{padding-top:clamp(48px,6vw,78px);padding-bottom:clamp(48px,6vw,78px);}
+.cta .eyebrow{color:#5BD3A6;}
+.cta .eyebrow::before{background:#5BD3A6;}
+.cta h2{font-family:var(--display);font-weight:700;letter-spacing:-.024em;font-size:clamp(26px,3.8vw,42px);line-height:1.04;margin-top:15px;max-width:20ch;color:#fff;text-wrap:balance;}
+.cta p{margin-top:16px;color:#A9BDB6;max-width:50ch;font-size:16.5px;}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+.cta .btn{background:#5BD3A6;color:var(--ink);}
+.cta .btn:hover{background:#7DE0BA;}
+.cta .btn-ghost{background:transparent;border-color:rgba(255,255,255,.25);color:#DCE7E2;}
+.cta .btn-ghost:hover{border-color:#5BD3A6;color:#5BD3A6;}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink);color:#A9BDB6;}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(24px,4vw,48px);padding-top:clamp(40px,5vw,60px);padding-bottom:36px;}
+/* light logo file rather than a CSS invert, which flattened the jade
+   square to white along with the letters */
+.foot-brand img{height:22px;width:auto;display:block;}
+.foot-brand p{margin-top:14px;font-size:15px;color:#9FB6AE;max-width:34ch;line-height:1.65;}
+.contact-address{font-style:normal;font-size:16px;line-height:1.75;}
+.contact-address a{border-bottom:0;}
+.contact-address a:hover{text-decoration:underline;text-underline-offset:3px;}
+.foot-address{margin-top:28px;font-style:normal;font-size:14px;color:#8DA49D;line-height:1.7;}
+.foot-address b{display:block;color:#C3D2CC;font-weight:600;font-size:14px;margin-bottom:3px;}
+.foot h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#5BD3A6;font-weight:500;margin-bottom:13px;}
+.foot ul{display:grid;gap:9px;}
+.foot li a{font-size:14px;color:#A9BDB6;transition:color .2s ease;}
+.foot li a:hover{color:#fff;}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;
+  padding-top:20px;padding-bottom:32px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:#8DA49D;
+}
+.foot-bottom a:hover{color:#5BD3A6;}
+
+/* ---------- reveal (gated on .js so a script failure can't blank a page) ---------- */
+/* Soft focus. Content arrives slightly out of focus and settles,
+   rather than sliding. --i is the element's index within its own
+   group, set in site.js, so a row of four staggers in order instead
+   of by arbitrary position in the document. */
+.js .reveal{opacity:0;filter:blur(9px);transform:scale(.988);}
+.js .reveal.in{
+  opacity:1;filter:blur(0);transform:none;
+  transition:opacity .42s ease,
+             filter .42s cubic-bezier(.22,.65,.25,1),
+             transform .42s cubic-bezier(.22,.65,.25,1);
+  transition-delay:calc(var(--i,0) * 45ms);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1080px){
+  .cards.c4{grid-template-columns:repeat(2,1fr);}
+  .cards.c3{grid-template-columns:repeat(2,1fr);}
+  .phases{grid-template-columns:1fr;}
+  /* .phases.four is 0,2,0 so a plain .phases rule can't override it,
+     media query or not. It has to be matched selector for selector. */
+  .phases.four{grid-template-columns:repeat(2,1fr);}
+  .split{grid-template-columns:1fr;}
+  .mega-cols.five{grid-template-columns:repeat(3,1fr);}
+  .mega-cols.who{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:900px){
+  .nav-toggle{display:inline-flex;}
+  .nav-panel{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:var(--white);border-bottom:1px solid var(--line);
+    max-height:calc(100vh - var(--navh));overflow-y:auto;
+    box-shadow:0 26px 50px -34px rgba(14,21,19,.5);
+  }
+  .nav-panel.open{display:block;}
+  .nav-bar{position:relative;}
+  .menu{flex-direction:column;align-items:stretch;gap:0;padding:8px var(--gut) 18px;}
+  .menu-link,.menu-trigger{
+    width:100%;justify-content:space-between;padding:14px 0;border-radius:0;
+    border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--ink);
+  }
+  .menu-link:hover,.menu-trigger:hover{background:none;}
+  .mega{
+    position:static;opacity:1;visibility:visible;transform:none;transition:none;
+    box-shadow:none;border-bottom:0;display:none;background:var(--paper);
+    border-radius:6px;margin:10px 0 4px;
+  }
+  .has-mega.open .mega{display:block;}
+  .mega-in{padding:14px;}
+  .mega-cols.five,.mega-cols.who{grid-template-columns:1fr;gap:10px;}
+  .mega-foot{margin-top:14px;}
+  .nav-cta{margin:14px 0 0;justify-content:center;}
+}
+@media (max-width:640px){
+  .cards.c4,.cards.c3,.cards.c2{grid-template-columns:1fr;}
+  /* one per row on a phone, so the four steps read as a list
+     rather than four squeezed columns */
+  .phases,.phases.four{grid-template-columns:1fr;}
+  .phases.four h3{font-size:20px;}
+  .crops{grid-template-columns:1fr;}
+  .crops figure{aspect-ratio:16/9;}
+  .foot-top{grid-template-columns:1fr 1fr;}
+  /* On a phone the copy runs the full width, so there is no clear
+     side for the veil to thin out into. Flat, and set by measuring
+     the worst pixel in the photo rather than by eye: .72 leaves the
+     body copy at about 6.5:1, which is still well clear of AA. */
+  .imgband > .veil{background:rgba(14,21,19,.72);}
+  /* Flat, because full-width copy leaves no side to open up into.
+     .85 is the floor: below it the body copy drops under 4.5:1. */
+  .imgband.light > .veil{background:rgba(240,242,240,.85);}
+}
+@media (max-width:560px){ .foot-top{grid-template-columns:1fr;} }
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  .js .reveal{opacity:1;transform:none;filter:none;}
+}
+
+/* ---------- page transition ----------
+   A porcelain panel carrying the wordmark covers the page on arrival and
+   clears itself on a CSS timer that needs no script, so a slow or broken
+   site.js can never leave a visitor staring at a blank panel. Arriving and
+   leaving get a pseudo-element each rather than sharing one, so neither
+   has to cancel the other's animation mid-flight. Both hang off <html>,
+   which is why no page needed extra markup.
+   Reduced motion is already covered by the block above: it flattens every
+   animation and transition to .001ms, so the panel never appears. */
+html.js::before,
+html.js::after{
+  content:"";position:fixed;inset:0;z-index:9999;
+  background:var(--paper) url("navren-logo.png") no-repeat center / min(200px,42vw) auto;
+}
+/* arriving: hold briefly, then fade off the page */
+html.js::before{animation:pt-arrive .8s ease forwards;}
+@keyframes pt-arrive{
+  0%,42%{opacity:1;visibility:visible;}
+  100%  {opacity:0;visibility:hidden;}
+}
+/* leaving: site.js adds .is-leaving, and the panel fades back in.
+   visibility is delayed out so it stops catching clicks only once faded. */
+html.js::after{opacity:0;visibility:hidden;transition:opacity .22s ease,visibility 0s linear .22s;}
+html.js.is-leaving::after{opacity:1;visibility:visible;transition:opacity .22s ease;}

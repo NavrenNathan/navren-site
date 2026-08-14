@@ -1,0 +1,3 @@
+# outbound.html was renamed when the service became Communications
+/outbound.html   /communications.html   301
+/outbound        /communications.html   301

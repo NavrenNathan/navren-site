@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Navren | Tell us about your business</title>
+<meta name="description" content="A few questions about your business, your stage and what you have tried, so we understand what you need before we speak." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script>document.documentElement.className += " js";</script>
+<style>
+/* ============================================================
+   NAVREN, questionnaire. Signal Grid tokens, unchanged.
+   ============================================================ */
+:root{
+  --paper:#F0F2F0; --white:#FFFFFF; --ink:#0E1513;
+  --jade:#0D6B54; --jade-deep:#0A5744; --jade-wash:rgba(13,107,84,.07);
+  --mist:#DCE3E0; --slate:#4A5854; --line:#C9D3CF; --line-soft:#E3E8E6;
+  --display:"Jost","Century Gothic","Segoe UI",system-ui,sans-serif;
+  --body:"Karla","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gut:clamp(20px,5vw,56px);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4,p,ul,ol,fieldset,legend{margin:0;}
+fieldset{border:0;padding:0;min-width:0;}
+ul{list-style:none;padding:0;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+::selection{background:var(--jade);color:#fff;}
+:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:3px;}.shell{max-width:780px;margin:0 auto;padding:0 var(--gut);}
+
+/* ---------- header ---------- */.top{border-bottom:1px solid var(--line);background:rgba(240,242,240,.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;}.top .shell{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px;}.word{display:inline-flex;align-items:center;}.word img{height:22px;width:auto;display:block;}
+@media (max-width:720px){.word img{height:19px;} }.back{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);transition:color .2s;}.back:hover{color:var(--jade);}
+
+/* ---------- progress ---------- */.progress{position:sticky;top:62px;z-index:19;background:var(--paper);border-bottom:1px solid var(--line-soft);}.progress .shell{padding-top:14px;padding-bottom:14px;}.progress-row{display:flex;align-items:center;justify-content:space-between;gap:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);}.bar{height:3px;background:var(--mist);border-radius:3px;margin-top:9px;overflow:hidden;}.bar i{display:block;height:100%;width:0;background:var(--jade);border-radius:3px;transition:width .35s cubic-bezier(.2,.7,.2,1);}
+
+/* ---------- steps ---------- */
+main{padding:clamp(30px,5vw,54px) 0 clamp(50px,7vw,80px);}.step[hidden]{display:none;}.step{animation:slide .32s cubic-bezier(.2,.7,.2,1) both;}
+@keyframes slide{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}.qnum{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--jade);}.step h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:clamp(23px,3.4vw,32px);line-height:1.06;margin-top:12px;text-wrap:balance;}.help{color:var(--slate);margin-top:11px;font-size:16.5px;max-width:52ch;}.fields{margin-top:26px;display:grid;gap:10px;}
+input[type=text],input[type=email],input[type=url],textarea{
+  width:100%;background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:14px 15px;font-family:var(--body);font-size:16px;color:var(--ink);
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+textarea{min-height:112px;resize:vertical;line-height:1.6;}
+input:focus,textarea:focus{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px var(--jade-wash);}
+input::placeholder,textarea::placeholder{color:#9BA8A4;}.sublabel{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);margin-bottom:-2px;}
+
+/* choice cards built on real radios/checkboxes */.choice{position:relative;display:block;}.choice input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}.choice span{
+  display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:14px 16px;font-size:15.5px;font-weight:600;cursor:pointer;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+}.choice span small{display:block;font-weight:400;font-size:13.5px;color:var(--slate);margin-top:4px;}.choice span:hover{border-color:var(--jade);transform:translateY(-1px);}.choice input:checked + span{border-color:var(--jade);background:var(--jade-wash);box-shadow:inset 0 0 0 1px var(--jade);}.choice input:focus-visible + span{outline:2px solid var(--jade);outline-offset:2px;}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}.err{color:#A3341F;font-size:13.5px;margin-top:4px;min-height:1.2em;}.privacy{margin-top:6px;font-size:13px;color:var(--slate);line-height:1.6;}.privacy a{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}.sent{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;}.sent.ok{color:#5BD3A6;}.sent.fail{color:#F0B48A;}.actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:26px;}.btn{display:inline-flex;align-items:center;gap:9px;background:var(--jade);color:#fff;border-radius:5px;padding:13px 22px;font-weight:700;font-size:15px;transition:background .2s ease,transform .16s ease;}.btn:hover{background:var(--jade-deep);transform:translateY(-1px);}.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;}.btn-quiet{border:1px solid var(--line);background:var(--white);border-radius:5px;padding:13px 20px;font-weight:700;font-size:15px;transition:border-color .2s,color .2s;}.btn-quiet:hover{border-color:var(--jade);color:var(--jade);}.hint{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);}
+
+/* ---------- result ---------- */.result h2{font-family:var(--display);font-weight:800;letter-spacing:-.022em;font-size:clamp(26px,3.8vw,38px);line-height:1.04;margin-top:12px;text-wrap:balance;}.segment-tag{display:inline-block;background:var(--jade-wash);color:var(--jade);border:1px solid rgba(13,107,84,.3);border-radius:30px;padding:6px 14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;}.plan{margin-top:28px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white);}.plan-head{padding:14px 18px;border-bottom:1px solid var(--line-soft);background:var(--paper);font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--slate);}.plan ol{list-style:none;margin:0;padding:0;counter-reset:step;}.plan li{display:flex;gap:16px;padding:18px;border-bottom:1px solid var(--line-soft);}.plan li:last-child{border-bottom:0;}.plan li::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--jade);
+  padding-top:3px;flex:0 0 auto;
+}.plan h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.015em;}.plan p{font-size:14px;color:var(--slate);margin-top:5px;}.plan .when{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:8px;}.skip{margin-top:16px;border:1px dashed var(--line);border-radius:8px;padding:17px 18px;background:var(--white);}.skip h3{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;}.skip p{font-size:14px;color:var(--slate);}.skip b{color:var(--ink);}.est{margin-top:16px;border:1px solid var(--line);border-left:3px solid var(--jade);border-radius:0 8px 8px 0;padding:18px;background:var(--white);}.est .flag{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--jade);}.est h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.018em;margin-top:8px;}.est .price{font-family:var(--display);font-weight:800;font-size:27px;letter-spacing:-.04em;margin-top:8px;font-variant-numeric:tabular-nums;}.est p{font-size:14px;color:var(--slate);margin-top:8px;}
+
+/* ---------- booking ---------- */.booking{margin-top:28px;background:var(--ink);color:#DCE7E2;border-radius:8px;overflow:hidden;}.booking-in{padding:26px;}.booking .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#5BD3A6;}.booking h3{font-family:var(--display);font-weight:800;font-size:clamp(21px,2.8vw,27px);letter-spacing:-.02em;color:#fff;margin-top:11px;text-wrap:balance;}.booking p{color:#A9BDB6;margin-top:11px;font-size:15px;max-width:46ch;}.booking .btn{background:#5BD3A6;color:var(--ink);margin-top:20px;}.booking .btn:hover{background:#7DE0BA;}.booking .alt{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;color:#8DA49D;}.booking.alt a{color:#5BD3A6;border-bottom:1px solid rgba(91,211,166,.4);}
+#calendar-embed:empty{display:none;}
+#calendar-embed{margin-top:20px;background:var(--white);border-radius:6px;min-height:120px;}.setup{
+  margin-top:16px;border:1px dashed rgba(91,211,166,.45);border-radius:6px;
+  padding:14px 16px;font-family:var(--mono);font-size:10.5px;line-height:1.8;
+  letter-spacing:.04em;color:#8DA49D;
+}.setup b{color:#5BD3A6;}.answers{margin-top:26px;border:1px solid var(--line);border-radius:8px;background:var(--white);overflow:hidden;}.answers summary{padding:15px 18px;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--slate);list-style:none;}.answers summary::-webkit-details-marker{display:none;}.answers summary:hover{color:var(--jade);}.answers .body{padding:0 18px 18px;border-top:1px solid var(--line-soft);}.answers dl{display:grid;gap:12px;margin:16px 0 0;}.answers dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);}.answers dd{margin:4px 0 0;font-size:14.5px;}.restart{margin-top:22px;}.foot{border-top:1px solid var(--line);margin-top:20px;}.foot .shell{padding-top:22px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--slate);}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="shell">
+    <a class="word" href="index.html"><img src="navren-logo.png" alt="Navren" width="1390" height="172" /></a>
+    <a class="back" href="index.html">&larr; Back to site</a>
+  </div>
+</header>
+
+<div class="progress" id="progress">
+  <div class="shell">
+    <div class="progress-row">
+      <span id="progressLabel">A few questions</span>
+      <span id="progressTime">About two minutes</span>
+    </div>
+    <div class="bar"><i id="progressBar"></i></div>
+  </div>
+</div>
+
+<!-- Netlify only captures fields it can find in the deployed HTML, and
+     it scans at deploy time. The interactive form below is driven by
+     script and never submits natively, so this declares the shape of
+     the data instead. Netlify detects this; the script posts to it. -->
+<form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="questionnaire" />
+  <input type="text" name="bot-field" />
+  <input type="text" name="business" />
+  <input type="text" name="type" />
+  <input type="text" name="stage" />
+  <input type="text" name="channels" />
+  <input type="text" name="worth" />
+  <textarea name="tried"></textarea>
+  <input type="text" name="contact_name" />
+  <input type="email" name="email" />
+  <input type="text" name="website" />
+  <input type="text" name="plan" />
+  <input type="text" name="engagement" />
+  <input type="text" name="submitted" />
+</form>
+
+<main>
+  <div class="shell">
+    <h1 class="sr-only">Tell us about your business</h1>
+    <form id="quiz" novalidate>
+
+      <!-- 1 -->
+      <section class="step" data-step="0">
+        <p class="qnum">Question 1</p>
+        <h2>What's your business, in one line?</h2>
+        <p class="help">However you'd say it to someone at a party. No pitch needed.</p>
+        <div class="fields">
+          <input type="text" id="q1" name="q1" data-required placeholder="We're a family Italian place opening in Southbank" autocomplete="organization" />
+          <p class="err" data-err="q1"></p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="step" data-step="1" hidden>
+        <p class="qnum">Question 2</p>
+        <h2>Which sounds most like you?</h2>
+        <p class="help">This decides which playbook we'd reach for.</p>
+        <fieldset class="fields">
+          <legend class="sublabel">Pick one</legend>
+          <label class="choice"><input type="radio" name="segment" value="local" data-required /><span>Local &amp; service business<small>Restaurant, café, trades, plumbing, HVAC, clinic, salon, gym</small></span></label>
+          <label class="choice"><input type="radio" name="segment" value="professional" /><span>Professional services<small>Law, accounting, consulting, real estate, insurance, agency</small></span></label>
+          <label class="choice"><input type="radio" name="segment" value="commerce" /><span>Commerce or consumer brand<small>E-commerce, direct-to-consumer, retail, subscription</small></span></label>
+          <label class="choice"><input type="radio" name="segment" value="technology" /><span>Technology or startup<small>SaaS, app, marketplace, B2B software</small></span></label>
+          <label class="choice"><input type="radio" name="segment" value="other" /><span>Something else<small>Tell us in the last question and we'll work it out</small></span></label>
+          <p class="err" data-err="segment"></p>
+        </fieldset>
+      </section>
+
+      <!-- 3 -->
+      <section class="step" data-step="2" hidden>
+        <p class="qnum">Question 3</p>
+        <h2>Where are you at right now?</h2>
+        <fieldset class="fields">
+          <legend class="sublabel">Pick one</legend>
+          <label class="choice"><input type="radio" name="stage" value="prelaunch" data-required /><span>Not open yet<small>Still building, or with a launch date coming</small></span></label>
+          <label class="choice"><input type="radio" name="stage" value="new" /><span>Just launched<small>Open, but it's early days</small></span></label>
+          <label class="choice"><input type="radio" name="stage" value="growing" /><span>Have customers, want more<small>It works, it just needs to be bigger</small></span></label>
+          <label class="choice"><input type="radio" name="stage" value="established" /><span>Been going a few years<small>Established, and ready to be deliberate about growth</small></span></label>
+          <p class="err" data-err="stage"></p>
+        </fieldset>
+      </section>
+
+      <!-- 4 -->
+      <section class="step" data-step="3" hidden>
+        <p class="qnum">Question 4</p>
+        <h2>How do customers find you today?</h2>
+        <p class="help">Tick everything that's actually bringing people in, not what you wish was working.</p>
+        <fieldset class="fields">
+          <legend class="sublabel">Pick as many as apply</legend>
+          <label class="choice"><input type="checkbox" name="channels" value="word" data-required /><span>Word of mouth and referrals</span></label>
+          <label class="choice"><input type="checkbox" name="channels" value="search" /><span>Google search</span></label>
+          <label class="choice"><input type="checkbox" name="channels" value="social" /><span>Social media</span></label>
+          <label class="choice"><input type="checkbox" name="channels" value="ads" /><span>Paid ads</span></label>
+          <label class="choice"><input type="checkbox" name="channels" value="email" /><span>Email or an existing list</span></label>
+          <label class="choice"><input type="checkbox" name="channels" value="none" /><span>Honestly, almost nothing yet</span></label>
+          <p class="err" data-err="channels"></p>
+        </fieldset>
+      </section>
+
+      <!-- 5 -->
+      <section class="step" data-step="4" hidden>
+        <p class="qnum">Question 5</p>
+        <h2>Roughly what's one customer worth to you?</h2>
+        <p class="help">Over the whole time they stay with you, not just the first sale. A rough guess is fine.</p>
+        <fieldset class="fields">
+          <legend class="sublabel">Pick one</legend>
+          <label class="choice"><input type="radio" name="value" value="under100" data-required /><span>Under $100</span></label>
+          <label class="choice"><input type="radio" name="value" value="100to500" /><span>$100 &ndash; $500</span></label>
+          <label class="choice"><input type="radio" name="value" value="500to2k" /><span>$500 &ndash; $2,000</span></label>
+          <label class="choice"><input type="radio" name="value" value="over2k" /><span>More than $2,000</span></label>
+          <label class="choice"><input type="radio" name="value" value="unsure" /><span>No idea</span></label>
+          <p class="err" data-err="value"></p>
+        </fieldset>
+      </section>
+
+      <!-- 6 -->
+      <section class="step" data-step="5" hidden>
+        <p class="qnum">Question 6</p>
+        <h2>What have you already tried that didn't work?</h2>
+        <p class="help">The most useful question here. If you've been burned by an agency or wasted money on something, say so, it changes what we'd recommend.</p>
+        <div class="fields">
+          <textarea id="q6" name="q6" placeholder="Spent about $2k on Instagram ads last year and got nothing out of it"></textarea>
+          <p class="hint">Optional, but worth answering</p>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="step" data-step="6" hidden>
+        <p class="qnum">Question 7</p>
+        <h2>Where should we send this?</h2>
+        <p class="help">So we can get back to you properly about what you've told us.</p>
+        <div class="fields">
+          <p class="sublabel">Your name</p>
+          <input type="text" id="name" name="name" data-required placeholder="Alex Moreau" autocomplete="name" />
+          <p class="err" data-err="name"></p>
+          <p class="sublabel">Email</p>
+          <input type="email" id="email" name="email" data-required placeholder="alex@verdetable.com" autocomplete="email" />
+          <p class="err" data-err="email"></p>
+          <p class="sublabel">Website, if you have one</p>
+          <input type="text" id="website" name="website" placeholder="verdetable.com" autocomplete="url" />
+          <p class="privacy">We use this to follow up once. We don't sell your details or add you to a mailing list without asking. <a href="privacy.html">How we handle your information</a>.</p>
+        </div>
+      </section>
+
+      <div class="actions" id="actions">
+        <button type="button" class="btn" id="next">Continue</button>
+        <button type="button" class="btn-quiet" id="back" hidden>Back</button>
+        <span class="hint" id="enterHint">Press Enter to continue</span>
+      </div>
+    </form>
+
+    <!-- ---------------- RESULT ---------------- -->
+    <section class="result" id="result" hidden aria-live="polite">
+      <p class="qnum">All done</p>
+      <h2 id="resultTitle">Thanks, we've got your answers.</h2>
+      <p class="help" id="resultIntro"></p>
+
+      <div class="booking">
+        <div class="booking-in">
+          <p class="eyebrow">Next step</p>
+          <h3>Want to talk it through?</h3>
+          <p>Thirty minutes. We'll tell you what we'd do, in what order, and what it would cost.</p>
+          <div id="calendar-embed"></div>
+          <a class="btn" id="bookBtn" href="#">Book a time</a>
+          <p class="sent" id="sentState"></p>
+        </div>
+      </div>
+
+      <details class="answers">
+        <summary>See what you told us</summary>
+        <div class="body"><dl id="answerList"></dl></div>
+      </details>
+
+      <div class="actions restart">
+        <a class="btn-quiet" id="sendBtn" href="#">Email us these answers</a>
+        <button type="button" class="btn-quiet" id="restart">Start again</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <span>NAVREN. STRATEGY AND COPY FOR FOUNDERS</span>
+    <span><a href="mailto:hello@navrenagency.com">HELLO@NAVRENAGENCY.COM</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIG, the three things to fill in before this goes live.
+     ============================================================ */
+  var CONFIG = {
+    /* Responses are captured by Netlify Forms. Nothing to configure
+       here. Set who gets the email once, in Netlify:
+       Forms > Settings and usage > Form notifications > Add notification
+       > Email notification. Add both addresses there. */
+
+    /* Your scheduler. Cal.com or Calendly. */
+    bookingUrl:      "",                   /* e.g. "https://cal.com/navren/30min" */
+    bookingProvider: "cal",                /* "cal" or "calendly", controls prefill */
+
+    contactEmail: "hello@navrenagency.com"
+  };
+
+  /* Netlify listens on the site's own root, so this is a same-origin
+     post with no cross-site restrictions to work around. */
+  var FORM_NAME = "questionnaire";
+  var FORM_ACTION = "/";
+
+  var STORE = "navren-questionnaire-v1";
+  var form     = document.getElementById("quiz");
+  var steps    = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var nextBtn  = document.getElementById("next");
+  var backBtn  = document.getElementById("back");
+  var actions  = document.getElementById("actions");
+  var result   = document.getElementById("result");
+  var progress = document.getElementById("progress");
+  var bar      = document.getElementById("progressBar");
+  var label    = document.getElementById("progressLabel");
+  var timeLbl  = document.getElementById("progressTime");
+  var enterHint= document.getElementById("enterHint");
+  var current  = 0;
+
+  /* ---------- persistence: a refresh shouldn't cost them eight answers ---------- */
+  function save(){
+    try {
+      var data = collect();
+      data.__step = current;
+      localStorage.setItem(STORE, JSON.stringify(data));
+    } catch(e){ /* private browsing, not worth surfacing */ }
+  }
+  function restore(){
+    try {
+      var raw = localStorage.getItem(STORE);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      Object.keys(data).forEach(function(k){
+        if (k === "__step") return;
+        var val = data[k];
+        if (Array.isArray(val)){
+          val.forEach(function(v){
+            var box = form.querySelector('[name="' + k + '"][value="' + v + '"]');
+            if (box) box.checked = true;
+          });
+        } else {
+          var radio = form.querySelector('[name="' + k + '"][value="' + String(val).replace(/"/g,'\\"') + '"]');
+          if (radio && radio.type === "radio"){ radio.checked = true; return; }
+          var field = form.querySelector('[name="' + k + '"]');
+          if (field && field.type !== "radio" && field.type !== "checkbox") field.value = val;
+        }
+      });
+      if (typeof data.__step === "number") current = Math.min(data.__step, steps.length - 1);
+    } catch(e){ /* corrupt payload, start clean */ }
+  }
+
+  function collect(){
+    var out = {};
+    ["q1","q6","name","email","website"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) out[id] = el.value.trim();
+    });
+    ["segment","stage","value"].forEach(function(n){
+      var picked = form.querySelector('[name="' + n + '"]:checked');
+      out[n] = picked ? picked.value : "";
+    });
+    out.channels = Array.prototype.slice.call(form.querySelectorAll('[name="channels"]:checked')).map(function(el){ return el.value; });
+    return out;
+  }
+
+  /* ---------- validation ---------- */
+  function clearError(key){
+    var el = form.querySelector('[data-err="' + key + '"]');
+    if (el) el.textContent = "";
+  }
+  function setError(key, msg){
+    var el = form.querySelector('[data-err="' + key + '"]');
+    if (el) el.textContent = msg;
+  }
+  function validate(index){
+    var step = steps[index];
+    var required = step.querySelector("[data-required]");
+    if (!required) return true;
+    var name = required.name;
+    clearError(name);
+
+    if (required.type === "radio"){
+      if (!form.querySelector('[name="' + name + '"]:checked')){
+        setError(name, "Pick one to carry on.");
+        return false;
+      }
+      return true;
+    }
+    if (required.type === "checkbox"){
+      if (!form.querySelectorAll('[name="' + name + '"]:checked').length){
+        setError(name, "Tick at least one, “almost nothing yet” is a real answer.");
+        return false;
+      }
+      return true;
+    }
+    var val = required.value.trim();
+    if (!val){
+      setError(name, "This one we do need.");
+      return false;
+    }
+    if (required.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)){
+      setError(name, "That email doesn't look right, check for a typo.");
+      return false;
+    }
+    /* the second required field on the contact step */
+    if (index === steps.length - 1){
+      var email = document.getElementById("email");
+      clearError("email");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())){
+        setError("email", "That email doesn't look right, check for a typo.");
+        email.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /* ---------- navigation ---------- */
+  function show(index){
+    steps.forEach(function(s, i){ s.hidden = i !== index; });
+    current = index;
+    backBtn.hidden = index === 0;
+    nextBtn.textContent = index === steps.length - 1 ? "Send my answers" : "Continue";
+    label.textContent = "Question " + (index + 1) + " of " + steps.length;
+    bar.style.width = ((index) / steps.length * 100) + "%";
+    var first = steps[index].querySelector("input, textarea");
+    if (first && window.innerWidth > 720) {
+      try { first.focus({ preventScroll:true }); } catch(e){ first.focus(); }
+    }
+    save();
+  }
+
+  nextBtn.addEventListener("click", function(){
+    if (!validate(current)) return;
+    save();
+    if (current === steps.length - 1){ finish(); return; }
+    show(current + 1);
+  });
+  backBtn.addEventListener("click", function(){ if (current > 0) show(current - 1); });
+
+  /* Enter advances, except inside a textarea where it should make a new line */
+  form.addEventListener("keydown", function(e){
+    if (e.key !== "Enter") return;
+    if (e.target.tagName === "TEXTAREA") return;
+    e.preventDefault();
+    nextBtn.click();
+  });
+  form.addEventListener("change", function(e){
+    if (e.target.name) clearError(e.target.name);
+    save();
+  });
+  form.addEventListener("input", function(e){
+    if (e.target.name) clearError(e.target.name);
+  });
+
+  /* ============================================================
+     RECOMMENDATION
+     Segment picks the playbook, stage reorders it, and what's
+     already working removes anything they don't need from us.
+     ============================================================ */
+  var PLAYBOOKS = {
+    local: {
+      tag: "Local & Service Business",
+      steps: [
+        { k:"gbp",     h:"Google Business Profile and local search", p:"When someone nearby searches for what you do, you need to be the first result with the most reviews. For a local business this is almost always the cheapest customer you will ever get.", w:"Weeks 1–4" },
+        { k:"reviews", h:"A review engine that runs itself",         p:"Reviews are the deciding factor for most local buying decisions. We build the sequence that asks every happy customer at the right moment, so it stops depending on you remembering.", w:"Weeks 3–6" },
+        { k:"copy",    h:"Website copy that answers the four questions", p:"Most local sites list what you do but never answer what people actually want to know: are you any good, how much, how soon, and what happens next.", w:"Weeks 4–8" },
+        { k:"email",   h:"Email and SMS for repeat business",        p:"Getting the same customer back is a fraction of the cost of finding a new one, and almost nobody in your category does it properly.", w:"Weeks 6–12" },
+        { k:"ads",     h:"Google Search ads",                        p:"Once the profile and the site convert, paid search buys more of the same demand on demand. Text ads only, no image or video work.", w:"Weeks 8–12" }
+      ],
+      skip: "Social posting and video, for now. For a local business, search and reviews will out-earn a posting schedule several times over, so that time and budget go further there first."
+    },
+    professional: {
+      tag: "Professional Services",
+      steps: [
+        { k:"position", h:"Positioning that isn't interchangeable", p:"Most firms in your category describe themselves in identical language. We find the specific thing you're actually better at and build the message around it.", w:"Weeks 1–4" },
+        { k:"linkedin", h:"Founder presence on LinkedIn",           p:"In professional services people hire a person, not a firm. Ghostwritten posts in your voice, published consistently, are the highest-return channel you have.", w:"Weeks 2–12" },
+        { k:"copy",     h:"Website and service page copy",          p:"The site needs to do the qualifying for you, so the calls you take are with people who already understand what you charge and why.", w:"Weeks 4–8" },
+        { k:"seo",      h:"Content built around real questions",    p:"The things clients ask you before they hire you are the things they search for beforehand. We turn those into pages that find them earlier.", w:"Weeks 6–12" },
+        { k:"outbound", h:"Cold email that isn't embarrassing",     p:"Your buyers can be named and listed. Written properly, direct outreach works in professional services better than almost anywhere else.", w:"Weeks 8–12" }
+      ],
+      skip: "Instagram and TikTok. Your buyers aren't there in a buying frame of mind, so effort spent there tends to cost more than it returns."
+    },
+    commerce: {
+      tag: "Commerce & Consumer Brand",
+      steps: [
+        { k:"email",   h:"Email and SMS flows",                    p:"Welcome, abandoned cart, post-purchase and win-back. For most stores this is the single biggest uncaptured revenue in the business, and it's pure writing.", w:"Weeks 1–5" },
+        { k:"copy",    h:"Product and landing page copy",          p:"Traffic you already have, converting better. Usually the fastest payback available to a store, and cheaper than buying more visitors.", w:"Weeks 3–7" },
+        { k:"seo",     h:"Search content for how people shop",     p:"Category and comparison pages that catch people while they're still deciding, rather than competing for the final click.", w:"Weeks 6–12" },
+        { k:"reviews", h:"Reviews and social proof copy",          p:"Getting reviews systematically, then putting them where they answer the specific doubt that stops the sale.", w:"Weeks 8–12" }
+      ],
+      skip: "Paid social, until the flows and the product pages convert. Buying more traffic before then just makes an existing leak more expensive."
+    },
+    technology: {
+      tag: "Technology & Startup",
+      steps: [
+        { k:"position", h:"Positioning and category story",        p:"If nobody's searching for what you built yet, no channel works until the story does. This is where almost every early startup's marketing actually breaks.", w:"Weeks 1–4" },
+        { k:"copy",     h:"Homepage and product copy",             p:"Most technical founders describe how it works. Buyers need to know what changes for them. That translation is the whole job.", w:"Weeks 3–6" },
+        { k:"linkedin", h:"Founder-led LinkedIn",                  p:"Your first hundred customers come from you being visible, not from a brand. Ghostwritten in your voice, so it still sounds like you.", w:"Weeks 2–12" },
+        { k:"outbound", h:"Direct outreach",                    p:"Direct, written outreach to a list of people who have the problem. The most reliable early channel when there's no search demand yet.", w:"Weeks 5–10" },
+        { k:"seo",      h:"Content that compounds",                p:"Once the story holds, content builds the demand that direct outreach can't scale to. Slower, and the only thing that gets cheaper over time.", w:"Weeks 8–16" }
+      ],
+      skip: "Paid acquisition, for now. Buying traffic before the message converts organically burns runway you'll want later, when it works harder."
+    },
+    other: {
+      tag: "Let's work it out",
+      steps: [
+        { k:"audit",    h:"Start with the audit",                  p:"You didn't fit neatly into a box, which usually means the answer is genuinely specific rather than that you're unusual. Two weeks, written up, yours either way.", w:"Weeks 1–2" },
+        { k:"position", h:"Positioning and offer",                 p:"Almost every business we look at needs this first, whatever the category. What you sell, to whom, and why they'd switch.", w:"Weeks 2–5" },
+        { k:"copy",     h:"The words on your site",                p:"Once the offer is clear, the site has to say it. Cheapest thing to fix and usually the fastest to pay back.", w:"Weeks 4–8" }
+      ],
+      skip: "We'd rather not guess at this stage. The audit exists precisely so the recommendation is based on your situation instead of a category average."
+    }
+  };
+
+  function buildPlan(a){
+    var book = PLAYBOOKS[a.segment] || PLAYBOOKS.other;
+    var chosen = book.steps.slice();
+    var ch = a.channels || [];
+
+    /* already doing well on search? push search work down, lead with retention */
+    if (ch.indexOf("search") > -1 && a.stage !== "prelaunch"){
+      chosen.sort(function(x, y){
+        var rank = { gbp:1, seo:1 };
+        return (rank[x.k] || 0) - (rank[y.k] || 0);
+      });
+    }
+    /* nothing running at all, positioning and the basics come first */
+    if (ch.indexOf("none") > -1 || a.stage === "prelaunch"){
+      chosen.sort(function(x, y){
+        var lead = { position:-2, gbp:-1, audit:-2, copy:-1 };
+        return (lead[x.k] || 0) - (lead[y.k] || 0);
+      });
+    }
+    /* paid ads already running and not working is a message problem first */
+    if (ch.indexOf("ads") > -1){
+      chosen.sort(function(x, y){
+        var lead = { copy:-1, position:-2 };
+        return (lead[x.k] || 0) - (lead[y.k] || 0);
+      });
+    }
+    return { tag: book.tag, steps: chosen.slice(0, 3), skip: book.skip };
+  }
+
+  /* ============================================================
+     DELIVERY, captured by Netlify Forms and emailed on from there.
+
+     Two routes to the same place. fetch() is tried first; if the
+     browser blocks it (opening the page straight from disk is the
+     usual cause) it falls back to a plain form post into a hidden
+     iframe, which isn't subject to the same cross-site rules.
+
+     Anything that fails both ways is parked in localStorage and
+     retried next time the page loads, so a dropped connection isn't
+     a lost inquiry. The manual email button is the last resort.
+     ============================================================ */
+  var QUEUE = "navren-unsent-v1";
+
+  /* Field names must match the declared form in the markup, or Netlify
+     drops anything it doesn't recognize. */
+  function emailFields(p){
+    return {
+      "form-name":  FORM_NAME,
+      business:     p.q1 || "Not given",
+      type:         p.segmentLabel || "Not given",
+      stage:        p.stageLabel || "Not given",
+      channels:     (p.channelLabels || []).join(", ") || "Not given",
+      worth:        p.valueLabel || "Not given",
+      tried:        p.q6 || "(left blank)",
+      contact_name: p.name || "Not given",
+      email:        p.email || "Not given",
+      website:      p.website || "Not given",
+      plan:         (p.plan || []).join("  >  "),
+      engagement:   p.estimate || "Not given",
+      submitted:    p.submittedAt || ""
+    };
+  }
+
+  function urlencode(data){
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+    }).join("&");
+  }
+
+  function post(payload){
+    return fetch(FORM_ACTION, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: urlencode(emailFields(payload))
+    }).then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r;
+    });
+  }
+
+  /* Fallback for when fetch is blocked, a page opened straight from
+     disk is the common case. A form post into a hidden iframe isn't
+     subject to the same cross-site restrictions, so it gets through
+     where fetch can't. The catch is we can't read the reply, so this
+     path reports "sent" rather than "confirmed". */
+  function postViaForm(payload){
+    return new Promise(function(resolve, reject){
+      var sinkName = "navren-sink-" + Date.now();
+      var sink = document.createElement("iframe");
+      sink.name = sinkName;
+      sink.style.display = "none";
+
+      var f = document.createElement("form");
+      f.method = "POST";
+      f.action = FORM_ACTION;
+      f.target = sinkName;
+      f.style.display = "none";
+
+      var fields = emailFields(payload);
+      Object.keys(fields).forEach(function(key){
+        var field = document.createElement("input");
+        field.type = "hidden";
+        field.name = key;
+        field.value = fields[key];
+        f.appendChild(field);
+      });
+
+      var settled = false;
+      function cleanup(ok){
+        if (settled) return;
+        settled = true;
+        setTimeout(function(){
+          try { f.remove(); sink.remove(); } catch(e){}
+        }, 1500);
+        ok ? resolve() : reject(new Error("form post timed out"));
+      }
+      sink.addEventListener("load", function(){ cleanup(true); });
+      setTimeout(function(){ cleanup(true); }, 5000);
+
+      try {
+        document.body.appendChild(sink);
+        document.body.appendChild(f);
+        f.submit();
+      } catch(e){ cleanup(false); }
+    });
+  }
+
+  function park(payload){
+    try {
+      var q = JSON.parse(localStorage.getItem(QUEUE) || "[]");
+      q.push(payload);
+      localStorage.setItem(QUEUE, JSON.stringify(q.slice(-20)));
+    } catch(e){ /* nothing more we can do here */ }
+  }
+
+  function flushQueue(){
+    if (!FORM_ACTION) return;
+    var q;
+    try { q = JSON.parse(localStorage.getItem(QUEUE) || "[]"); } catch(e){ return; }
+    if (!q.length) return;
+    localStorage.removeItem(QUEUE);
+    q.forEach(function(item){
+      post(item).catch(function(){ park(item); });
+    });
+  }
+
+  function deliver(payload){
+    var state = document.getElementById("sentState");
+    state.className = "sent";
+    state.textContent = "";
+    if (!FORM_ACTION){ return; }
+    /* Sending is silent. Only a failure says anything, so the answers
+       never disappear without the person knowing. */
+    post(payload).catch(function(){
+      /* fetch was blocked; go round via a form post, which isn't */
+      return postViaForm(payload);
+    }).catch(function(){
+      park(payload);
+      state.className = "sent fail";
+      state.textContent = "We couldn't send that automatically, use the email button below and it'll reach us.";
+    });
+  }
+
+  var LABELS = {
+    q1:"Your business", segment:"Type", stage:"Stage", channels:"Working today",
+    value:"Customer worth", q6:"Already tried",
+    name:"Name", email:"Email", website:"Website"
+  };
+  var PRETTY = {
+    local:"Local & service", professional:"Professional services", commerce:"Commerce",
+    technology:"Technology", other:"Something else",
+    prelaunch:"Not open yet", new:"Just launched", growing:"Growing", established:"Established",
+    under100:"Under $100", "100to500":"$100–$500", "500to2k":"$500–$2,000", over2k:"$2,000+", unsure:"Not sure",
+    word:"Word of mouth", search:"Google", social:"Social", ads:"Paid ads", email:"Email", none:"Almost nothing"
+  };
+  function pretty(v){ return PRETTY[v] || v; }
+
+  function finish(){
+    var a = collect();
+    var plan = buildPlan(a);
+
+    document.getElementById("resultIntro").textContent =
+      "That's everything we need about " + (a.q1 || "your business") +
+      ". We'll read through it properly before we speak.";
+
+    /* answers, echoed back */
+    var dl = document.getElementById("answerList");
+    dl.innerHTML = "";
+    Object.keys(LABELS).forEach(function(k){
+      var v = a[k];
+      if (Array.isArray(v)) v = v.map(pretty).join(", ");
+      else v = pretty(v);
+      if (!v) return;
+      var dt = document.createElement("dt"); dt.textContent = LABELS[k];
+      var dd = document.createElement("dd"); dd.textContent = v;
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+
+    /* ---- what we send onward: their answers plus what we told them ---- */
+    var payload = {
+      q1:a.q1, q6:a.q6, name:a.name, email:a.email, website:a.website,
+      segment:a.segment, stage:a.stage, value:a.value, channels:a.channels,
+      segmentLabel: pretty(a.segment),
+      stageLabel:   pretty(a.stage),
+      valueLabel:   pretty(a.value),
+      channelLabels:(a.channels || []).map(pretty),
+      plan: plan.steps.map(function(s){ return s.h; }),
+      source: "questionnaire",
+      submittedAt: new Date().toISOString()
+    };
+
+    /* ---- booking, with their answers carried across ----
+       Without prefill you end up on a call holding their plan in one tab
+       and no idea it's the same person. */
+    var bookBtn = document.getElementById("bookBtn");
+    if (CONFIG.bookingUrl){
+      var notes = "Business: " + (a.q1 || "Not given") +
+                  "\nType: " + pretty(a.segment) +
+                  "\nStage: " + pretty(a.stage);
+      var join = CONFIG.bookingUrl.indexOf("?") > -1 ? "&" : "?";
+      var params = CONFIG.bookingProvider === "calendly"
+        ? "name=" + encodeURIComponent(a.name || "") +
+          "&email=" + encodeURIComponent(a.email || "") +
+          "&a1=" + encodeURIComponent(notes)
+        : "name=" + encodeURIComponent(a.name || "") +
+          "&email=" + encodeURIComponent(a.email || "") +
+          "&notes=" + encodeURIComponent(notes);
+      bookBtn.href = CONFIG.bookingUrl + join + params;
+      bookBtn.target = "_blank";
+      bookBtn.rel = "noopener";
+    } else {
+      bookBtn.href = "mailto:" + CONFIG.contactEmail + "?subject=" +
+        encodeURIComponent("Booking a call, " + (a.name || "new inquiry"));
+    }
+    var body = Object.keys(LABELS).map(function(k){
+      var v = a[k];
+      if (Array.isArray(v)) v = v.map(pretty).join(", ");
+      else v = pretty(v);
+      return LABELS[k] + ": " + (v || "Not given");
+    }).join("\n");
+    var sendBtn = document.getElementById("sendBtn");
+    sendBtn.href = "mailto:" + CONFIG.contactEmail +
+      "?subject=" + encodeURIComponent("Questionnaire, " + (a.q1 || a.name || "new inquiry")) +
+      "&body=" + encodeURIComponent(body);
+
+    deliver(payload);
+
+    form.hidden = true;
+    actions.hidden = true;
+    result.hidden = false;
+    bar.style.width = "100%";
+    label.textContent = "Done";
+    timeLbl.textContent = "Complete";
+    window.scrollTo({ top:0, behavior:"smooth" });
+  }
+
+  document.getElementById("restart").addEventListener("click", function(){
+    try { localStorage.removeItem(STORE); } catch(e){}
+    form.reset();
+    form.hidden = false;
+    actions.hidden = false;
+    result.hidden = true;
+    timeLbl.textContent = "About two minutes";
+    show(0);
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  if (window.matchMedia("(max-width: 720px)").matches) enterHint.hidden = true;
+  flushQueue();
+  restore();
+  show(current);
+})();
+</script>
+
+</body>
+</html>
