@@ -597,7 +597,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 html.js::before,
 html.js::after{
   content:"";position:fixed;inset:0;z-index:9999;
-  background:var(--paper) url("navren-logo.png") no-repeat center / min(200px,42vw) auto;
+  background:var(--paper) url("../images/navren-logo.png") no-repeat center / min(200px,42vw) auto;
 }
 /* arriving: hold briefly, then fade off the page */
 html.js::before{animation:pt-arrive .8s ease forwards;}
