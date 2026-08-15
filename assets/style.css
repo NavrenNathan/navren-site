@@ -611,6 +611,22 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .contact-address{font-style:normal;font-size:16px;line-height:1.75;}
 .contact-address a{border-bottom:0;}
 .contact-address a:hover{text-decoration:underline;text-underline-offset:3px;}
+/* ---------- footer social ---------- */
+/* Brand marks are filled rather than stroked, unlike .card-icon, because a
+   logo outline stops being recognisable. Colour, border and hover come from
+   the footer's existing palette. 44px boxes so they are a real tap target. */
+.foot-social{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;}
+.foot-social a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;
+  border:1px solid rgba(255,255,255,.16);border-radius:4px;
+  color:#A9BDB6;
+  transition:color .2s ease,border-color .2s ease,background .2s ease;
+}
+.foot-social a:hover{color:#5BD3A6;border-color:#5BD3A6;background:rgba(91,211,166,.08);}
+.foot-social a:focus-visible{outline:2px solid #5BD3A6;outline-offset:2px;}
+.foot-social svg{width:17px;height:17px;display:block;fill:currentColor;}
+
 .foot-address{margin-top:28px;font-style:normal;font-size:14px;color:#8DA49D;line-height:1.7;}
 .foot-address b{display:block;color:#C3D2CC;font-weight:600;font-size:14px;margin-bottom:3px;}
 .foot h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#5BD3A6;font-weight:500;margin-bottom:13px;}
