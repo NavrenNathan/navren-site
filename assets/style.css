@@ -489,6 +489,90 @@ section{padding:clamp(46px,6vw,78px) 0;}
 
 /* ---------- faq ---------- */
 .faq{margin-top:30px;border-top:1px solid var(--line);}
+
+/* ---------- blog post body ---------- */
+/* Nothing new visually: the measure follows .faq .answer, the colour and
+   line-height follow .lede, and headings keep the .h2 treatment used on
+   every other page. Only the vertical rhythm of running prose is new,
+   because no page carried long-form copy before. */
+/* ---------- blog post cards ---------- */
+/* A horizontal rail: image on top, then the meta line, title, standfirst and
+   a read link. The card surface, border, radius and hover lift are the same
+   ones .cards article already uses, so this reads as the site's card in a
+   different arrangement rather than a new component. */
+.postrow{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(268px,1fr);
+  gap:14px;margin-top:22px;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  padding-bottom:6px;
+  scrollbar-width:thin;
+}
+@media (min-width:900px){ .postrow{grid-auto-columns:minmax(300px,1fr);} }
+.postrow > article{
+  scroll-snap-align:start;
+  background:var(--white);border:1px solid var(--line);border-radius:7px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .25s ease,transform .25s ease;
+}
+.postrow > article:hover{border-color:var(--jade);transform:translateY(-3px);}
+.postrow .thumb{display:block;background:var(--mist);}
+.postrow .thumb img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;}
+.postrow .card-in{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.postrow .byline{
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+  color:var(--slate-soft);text-transform:uppercase;
+}
+.postrow h3{
+  font-family:var(--display);font-weight:700;font-size:19px;
+  letter-spacing:-.018em;line-height:1.2;text-wrap:balance;
+}
+.postrow .excerpt{font-size:15px;color:var(--slate);line-height:1.6;}
+.postrow .read{margin-top:auto;padding-top:4px;}
+.postrow > article[hidden]{display:none;}
+.postrow-foot{margin-top:22px;}
+
+/* ---------- blog images inside a post ---------- */
+.post-body figure{margin:28px 0;}
+.post-body figure img{
+  width:100%;height:auto;display:block;
+  border:1px solid var(--line);border-radius:7px;
+}
+.post-body figcaption{
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--slate-soft);margin-top:10px;
+}
+
+/* ---------- blog topic filter ---------- */
+/* Borrowed wholesale from what already exists: the mono label treatment of
+   .eyebrow, the border and radius of .btn-ghost, and .jade-wash for the
+   active state, so the chips read as part of the site rather than a widget. */
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+.topic{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate);
+  background:var(--white);border:1px solid var(--line);border-radius:4px;
+  padding:9px 14px;min-height:44px;cursor:pointer;
+  transition:border-color .2s ease,color .2s ease,background .2s ease;
+}
+.topic:hover{border-color:var(--jade);color:var(--jade);}
+.topic.is-on{background:var(--jade-wash);border-color:var(--jade);color:var(--jade);}
+.topic-count{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--slate-soft);margin-top:14px;min-height:1.1em;
+}
+.topic-empty{margin-top:20px;color:var(--slate);font-size:16px;}
+.cards article[hidden]{display:none;}
+
+.post-body{max-width:70ch;}
+.post-body p{color:var(--slate);font-size:16.5px;line-height:1.7;margin-top:16px;}
+.post-body p.lede{color:var(--slate);font-size:17.5px;line-height:1.6;margin-top:0;}
+.post-body .h2{margin-top:38px;}
+.post-body .h2 + p{margin-top:12px;}
+.post-body .ticks{margin-top:16px;}
+.post-body b.hl{font-weight:700;}
+.post-body code{font-family:var(--mono);font-size:.88em;background:var(--mist);padding:1px 6px;border-radius:3px;color:var(--ink);}
+
 .faq details{border-bottom:1px solid var(--line);}
 .faq summary{
   list-style:none;cursor:pointer;padding:19px 44px 19px 0;position:relative;

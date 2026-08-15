@@ -240,3 +240,66 @@
     });
   });
 })();
+
+/* ============================================================
+   Blog topic filter
+   Progressive: the cards are all in the markup and visible, so with no
+   JavaScript the page is a complete list. This only hides and shows what
+   is already there.
+   ============================================================ */
+(function(){
+  "use strict";
+
+  var list = document.getElementById("postList");
+  if (!list) return;
+
+  var chips  = Array.prototype.slice.call(document.querySelectorAll(".topic"));
+  var posts  = Array.prototype.slice.call(list.querySelectorAll("article"));
+  var count  = document.querySelector(".topic-count");
+  var empty  = document.querySelector(".topic-empty");
+  var reset  = document.querySelector("[data-reset]");
+  if (!chips.length || !posts.length) return;
+
+  function apply(topic){
+    var shown = 0;
+    posts.forEach(function(p){
+      var match = topic === "all" || p.getAttribute("data-topic") === topic;
+      /* Set display directly rather than leaning on the hidden attribute.
+         .cards article carries display:flex, which outranks the browser's
+         [hidden]{display:none}, so a stale stylesheet would leave every card
+         on screen and the filter would look completely dead. Inline style
+         wins regardless of which version of the CSS is cached. */
+      p.hidden = !match;
+      p.style.display = match ? "" : "none";
+      /* Cards start at opacity 0 and are faded in by the reveal observer as
+         they scroll into view. A card the visitor has never scrolled past is
+         therefore still invisible, so filtering to it would show an empty
+         space where the post should be. Mark anything we show as revealed. */
+      if (match){ p.classList.add("in"); shown++; }
+    });
+    chips.forEach(function(c){
+      var on = c.getAttribute("data-topic") === topic;
+      c.classList.toggle("is-on", on);
+      c.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    /* The rail keeps whatever horizontal scroll it had, so after filtering
+       the visitor could be looking at the middle of a shorter list with the
+       first card cut off. Send it back to the start. */
+    if (list.scrollLeft) list.scrollLeft = 0;
+    if (empty) empty.hidden = shown !== 0;
+    if (count){
+      count.textContent = shown === posts.length
+        ? posts.length + (posts.length === 1 ? " post" : " posts")
+        : shown + " of " + posts.length;
+    }
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){ apply(c.getAttribute("data-topic")); });
+  });
+  if (reset){
+    reset.addEventListener("click", function(e){ e.preventDefault(); apply("all"); });
+  }
+
+  apply("all");
+})();
