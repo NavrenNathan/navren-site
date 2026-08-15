@@ -262,6 +262,22 @@
         </ul>
       </div>
     </div>
+      <div class="foot-news">
+        <div>
+          <h4>Newsletter</h4>
+          <p>Occasional notes on positioning, channel testing, and what is actually driving results. No spam, and you can unsubscribe anytime.</p>
+        </div>
+        <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="company_url">
+          <input type="hidden" name="form-name" value="newsletter" />
+          <div class="hp" aria-hidden="true">
+            <label for="news_company_url">Leave this blank</label>
+            <input type="text" id="news_company_url" name="company_url" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+          <p class="news-state" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     <div class="foot-bottom">
       <span>&copy; 2026 NAVREN AGENCY, LLC</span>
       <span><a href="mailto:hello@navrenagency.com">HELLO@NAVRENAGENCY.COM</a></span>

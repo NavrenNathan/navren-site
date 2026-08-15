@@ -182,3 +182,58 @@
     if (e.persisted) root.classList.remove("is-leaving");
   });
 })();
+
+/* ============================================================
+   Footer newsletter
+   Netlify captures the form from the static markup. We intercept the
+   submit so a subscriber is not thrown to a success page from the
+   bottom of whatever they were reading; if fetch is unavailable or
+   the request fails, the native POST still goes through.
+   ============================================================ */
+(function(){
+  "use strict";
+
+  var form = document.querySelector(".foot-news form");
+  if (!form || !window.fetch) return;
+
+  var email = form.querySelector('input[type="email"]');
+  var honey = form.querySelector('input[name="company_url"]');
+  var state = form.querySelector(".news-state");
+  var btn   = form.querySelector("button");
+
+  function encode(data){
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+    }).join("&");
+  }
+
+  form.addEventListener("submit", function(e){
+    /* Let the browser show its own message on an empty or malformed
+       address rather than posting a blank subscription. */
+    if (!form.checkValidity()) return;
+    e.preventDefault();
+
+    btn.disabled = true;
+    state.className = "news-state";
+    state.textContent = "Sending…";
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "newsletter",
+        email: email.value.trim(),
+        company_url: honey ? honey.value : ""
+      })
+    }).then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      state.className = "news-state ok";
+      state.textContent = "Subscribed. Thank you.";
+      email.value = "";
+    }).catch(function(){
+      btn.disabled = false;
+      state.className = "news-state fail";
+      state.textContent = "Did not send. Email hello@navrenagency.com";
+    });
+  });
+})();
