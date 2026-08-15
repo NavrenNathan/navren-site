@@ -41,6 +41,9 @@ img{max-width:100%;display:block;}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 ::selection{background:var(--jade);color:#fff;}
 :focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:2px;}
+/* Dark grounds need the light jade. --jade measures 2.86:1 on --ink, under
+   the 3:1 a focus indicator has to clear to be seen. */
+.foot :focus-visible,.imgband :focus-visible,.cta :focus-visible{outline-color:#5BD3A6;}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);}
 
@@ -112,7 +115,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 .mega-foot p{font-size:14px;color:var(--slate);}
 .mega-foot b{color:var(--ink);}
 
-.nav-toggle{display:none;align-items:center;gap:8px;border:1px solid var(--line);border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+.nav-toggle{display:none;align-items:center;gap:8px;border:1px solid var(--line);border-radius:4px;padding:8px 13px;min-height:44px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
 
 /* ---------- sections ---------- */
 section{padding:clamp(46px,6vw,78px) 0;}
@@ -493,7 +496,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .contact-address a:hover{text-decoration:underline;text-underline-offset:3px;}
 .foot-address{margin-top:28px;font-style:normal;font-size:14px;color:#8DA49D;line-height:1.7;}
 .foot-address b{display:block;color:#C3D2CC;font-weight:600;font-size:14px;margin-bottom:3px;}
-.foot h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#5BD3A6;font-weight:500;margin-bottom:13px;}
+.foot h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#5BD3A6;font-weight:500;margin-bottom:13px;}
 .foot ul{display:grid;gap:9px;}
 .foot li a{font-size:14px;color:#A9BDB6;transition:color .2s ease;}
 .foot li a:hover{color:#fff;}
@@ -528,16 +531,23 @@ section{padding:clamp(46px,6vw,78px) 0;}
   transition:border-color .2s ease,background .2s ease;
 }
 .foot-news input[type="email"]::placeholder{color:#7E938C;}
+/* The ring has to be the light jade here: the global --jade only reaches
+   2.86:1 against the footer ink, under the 3:1 required of a UI element. */
+.foot-news input[type="email"]:focus-visible{
+  outline:2px solid #5BD3A6;outline-offset:2px;
+  border-color:#5BD3A6;background:rgba(255,255,255,.09);
+}
 .foot-news input[type="email"]:focus{
-  outline:none;border-color:#5BD3A6;background:rgba(255,255,255,.09);
+  border-color:#5BD3A6;background:rgba(255,255,255,.09);
 }
 .foot-news button{
   flex:0 0 auto;background:#5BD3A6;color:var(--ink);
-  border:0;border-radius:2px;padding:11px 20px;
+  border:0;border-radius:2px;padding:11px 20px;min-height:44px;
   font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
   text-transform:uppercase;font-weight:500;
   cursor:pointer;transition:background .2s ease;
 }
+.foot-news button:focus-visible{outline:2px solid #5BD3A6;outline-offset:2px;}
 .foot-news button:hover{background:#7BE0BA;}
 .foot-news button:disabled{opacity:.55;cursor:default;}
 .foot-news .news-state{

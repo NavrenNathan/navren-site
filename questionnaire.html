@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Navren | Tell us about your business</title>
 <meta name="description" content="A few questions about your business, your stage and what you have tried, so we understand what you need before we speak." />
+<link rel="canonical" href="https://navrenagency.com/questionnaire" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Navren" />
+<meta property="og:url" content="https://navrenagency.com/questionnaire" />
+<meta property="og:title" content="Navren | Tell us about your business" />
+<meta property="og:description" content="A few questions about your business, your stage and what you have tried, so we understand what you need before we speak." />
+<meta property="og:image" content="https://navrenagency.com/images/og-navren.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Navren | Tell us about your business" />
+<meta name="twitter:description" content="A few questions about your business, your stage and what you have tried, so we understand what you need before we speak." />
+<meta name="twitter:image" content="https://navrenagency.com/images/og-navren.jpg" />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -52,7 +65,8 @@ input[type=text],input[type=email],input[type=url],textarea{
 }
 textarea{min-height:112px;resize:vertical;line-height:1.6;}
 input:focus,textarea:focus{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px var(--jade-wash);}
-input::placeholder,textarea::placeholder{color:#9BA8A4;}.sublabel{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);margin-bottom:-2px;}
+input::placeholder,textarea::placeholder{color:#9BA8A4;}.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+.sublabel{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);margin-bottom:-2px;}
 
 /* choice cards built on real radios/checkboxes */.choice{position:relative;display:block;}.choice input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}.choice span{
   display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
@@ -130,7 +144,8 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.sublabel{font-family:va
         <h2>What's your business, in one line?</h2>
         <p class="help">However you'd say it to someone at a party. No pitch needed.</p>
         <div class="fields">
-          <input type="text" id="q1" name="q1" data-required placeholder="We're a family Italian place opening in Southbank" autocomplete="organization" />
+          <label class="vh" for="q1">Your business, in one line</label>
+              <input type="text" id="q1" name="q1" data-required placeholder="We're a family Italian place opening in Southbank" autocomplete="organization" />
           <p class="err" data-err="q1"></p>
         </div>
       </section>
@@ -204,7 +219,8 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.sublabel{font-family:va
         <h2>What have you already tried that didn't work?</h2>
         <p class="help">The most useful question here. If you've been burned by an agency or wasted money on something, say so, it changes what we'd recommend.</p>
         <div class="fields">
-          <textarea id="q6" name="q6" placeholder="Spent about $2k on Instagram ads last year and got nothing out of it"></textarea>
+          <label class="vh" for="q6">What you have already tried that did not work</label>
+              <textarea id="q6" name="q6" placeholder="Spent about $2k on Instagram ads last year and got nothing out of it"></textarea>
           <p class="hint">Optional, but worth answering</p>
         </div>
       </section>
@@ -215,13 +231,13 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.sublabel{font-family:va
         <h2>Where should we send this?</h2>
         <p class="help">So we can get back to you properly about what you've told us.</p>
         <div class="fields">
-          <p class="sublabel">Your name</p>
+          <label class="sublabel" for="name">Your name</label>
           <input type="text" id="name" name="name" data-required placeholder="Alex Moreau" autocomplete="name" />
           <p class="err" data-err="name"></p>
-          <p class="sublabel">Email</p>
+          <label class="sublabel" for="email">Email</label>
           <input type="email" id="email" name="email" data-required placeholder="alex@verdetable.com" autocomplete="email" />
           <p class="err" data-err="email"></p>
-          <p class="sublabel">Website, if you have one</p>
+          <label class="sublabel" for="website">Website, if you have one</label>
           <input type="text" id="website" name="website" placeholder="verdetable.com" autocomplete="url" />
           <p class="privacy">We use this to follow up once. We don't sell your details or add you to a mailing list without asking. <a href="privacy.html">How we handle your information</a>.</p>
         </div>

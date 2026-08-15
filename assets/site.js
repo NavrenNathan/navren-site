@@ -230,6 +230,9 @@
       state.className = "news-state ok";
       state.textContent = "Subscribed. Thank you.";
       email.value = "";
+      /* A shared machine can have a second person waiting to sign up, so
+         the field goes back to being usable rather than staying spent. */
+      btn.disabled = false;
     }).catch(function(){
       btn.disabled = false;
       state.className = "news-state fail";
