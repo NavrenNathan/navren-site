@@ -57,21 +57,19 @@ version for up to an hour.
 
 ## Deploying
 
-Netlify is not currently linked to this repository, so pushing to `main` does not
-publish. Deploys are run manually:
+Netlify builds from `main`, so pushing publishes. A deploy takes about ten
+seconds and shows up in the Netlify Deploys tab.
 
 ```
-git pull                       # take whatever is already on main
-netlify deploy --prod --dir .
+git pull        # take whatever is already on main
+./stamp.sh      # only if you touched style.css or site.js
+git commit -am "..."
+git push        # this publishes
 ```
 
-Always pull first. A manual deploy uploads a full snapshot and replaces the live
-site with it, so deploying from a stale checkout silently reverts anyone else's
-work that has not been pulled in.
-
-Linking the repository in Netlify (Site configuration → Build & deploy) removes
-this problem entirely and is worth doing. It requires admin on both the GitHub
-repository and the Netlify site.
+Always pull before starting work. Continuous deployment removes the risk of one
+person's manual upload overwriting another's, but it does not stop two people
+editing the same file from different starting points.
 
 ## Conventions
 
