@@ -42,6 +42,19 @@ netlify dev
 
 That emulates Netlify's form handling. Otherwise test forms on a deploy preview.
 
+## After editing CSS or JS
+
+`assets/style.css` and `assets/site.js` are linked with a content hash, so a
+changed file gets a new URL and returning visitors see it immediately rather
+than waiting out the cache. Re-stamp after editing either:
+
+```
+./stamp.sh
+```
+
+Forgetting it is not fatal, but people who visited recently will keep the old
+version for up to an hour.
+
 ## Deploying
 
 Netlify is not currently linked to this repository, so pushing to `main` does not
