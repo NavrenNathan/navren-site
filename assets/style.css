@@ -615,7 +615,8 @@ section{padding:clamp(46px,6vw,78px) 0;}
 /* Brand marks are filled rather than stroked, unlike .card-icon, because a
    logo outline stops being recognisable. Colour, border and hover come from
    the footer's existing palette. 44px boxes so they are a real tap target. */
-.foot-social{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;}
+.foot-social{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;margin-bottom:22px;}  /* sits closer to the logo than to the paragraph below, so it reads as
+     part of the brand block rather than a lead-in to the copy */
 .foot-social a{
   display:inline-flex;align-items:center;justify-content:center;
   width:44px;height:44px;
