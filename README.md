@@ -71,6 +71,25 @@ Always pull before starting work. Continuous deployment removes the risk of one
 person's manual upload overwriting another's, but it does not stop two people
 editing the same file from different starting points.
 
+## The blog is built but switched off
+
+`blog.html` and `blog-post-template.html` are finished and stay in the repo, but
+nothing links to them and `/blog` carries a noindex tag, so the section is not
+part of the live site. To turn it back on when the first post is ready:
+
+1. Write the post: duplicate `blog-post-template.html` to `blog-your-title.html`,
+   edit the title, description, canonical and body, and remove its noindex tag.
+2. In `blog.html`: delete the `.blog-empty` panel, uncomment the filter chips and
+   the card rail, point the example card at your post, and remove the noindex tag.
+3. Put the Blog link back in the header nav of every page, after About:
+   `<li><a class="menu-link" href="blog.html">Blog</a></li>`
+4. Put it back in the footer Company column, after Who we help:
+   `<li><a href="blog.html">Blog</a></li>`
+5. Add `/blog` and the post URL to `sitemap.xml`.
+
+Steps 3 and 4 are one line each across the pages that carry a full nav and
+footer, so a find-and-replace across `*.html` is the quickest way to do it.
+
 ## Conventions
 
 - Filenames are kebab-case. Spaces and capitals become `%20` in URLs and break links.
