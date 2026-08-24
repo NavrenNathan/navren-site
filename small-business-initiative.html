@@ -65,6 +65,17 @@
 #sbiHero .note{ margin-top:28px; }
 
 #perksCards h3{padding-right:30px;}
+
+/* The answer text under each FAQ question snapped open/closed by
+   default, since <details> has no native animation. The script at the
+   bottom of the page drives max-height/opacity directly per question
+   (answers vary in length); overflow:hidden is what makes that
+   transition read as a slow reveal instead of a jump. Padding-bottom
+   is zeroed here and restored only once open — padding never shrinks
+   below its own size, so leaving the shared 20px in place left a gap
+   even at max-height:0. Scoped to this page's FAQ only. */
+#sbiFaq .answer{ overflow:hidden; max-height:0; opacity:0; padding-bottom:0; transition:max-height .38s cubic-bezier(.22,.65,.25,1), opacity .3s ease; }
+#sbiFaq .answer.is-open{ padding-bottom:20px; }
 </style>
 </head>
 <body>
@@ -256,7 +267,7 @@
         <p class="eyebrow">Questions</p>
         <h2 class="h2">The things people ask first.</h2>
       </div>
-      <div class="faq">
+      <div class="faq" id="sbiFaq">
         <details class="reveal">
           <summary>Do I have to participate every time you contact me?</summary>
           <div class="answer">No. We'll send you opportunities from time to time. Participate in the ones that interest you and skip the ones that don't. There are no participation quotas.</div>
@@ -378,5 +389,54 @@
 </footer>
 
 <script src="assets/site.js?v=a8f83dd7"></script>
+<script>
+(function(){
+  var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll("#sbiFaq details");
+  for (var i = 0; i < items.length; i++){
+    (function(details){
+      var summary = details.querySelector("summary");
+      var answer = details.querySelector(".answer");
+      if (!summary || !answer) return;
+      if (REDUCED) return; // native instant open/close is fine here
+
+      summary.addEventListener("click", function(e){
+        e.preventDefault();
+        if (details.open){
+          // padding is still on (is-open not removed yet), so this
+          // includes it — strip it only once fully collapsed & hidden
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          answer.style.opacity = "1";
+          requestAnimationFrame(function(){
+            answer.style.maxHeight = "0px";
+            answer.style.opacity = "0";
+          });
+          answer.addEventListener("transitionend", function close(ev){
+            if (ev.propertyName !== "max-height") return;
+            details.open = false;
+            answer.classList.remove("is-open");
+            answer.removeEventListener("transitionend", close);
+          });
+        } else {
+          details.open = true;
+          answer.classList.add("is-open"); // restore padding before measuring
+          var target = answer.scrollHeight;
+          answer.style.maxHeight = "0px";
+          answer.style.opacity = "0";
+          requestAnimationFrame(function(){
+            answer.style.maxHeight = target + "px";
+            answer.style.opacity = "1";
+          });
+          answer.addEventListener("transitionend", function open(ev){
+            if (ev.propertyName !== "max-height") return;
+            answer.style.maxHeight = "none"; // unclamp so it can't clip on resize/zoom
+            answer.removeEventListener("transitionend", open);
+          });
+        }
+      });
+    })(items[i]);
+  }
+})();
+</script>
 </body>
 </html>
