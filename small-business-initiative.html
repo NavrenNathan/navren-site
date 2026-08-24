@@ -33,24 +33,19 @@
 <link rel="stylesheet" href="assets/style.css?v=a4a44232" />
 <script>document.documentElement.className += " js";</script>
 <style>
-/* Locks the hero photo band to a 2.4:1 shape, but only from 1200px up.
-   .imgband already sets overflow:hidden, and below 1200px the hero copy
-   needs more vertical room than a fixed-ratio box allows — forcing the
-   ratio everywhere clips content off the bottom of the section on
-   mobile. Narrower widths keep the site's normal content-driven height
-   instead, which is what avoids that.
-   (Went 3:2 -> 2:1 -> 2.2:1 -> 2.3:1 as the copy shrank and the ask
-   kept being "shorter". Each step needed the padding trimmed further
-   too, not just the ratio — ratio alone runs out of room fast. 15px
-   margin left at 1200px; checked directly against the live DOM, not
-   estimated, since going tighter clips silently instead of growing
-   the box.) */
-@media (min-width:1200px){
-  #sbiHero{ aspect-ratio:2.4/1; padding-top:34px; padding-bottom:22px; }
-}
+/* Switched from a full-bleed photo band (locked aspect-ratio, image as
+   background) to the site's split-hero pattern: copy on the left, the
+   photo in its own panel on the right. That was several rounds of
+   fighting a locked aspect-ratio against copy that kept getting
+   shorter — splitband sizes itself from content instead, so there's
+   nothing left to clip. Also gives .note a lighter color: the shared
+   .note class defaults to --slate, which reads fine on the site's
+   normal paper background but is too dark against this section's
+   green gradient. */
+#sbiHero .note{ color:#8DA49D; }
 
 /* A little larger than the site's normal hero type, scoped to this page
-   only — assets/style.css?v=a4a44232 and every other hero stay untouched. */
+   only — assets/style.css and every other hero stay untouched. */
 /* Bigger text was meant for desktop; unscoped, mobile inherited it too
    and the hero ended up eating ~85% of a phone screen. Locking the bump
    to the same breakpoint the nav already uses, so mobile falls back to
@@ -153,13 +148,7 @@
 <main>
 
   <!-- ---------------- HERO ---------------- -->
-  <section class="phero imgband light" id="sbiHero">
-    <div class="shot">
-      <img src="images/sbi-picture.jpg"
-           srcset="images/sbi-picture-sm.jpg 900w, images/sbi-picture.jpg 1536w"
-           sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high" />
-    </div>
-    <div class="veil"></div>
+  <section class="phero imgband splitband" id="sbiHero">
     <div class="wrap">
       <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Small Business Initiative</p>
       <p class="eyebrow">Small Business Initiative</p>
@@ -169,6 +158,12 @@
         <a class="btn" href="small-business-initiative-join.html">Join the Initiative</a>
       </div>
       <p class="note">Free to join. Must be 18+.</p>
+    </div>
+    <div class="split-media">
+      <img src="images/sbi-picture.jpg"
+           srcset="images/sbi-picture-sm.jpg 900w, images/sbi-picture.jpg 1536w"
+           sizes="(min-width:900px) 45vw, 100vw"
+           alt="" width="1536" height="1024" fetchpriority="high" />
     </div>
   </section>
 
