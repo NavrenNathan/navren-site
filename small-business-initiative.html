@@ -33,18 +33,18 @@
 <link rel="stylesheet" href="assets/style.css?v=acff68e4" />
 <script>document.documentElement.className += " js";</script>
 <style>
-/* Locks the hero photo band to a 2:1 shape, but only from 1200px up.
+/* Locks the hero photo band to a 2.2:1 shape, but only from 1200px up.
    .imgband already sets overflow:hidden, and below 1200px the hero copy
    needs more vertical room than a fixed-ratio box allows — forcing the
    ratio everywhere clips content off the bottom of the section on
    mobile. Narrower widths keep the site's normal content-driven height
    instead, which is what avoids that.
-   (This was 3:2 briefly, sized for a three-paragraph copy block; once
-   the copy was trimmed to one line, 3:2 left the band mostly empty. 2:1
-   fits the shorter copy with room to spare at 1200-1920px — checked
-   directly, not just estimated, since a too-short ratio here clips
-   silently rather than growing the box.) */
-@media (min-width:1200px){ #sbiHero{ aspect-ratio:2/1; } }
+   (Went 3:2 -> 2:1 -> 2.2:1 as the copy shrank and the ask became
+   "shorter" again. 2.2:1 is the tightest that still clears the content
+   with a real margin at 1200px — checked directly against the live DOM,
+   not estimated, since going tighter clips silently instead of growing
+   the box.) */
+@media (min-width:1200px){ #sbiHero{ aspect-ratio:2.2/1; } }
 
 /* A little larger than the site's normal hero type, scoped to this page
    only — assets/style.css and every other hero stay untouched. */
