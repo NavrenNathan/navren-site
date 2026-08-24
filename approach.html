@@ -31,6 +31,27 @@
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/style.css?v=acff68e4" />
 <script>document.documentElement.className += " js";</script>
+<style>
+/* The answer text under each FAQ question snapped open/closed by
+   default, since <details> has no native animation. A grid row that
+   animates from 0fr to 1fr reads as one continuous motion — height,
+   opacity and the padding all arrive together, unlike animating
+   max-height and opacity as two separate transitions with different
+   durations, which looked like two things happening instead of one.
+   The wrapper is added by the script at the bottom of the page.
+   Scoped to this page's FAQ only. */
+#approachFaq .answer-wrap{
+  display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows .42s cubic-bezier(.22,.65,.25,1);
+}
+#approachFaq .answer-wrap.is-open{ grid-template-rows:1fr; }
+#approachFaq .answer-wrap .answer{
+  overflow:hidden; min-height:0; opacity:0; padding-bottom:0;
+  transition:opacity .42s cubic-bezier(.22,.65,.25,1),
+             padding-bottom .42s cubic-bezier(.22,.65,.25,1);
+}
+#approachFaq .answer-wrap.is-open .answer{ opacity:1; padding-bottom:20px; }
+</style>
 </head>
 <body>
 
@@ -256,7 +277,7 @@
         <p class="eyebrow">Straight answers</p>
         <h2 class="h2">What people ask about how we work.</h2>
       </div>
-      <div class="faq reveal">
+      <div class="faq reveal" id="approachFaq">
         <details>
           <summary>How long before we see results?</summary>
           <div class="answer">It depends entirely on the channel. Paid search and outbound can produce signal within weeks. Search and content take considerably longer and keep paying long after. We will tell you which applies to your mix on the first call, and we will not put a number on it that we cannot stand behind.</div>
@@ -378,5 +399,43 @@
 </footer>
 
 <script src="assets/site.js?v=a8f83dd7"></script>
+<script>
+(function(){
+  var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll("#approachFaq details");
+  for (var i = 0; i < items.length; i++){
+    (function(details){
+      var summary = details.querySelector("summary");
+      var answer = details.querySelector(".answer");
+      if (!summary || !answer) return;
+      if (REDUCED) return; // native instant open/close is fine here
+
+      // Wrap .answer in a grid row that animates 0fr -> 1fr. That's
+      // what makes height, opacity and padding all arrive together as
+      // one motion, instead of separately-timed max-height/opacity
+      // transitions that read as two things happening.
+      var wrap = document.createElement("div");
+      wrap.className = "answer-wrap";
+      answer.parentNode.insertBefore(wrap, answer);
+      wrap.appendChild(answer);
+
+      summary.addEventListener("click", function(e){
+        e.preventDefault();
+        if (details.open){
+          wrap.classList.remove("is-open");
+          wrap.addEventListener("transitionend", function close(ev){
+            if (ev.propertyName !== "grid-template-rows") return;
+            details.open = false;
+            wrap.removeEventListener("transitionend", close);
+          });
+        } else {
+          details.open = true;
+          requestAnimationFrame(function(){ wrap.classList.add("is-open"); });
+        }
+      });
+    })(items[i]);
+  }
+})();
+</script>
 </body>
 </html>
