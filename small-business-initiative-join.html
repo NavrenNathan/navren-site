@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Join the Small Business Initiative | Navren</title>
+<meta name="description" content="Join the Navren Small Business Initiative. It takes about a minute." />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://navrenagency.com/small-business-initiative-join" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Navren" />
+<meta property="og:url" content="https://navrenagency.com/small-business-initiative-join" />
+<meta property="og:title" content="Join the Small Business Initiative | Navren" />
+<meta property="og:description" content="Join the Navren Small Business Initiative. It takes about a minute." />
+<meta property="og:image" content="https://navrenagency.com/images/og-navren.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Join the Small Business Initiative | Navren" />
+<meta name="twitter:description" content="Join the Navren Small Business Initiative. It takes about a minute." />
+<meta name="twitter:image" content="https://navrenagency.com/images/og-navren.jpg" />
+<link rel="icon" type="image/png" sizes="144x144" href="favicon-144.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="preload" href="/fonts/jost-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="assets/style.css?v=acff68e4" />
+<script>document.documentElement.className += " js";</script>
+<style>
+/* ---------- Small Business Initiative — join form ----------
+   Page-scoped so the shared stylesheet is untouched. Lifted from
+   questionnaire.html: same inputs, same choice cards, same step
+   animation, same progress bar. */
+.join{max-width:640px;}
+.jstep[hidden]{display:none;}
+.jstep{animation:jslide .32s cubic-bezier(.2,.7,.2,1) both;}
+@keyframes jslide{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.jprogress{margin-top:22px;}
+.jprogress-row{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);}
+.jbar{height:3px;background:var(--mist);border-radius:3px;margin-top:9px;overflow:hidden;}
+.jbar i{display:block;height:100%;width:0;background:var(--jade);border-radius:3px;
+  transition:width .35s cubic-bezier(.2,.7,.2,1);}
+.jsection{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--jade);}
+.jstep h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(21px,2.8vw,27px);line-height:1.08;margin-top:12px;text-wrap:balance;}
+.jhelp{color:var(--slate);margin-top:10px;font-size:16px;max-width:52ch;}
+.jfields{margin-top:22px;display:grid;gap:10px;}
+.jfields fieldset{border:0;padding:0;min-width:0;display:grid;gap:10px;}
+.jlabel{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--slate);margin-bottom:-2px;}
+.jrow{display:grid;gap:10px;}
+@media (min-width:620px){ .jrow.two{grid-template-columns:1fr 1fr;} }
+.join input[type=text],.join input[type=email]{
+  width:100%;background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:14px 15px;font-family:var(--body);font-size:16px;color:var(--ink);
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.join input:focus{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px var(--jade-wash);}
+.join input::placeholder{color:#9BA8A4;}
+.jchoice{position:relative;display:block;}
+.jchoice input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}
+.jchoice span{display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:14px 16px;font-size:15.5px;font-weight:600;cursor:pointer;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;}
+.jchoice span:hover{border-color:var(--jade);transform:translateY(-1px);}
+.jchoice input:checked + span{border-color:var(--jade);background:var(--jade-wash);box-shadow:inset 0 0 0 1px var(--jade);}
+.jchoice input:focus-visible + span{outline:2px solid var(--jade);outline-offset:2px;}
+.jerr{color:#A3341F;font-size:13.5px;margin-top:4px;min-height:1.2em;}
+.jchosen{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--slate);margin-top:8px;min-height:1.2em;}
+.jconsent{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--slate);line-height:1.6;}
+.jconsent input{width:17px;height:17px;margin:3px 0 0;accent-color:var(--jade);flex:0 0 auto;}
+.jconsent a{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}
+.jactions{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:24px;}
+.jfine{margin-top:14px;font-size:13px;color:var(--slate);line-height:1.6;max-width:60ch;}
+.jsent{margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;}
+.jsent.ok{color:var(--jade);} .jsent.fail{color:#A3341F;}
+.jback{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);transition:color .2s;}
+.jback:hover{color:var(--jade);}
+.jdone{display:none;}
+.jdone.on{display:block;}
+</style>
+</head>
+<body>
+
+<!-- Netlify only captures fields it can find in the deployed HTML, and it
+     scans at deploy time. The interactive form is driven by script and never
+     submits natively, so this declares the shape of the data instead. The
+     field order here is the column order in the Form Responses sheet. -->
+<form name="small-business-initiative" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="small-business-initiative" />
+  <input type="text" name="bot-field" />
+  <input type="text" name="first_name" />
+  <input type="text" name="last_name" />
+  <input type="email" name="email" />
+  <input type="text" name="city" />
+  <input type="text" name="social" />
+  <input type="text" name="interests" />
+  <input type="text" name="help" />
+  <input type="text" name="agreed_terms" />
+  <input type="text" name="submitted" />
+</form>
+
+<main>
+  <section class="phero" style="padding-bottom:0;">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <a href="small-business-initiative.html">Small Business Initiative</a> &nbsp;/&nbsp; Join</p>
+      <p class="eyebrow">Ready to support small business?</p>
+      <h1>Join the Small Business Initiative.</h1>
+      <p class="sub">It takes about a minute.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="join">
+        <div class="jprogress" id="jprogress">
+          <div class="jprogress-row">
+            <span id="jlabel">About you</span>
+            <span id="jtime">About a minute</span>
+          </div>
+          <div class="jbar"><i id="jbarfill"></i></div>
+        </div>
+
+        <form id="joinForm" novalidate>
+
+          <!-- Section 1 -->
+          <section class="jstep" data-jstep="0">
+            <p class="jsection">About you</p>
+            <h3>Let's start with the basics.</h3>
+            <div class="jfields">
+              <div class="jrow two">
+                <div>
+                  <label class="jlabel" for="first_name">First Name</label>
+                  <input type="text" id="first_name" name="first_name" data-required placeholder="Alex" autocomplete="given-name" />
+                  <p class="jerr" data-jerr="first_name"></p>
+                </div>
+                <div>
+                  <label class="jlabel" for="last_name">Last Name</label>
+                  <input type="text" id="last_name" name="last_name" data-required placeholder="Moreau" autocomplete="family-name" />
+                  <p class="jerr" data-jerr="last_name"></p>
+                </div>
+              </div>
+              <label class="jlabel" for="email">Email Address</label>
+              <input type="email" id="email" name="email" data-required placeholder="alex@example.com" autocomplete="email" />
+              <p class="jerr" data-jerr="email"></p>
+              <label class="jlabel" for="city">City</label>
+              <input type="text" id="city" name="city" data-required placeholder="Seattle" autocomplete="address-level2" />
+              <p class="jerr" data-jerr="city"></p>
+              <label class="jlabel" for="social">Instagram / TikTok / Other Social Handle</label>
+              <input type="text" id="social" name="social" placeholder="@yourhandle" autocomplete="off" />
+              <p class="jhint" style="font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);">Optional. You do not need a social media following to participate.</p>
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section class="jstep" data-jstep="1" hidden>
+            <p class="jsection">What are you into?</p>
+            <h3>Pick whatever interests you.</h3>
+            <p class="jhelp">Select anything that interests you.</p>
+            <fieldset class="jfields">
+              <legend class="jlabel">All optional</legend>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Food &amp; Drink" /><span>Food &amp; Drink</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Retail &amp; Shopping" /><span>Retail &amp; Shopping</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Health &amp; Wellness" /><span>Health &amp; Wellness</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Beauty &amp; Personal Care" /><span>Beauty &amp; Personal Care</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Fitness" /><span>Fitness</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Entertainment &amp; Events" /><span>Entertainment &amp; Events</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Professional Services" /><span>Professional Services</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Home &amp; Local Services" /><span>Home &amp; Local Services</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Technology &amp; Startups" /><span>Technology &amp; Startups</span></label>
+              <label class="jchoice"><input type="checkbox" name="interests" value="Pretty much anything — surprise me" /><span>Pretty much anything &mdash; surprise me</span></label>
+              <p class="jchosen" data-jcount="interests"></p>
+            </fieldset>
+          </section>
+
+          <!-- Section 3 -->
+          <section class="jstep" data-jstep="2" hidden>
+            <p class="jsection">How would you like to help?</p>
+            <h3>However suits you.</h3>
+            <p class="jhelp">Select all that apply.</p>
+            <fieldset class="jfields">
+              <legend class="jlabel">All optional</legend>
+              <label class="jchoice"><input type="checkbox" name="help" value="Discover and visit local businesses" /><span>Discover and visit local businesses</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Try new products or services" /><span>Try new products or services</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Follow or engage with businesses on social media" /><span>Follow or engage with businesses on social media</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Tell friends about businesses I like" /><span>Tell friends about businesses I like</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Provide feedback to businesses" /><span>Provide feedback to businesses</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Create photos, videos or other content" /><span>Create photos, videos or other content</span></label>
+              <label class="jchoice"><input type="checkbox" name="help" value="Attend openings, events or special experiences" /><span>Attend openings, events or special experiences</span></label>
+              <p class="jchosen" data-jcount="help"></p>
+            </fieldset>
+          </section>
+
+          <!-- Section 4 -->
+          <section class="jstep" data-jstep="3" hidden>
+            <p class="jsection">Last thing</p>
+            <h3>One quick confirmation.</h3>
+            <div class="jfields">
+              <label class="jconsent">
+                <input type="checkbox" id="agreed_terms" name="agreed_terms" data-required />
+                <span>By joining, I hereby agree to the <a href="program-agreement.html">Small Business Initiative Program Agreement</a>.</span>
+              </label>
+              <p class="jerr" data-jerr="agreed_terms"></p>
+            </div>
+          </section>
+
+          <div class="jactions" id="jactions">
+            <button type="button" class="btn" id="jnext">Continue</button>
+            <button type="button" class="btn-ghost" id="jback" hidden>Back</button>
+          </div>
+        </form>
+
+        <div class="jdone" id="jdone">
+          <p class="jsection">You're in</p>
+          <h3>Welcome to the Initiative.</h3>
+          <p class="jhelp" id="jdoneIntro"></p>
+          <p class="jsent" id="jsent"></p>
+          <div class="jactions">
+            <a class="btn-ghost" href="small-business-initiative.html">Back to the Initiative</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="images/navren-logo-light.png" alt="Navren" width="1390" height="172" loading="lazy" />
+        <div class="foot-social">
+        <a href="https://www.linkedin.com/company/navren-agency/" target="_blank" rel="noopener" aria-label="Navren on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.instagram.com/navrenagency/" target="_blank" rel="noopener" aria-label="Navren on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.6684-.0207 4.9482-.0814 1.28-.0607 2.1478-.2652 2.9105-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.4074-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.4074-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.4229-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.0723 4.848-.0794 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.4072.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.4072 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.0724-4.8493.0794-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1499-3.403.0067-6.156 2.771-6.1496 6.1739M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+        <a href="https://www.facebook.com/navrenagency" target="_blank" rel="noopener" aria-label="Navren on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.reddit.com/user/NavrenAgency/" target="_blank" rel="noopener" aria-label="Navren on Reddit"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-6.994 4.87-3.865 0-6.994-2.176-6.994-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12.5c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12c-.689 0-1.25.562-1.25 1.25 0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.561-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+        </div>
+                <p>A marketing agency for startups. We build the positioning, the demand and the systems that keep both compounding.</p>
+      <address class="foot-address">
+        <b>Bellevue, Washington</b>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=11900%20NE%201st%20St%20Suite%20300%2C%20Bellevue%2C%20WA%2098005" target="_blank" rel="noopener">11900 N.E. 1st Street, Suite 300<br />
+        Building G<br />
+        Bellevue, WA 98005</a>
+      </address>
+      </div>
+      <div>
+        <h3>Who we help</h3>
+        <ul>
+          <li><a href="startups.html">Technology &amp; Startups</a></li>
+          <li><a href="commerce.html">Commerce &amp; Consumer</a></li>
+          <li><a href="professional-services.html">Professional Services</a></li>
+          <li><a href="local-business.html">Local &amp; Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="communications.html">Communications</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="content.html">Website &amp; Content</a></li>
+          <li><a href="email.html">Email &amp; Retention</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="approach.html">Approach</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="questionnaire.html">Questionnaire</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="foot-news">
+        <div>
+          <h3>Newsletter</h3>
+          <p>Spicy blogs, helpful resources and cool stuff we publish from time to time. No spam, and you can unsubscribe anytime.</p>
+        </div>
+        <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="company_url">
+          <input type="hidden" name="form-name" value="newsletter" />
+          <div class="hp" aria-hidden="true">
+            <label for="news_company_url">Leave this blank</label>
+            <input type="text" id="news_company_url" name="company_url" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+          <p class="news-state" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 NAVREN AGENCY, LLC</span>
+      <span><a href="mailto:hello@navrenagency.com">HELLO@NAVRENAGENCY.COM</a></span>
+      <span><a href="disclaimers.html">DISCLAIMERS</a></span>
+      <span><a href="privacy.html">PRIVACY POLICY</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=a8f83dd7"></script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Same delivery path as the questionnaire: Netlify Forms, posted from the
+     page, with an iframe fallback and an offline queue. Field order below is
+     the column order of the Form Responses sheet. */
+  var FORM_NAME   = "small-business-initiative";
+  var FORM_ACTION = "/";
+  var STORE       = "navren-sbi-v1";
+  var QUEUE       = "navren-sbi-unsent-v1";
+
+  var form   = document.getElementById("joinForm");
+  if (!form) return;
+  var steps  = Array.prototype.slice.call(form.querySelectorAll(".jstep"));
+  var nextBtn= document.getElementById("jnext");
+  var backBtn= document.getElementById("jback");
+  var actions= document.getElementById("jactions");
+  var done   = document.getElementById("jdone");
+  var prog   = document.getElementById("jprogress");
+  var bar    = document.getElementById("jbarfill");
+  var label  = document.getElementById("jlabel");
+  var current= 0;
+
+  var TEXT   = ["first_name","last_name","email","city","social"];
+  var GROUPS = ["interests","help"];
+  var TITLES = ["About you","What are you into?","How would you like to help?","Last thing"];
+
+  function collect(){
+    var out = {};
+    TEXT.forEach(function(id){
+      var el = document.getElementById(id);
+      out[id] = el ? el.value.trim() : "";
+    });
+    GROUPS.forEach(function(n){
+      out[n] = Array.prototype.slice.call(form.querySelectorAll('[name="'+n+'"]:checked'))
+                    .map(function(el){ return el.value; });
+    });
+    out.agreed_terms = !!document.getElementById("agreed_terms").checked;
+    return out;
+  }
+  function save(){
+    try { var d = collect(); d.__step = current; localStorage.setItem(STORE, JSON.stringify(d)); }
+    catch(e){ /* private browsing */ }
+  }
+  function restore(){
+    try {
+      var raw = localStorage.getItem(STORE); if (!raw) return;
+      var d = JSON.parse(raw);
+      TEXT.forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && typeof d[id] === "string") el.value = d[id];
+      });
+      GROUPS.forEach(function(n){
+        (d[n] || []).forEach(function(v){
+          var box = form.querySelector('[name="'+n+'"][value="'+v.replace(/"/g,'\\"')+'"]');
+          if (box) box.checked = true;
+        });
+      });
+      if (d.agreed_terms) document.getElementById("agreed_terms").checked = true;
+      if (typeof d.__step === "number") current = Math.min(d.__step, steps.length - 1);
+    } catch(e){ /* corrupt payload, start clean */ }
+  }
+
+  /* ---------- validation ---------- */
+  function clearError(k){ var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = ""; }
+  function setError(k,m){ var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = m; }
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var NICE = { first_name:"first name", last_name:"last name", city:"city", email:"email address" };
+
+  function validate(index){
+    var required = Array.prototype.slice.call(steps[index].querySelectorAll("[data-required]"));
+    var ok = true, firstBad = null;
+    required.forEach(function(el){
+      var name = el.name;
+      clearError(name);
+      if (el.type === "checkbox"){
+        if (!el.checked){
+          setError(name, "Please agree to the Program Agreement to join.");
+          ok = false; firstBad = firstBad || el;
+        }
+        return;
+      }
+      var val = el.value.trim();
+      if (!val){
+        setError(name, "Please add your " + (NICE[name] || name.replace("_"," ")) + ".");
+        ok = false; firstBad = firstBad || el;
+        return;
+      }
+      if (el.type === "email" && !EMAIL_RE.test(val)){
+        setError(name, "That email doesn't look right, check for a typo.");
+        ok = false; firstBad = firstBad || el;
+      }
+    });
+    if (!ok && firstBad){ try { firstBad.focus(); } catch(e){} }
+    return ok;
+  }
+
+  function syncCounts(){
+    GROUPS.forEach(function(n){
+      var el = form.querySelector('[data-jcount="'+n+'"]');
+      if (!el) return;
+      var c = form.querySelectorAll('[name="'+n+'"]:checked').length;
+      el.textContent = c ? c + " selected" : "";
+    });
+  }
+
+  /* ---------- navigation ---------- */
+  function show(index){
+    steps.forEach(function(s,i){ s.hidden = i !== index; });
+    current = index;
+    backBtn.hidden = index === 0;
+    nextBtn.textContent = index === steps.length - 1 ? "Join the Initiative" : "Continue";
+    label.textContent = TITLES[index] || "";
+    bar.style.width = (index / steps.length * 100) + "%";
+    save();
+  }
+
+  nextBtn.addEventListener("click", function(){
+    if (!validate(current)) return;
+    save();
+    if (current === steps.length - 1){ finish(); return; }
+    show(current + 1);
+    prog.scrollIntoView({ behavior:"smooth", block:"start" });
+  });
+  backBtn.addEventListener("click", function(){
+    if (current > 0){ show(current - 1); prog.scrollIntoView({ behavior:"smooth", block:"start" }); }
+  });
+  form.addEventListener("keydown", function(e){
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    nextBtn.click();
+  });
+  form.addEventListener("change", function(e){
+    if (e.target.name) clearError(e.target.name);
+    syncCounts(); save();
+  });
+  form.addEventListener("input", function(e){ if (e.target.name) clearError(e.target.name); });
+
+  /* ---------- delivery ---------- */
+  function payload(){
+    var a = collect();
+    return {
+      "form-name":  FORM_NAME,
+      first_name:   a.first_name,
+      last_name:    a.last_name,
+      email:        a.email,
+      city:         a.city,
+      social:       a.social || "",
+      interests:    a.interests.join(", "),
+      help:         a.help.join(", "),
+      agreed_terms: a.agreed_terms ? "Yes" : "No",
+      submitted:    new Date().toISOString()
+    };
+  }
+  function urlencode(d){
+    return Object.keys(d).map(function(k){
+      return encodeURIComponent(k) + "=" + encodeURIComponent(d[k]);
+    }).join("&");
+  }
+  function post(p){
+    return fetch(FORM_ACTION, {
+      method:"POST",
+      headers:{ "Content-Type":"application/x-www-form-urlencoded" },
+      body: urlencode(p)
+    }).then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r; });
+  }
+  function postViaForm(p){
+    return new Promise(function(resolve, reject){
+      var sinkName = "navren-sbi-sink-" + Date.now();
+      var sink = document.createElement("iframe");
+      sink.name = sinkName; sink.style.display = "none";
+      var f = document.createElement("form");
+      f.method = "POST"; f.action = FORM_ACTION; f.target = sinkName; f.style.display = "none";
+      Object.keys(p).forEach(function(k){
+        var i = document.createElement("input");
+        i.type = "hidden"; i.name = k; i.value = p[k];
+        f.appendChild(i);
+      });
+      var settled = false;
+      function cleanup(ok){
+        if (settled) return;
+        settled = true;
+        setTimeout(function(){ try{ f.remove(); sink.remove(); }catch(e){} }, 1500);
+        ok ? resolve() : reject(new Error("form post timed out"));
+      }
+      sink.addEventListener("load", function(){ cleanup(true); });
+      setTimeout(function(){ cleanup(true); }, 5000);
+      try { document.body.appendChild(sink); document.body.appendChild(f); f.submit(); }
+      catch(e){ cleanup(false); }
+    });
+  }
+  function park(p){
+    try {
+      var q = JSON.parse(localStorage.getItem(QUEUE) || "[]");
+      q.push(p); localStorage.setItem(QUEUE, JSON.stringify(q.slice(-20)));
+    } catch(e){}
+  }
+  function flushQueue(){
+    var q;
+    try { q = JSON.parse(localStorage.getItem(QUEUE) || "[]"); } catch(e){ return; }
+    if (!q.length) return;
+    localStorage.removeItem(QUEUE);
+    q.forEach(function(i){ post(i).catch(function(){ park(i); }); });
+  }
+
+  function finish(){
+    var a = collect(), p = payload();
+    form.hidden = true; actions.hidden = true; prog.hidden = true;
+    done.classList.add("on");
+    document.getElementById("jdoneIntro").textContent =
+      "Thanks " + (a.first_name || "") + ". We'll be in touch at " + (a.email || "the address you gave") +
+      " when there's a business near you worth knowing about.";
+    var state = document.getElementById("jsent");
+    state.className = "jsent"; state.textContent = "Sending…";
+    post(p).then(function(){
+      state.className = "jsent ok"; state.textContent = "Sent";
+      try { localStorage.removeItem(STORE); } catch(e){}
+    }).catch(function(){
+      postViaForm(p).then(function(){
+        state.className = "jsent ok"; state.textContent = "Sent";
+        try { localStorage.removeItem(STORE); } catch(e){}
+      }).catch(function(){
+        park(p);
+        state.className = "jsent fail";
+        state.textContent = "Could not send. Email hello@navrenagency.com";
+      });
+    });
+    done.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  restore();
+  syncCounts();
+  show(current);
+  flushQueue();
+})();
+</script>
+
+</body>
+</html>
