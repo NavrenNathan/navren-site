@@ -67,15 +67,24 @@
 #perksCards h3{padding-right:30px;}
 
 /* The answer text under each FAQ question snapped open/closed by
-   default, since <details> has no native animation. The script at the
-   bottom of the page drives max-height/opacity directly per question
-   (answers vary in length); overflow:hidden is what makes that
-   transition read as a slow reveal instead of a jump. Padding-bottom
-   is zeroed here and restored only once open — padding never shrinks
-   below its own size, so leaving the shared 20px in place left a gap
-   even at max-height:0. Scoped to this page's FAQ only. */
-#sbiFaq .answer{ overflow:hidden; max-height:0; opacity:0; padding-bottom:0; transition:max-height .38s cubic-bezier(.22,.65,.25,1), opacity .3s ease; }
-#sbiFaq .answer.is-open{ padding-bottom:20px; }
+   default, since <details> has no native animation. A grid row that
+   animates from 0fr to 1fr reads as one continuous motion — height,
+   opacity and the padding all arrive together, unlike animating
+   max-height and opacity as two separate transitions with different
+   durations, which looked like two things happening instead of one.
+   The wrapper is added by the script at the bottom of the page.
+   Scoped to this page's FAQ only. */
+#sbiFaq .answer-wrap{
+  display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows .42s cubic-bezier(.22,.65,.25,1);
+}
+#sbiFaq .answer-wrap.is-open{ grid-template-rows:1fr; }
+#sbiFaq .answer-wrap .answer{
+  overflow:hidden; min-height:0; opacity:0; padding-bottom:0;
+  transition:opacity .42s cubic-bezier(.22,.65,.25,1),
+             padding-bottom .42s cubic-bezier(.22,.65,.25,1);
+}
+#sbiFaq .answer-wrap.is-open .answer{ opacity:1; padding-bottom:20px; }
 </style>
 </head>
 <body>
@@ -400,38 +409,27 @@
       if (!summary || !answer) return;
       if (REDUCED) return; // native instant open/close is fine here
 
+      // Wrap .answer in a grid row that animates 0fr -> 1fr. That's
+      // what makes height, opacity and padding all arrive together as
+      // one motion, instead of separately-timed max-height/opacity
+      // transitions that read as two things happening.
+      var wrap = document.createElement("div");
+      wrap.className = "answer-wrap";
+      answer.parentNode.insertBefore(wrap, answer);
+      wrap.appendChild(answer);
+
       summary.addEventListener("click", function(e){
         e.preventDefault();
         if (details.open){
-          // padding is still on (is-open not removed yet), so this
-          // includes it — strip it only once fully collapsed & hidden
-          answer.style.maxHeight = answer.scrollHeight + "px";
-          answer.style.opacity = "1";
-          requestAnimationFrame(function(){
-            answer.style.maxHeight = "0px";
-            answer.style.opacity = "0";
-          });
-          answer.addEventListener("transitionend", function close(ev){
-            if (ev.propertyName !== "max-height") return;
+          wrap.classList.remove("is-open");
+          wrap.addEventListener("transitionend", function close(ev){
+            if (ev.propertyName !== "grid-template-rows") return;
             details.open = false;
-            answer.classList.remove("is-open");
-            answer.removeEventListener("transitionend", close);
+            wrap.removeEventListener("transitionend", close);
           });
         } else {
           details.open = true;
-          answer.classList.add("is-open"); // restore padding before measuring
-          var target = answer.scrollHeight;
-          answer.style.maxHeight = "0px";
-          answer.style.opacity = "0";
-          requestAnimationFrame(function(){
-            answer.style.maxHeight = target + "px";
-            answer.style.opacity = "1";
-          });
-          answer.addEventListener("transitionend", function open(ev){
-            if (ev.propertyName !== "max-height") return;
-            answer.style.maxHeight = "none"; // unclamp so it can't clip on resize/zoom
-            answer.removeEventListener("transitionend", open);
-          });
+          requestAnimationFrame(function(){ wrap.classList.add("is-open"); });
         }
       });
     })(items[i]);
