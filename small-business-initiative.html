@@ -33,15 +33,18 @@
 <link rel="stylesheet" href="assets/style.css?v=acff68e4" />
 <script>document.documentElement.className += " js";</script>
 <style>
-/* Locks the hero photo band to the photo's native 3:2 shape, but only from
-   1200px up. .imgband already sets overflow:hidden, and below 1200px the
-   hero copy needs more vertical room than a fixed-ratio box allows —
-   forcing the ratio everywhere clipped the CTA button and two paragraphs
-   off the bottom of the section on mobile. Narrower widths keep the
-   site's normal content-driven height instead, which is what avoids that.
-   (This was 2:1 briefly, which clipped the fine print at 1200-1280px
-   since the box came out shorter than the copy needed.) */
-@media (min-width:1200px){ #sbiHero{ aspect-ratio:3/2; } }
+/* Locks the hero photo band to a 2:1 shape, but only from 1200px up.
+   .imgband already sets overflow:hidden, and below 1200px the hero copy
+   needs more vertical room than a fixed-ratio box allows — forcing the
+   ratio everywhere clips content off the bottom of the section on
+   mobile. Narrower widths keep the site's normal content-driven height
+   instead, which is what avoids that.
+   (This was 3:2 briefly, sized for a three-paragraph copy block; once
+   the copy was trimmed to one line, 3:2 left the band mostly empty. 2:1
+   fits the shorter copy with room to spare at 1200-1920px — checked
+   directly, not just estimated, since a too-short ratio here clips
+   silently rather than growing the box.) */
+@media (min-width:1200px){ #sbiHero{ aspect-ratio:2/1; } }
 
 /* A little larger than the site's normal hero type, scoped to this page
    only — assets/style.css and every other hero stay untouched. */
