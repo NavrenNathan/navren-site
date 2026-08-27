@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Font preview (local only)</title>
+<link rel="preload" href="/fonts/jost-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  body{background:var(--paper);}
+  .pv-wrap{max-width:1100px;margin:0 auto;padding:40px var(--gut) 80px;}
+  .pv-note{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+           color:var(--jade);margin-bottom:8px;}
+  .pv-lede{color:var(--slate);max-width:60ch;margin-bottom:34px;}
+  .pv-card{background:var(--white);border:1px solid var(--line);border-radius:6px;
+           padding:26px 28px 30px;margin-bottom:16px;}
+  .pv-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:18px;
+           padding-bottom:12px;border-bottom:1px solid var(--line-soft);}
+  .pv-name{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+           color:var(--ink);font-weight:500;}
+  .pv-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+          padding:3px 8px;border-radius:2px;background:var(--jade-wash);color:var(--jade);}
+  .pv-tag.warn{background:#F6E9DF;color:#8A4A16;}
+  .pv-sample{font-weight:700;letter-spacing:-.024em;line-height:1.0;
+             font-size:clamp(30px,4.6vw,52px);color:var(--ink);}
+  .pv-sample mark{background:none;color:var(--jade);}
+  .pv-body{margin-top:16px;font-size:16px;line-height:1.6;color:var(--slate);max-width:52ch;}
+
+  /* the four candidates */
+  .f-jost   .pv-sample,.f-jost   .pv-body{font-family:"Jost",system-ui,sans-serif;}
+  .f-sys    .pv-sample,.f-sys    .pv-body{font-family:system-ui,-apple-system,sans-serif;}
+  .f-futura .pv-sample,.f-futura .pv-body{font-family:"Futura","Century Gothic",system-ui,sans-serif;}
+  .f-avenir .pv-sample,.f-avenir .pv-body{font-family:"Avenir Next","Avenir",system-ui,sans-serif;}
+</style>
+</head>
+<body>
+
+<div class="pv-wrap">
+  <p class="pv-note">Local preview — not on the live site</p>
+  <h1 style="font-family:var(--display);font-weight:700;letter-spacing:-.024em;font-size:clamp(28px,4vw,40px);line-height:1.05;margin-bottom:12px;">Which headline font do you want?</h1>
+  <p class="pv-lede">Same words, same size, same weight and letter-spacing as the real hero — only the typeface changes. The live site currently uses Jost, the first one.</p>
+
+  <div class="pv-card f-jost">
+    <div class="pv-head">
+      <span class="pv-name">1 &nbsp;Jost</span>
+      <span class="pv-tag">Currently live</span>
+      <span class="pv-tag">Self-hosted — identical everywhere</span>
+    </div>
+    <div class="pv-sample">You build the company.<br />We build the <mark>demand</mark>.</div>
+    <p class="pv-body">Navren is the marketing team behind ambitious companies and founders. We turn early traction into scalable growth.</p>
+  </div>
+
+  <div class="pv-card f-futura">
+    <div class="pv-head">
+      <span class="pv-name">2 &nbsp;Futura / Century Gothic</span>
+      <span class="pv-tag warn">Was appearing on Windows</span>
+    </div>
+    <div class="pv-sample">You build the company.<br />We build the <mark>demand</mark>.</div>
+    <p class="pv-body">Navren is the marketing team behind ambitious companies and founders. We turn early traction into scalable growth.</p>
+  </div>
+
+  <div class="pv-card f-sys">
+    <div class="pv-head">
+      <span class="pv-name">3 &nbsp;System font</span>
+      <span class="pv-tag warn">Was appearing on Mac</span>
+    </div>
+    <div class="pv-sample">You build the company.<br />We build the <mark>demand</mark>.</div>
+    <p class="pv-body">Navren is the marketing team behind ambitious companies and founders. We turn early traction into scalable growth.</p>
+  </div>
+
+  <div class="pv-card f-avenir">
+    <div class="pv-head">
+      <span class="pv-name">4 &nbsp;Avenir Next</span>
+      <span class="pv-tag warn">Mac-only — not on Windows</span>
+    </div>
+    <div class="pv-sample">You build the company.<br />We build the <mark>demand</mark>.</div>
+    <p class="pv-body">Navren is the marketing team behind ambitious companies and founders. We turn early traction into scalable growth.</p>
+  </div>
+
+  <p class="pv-lede" style="margin-top:28px;">Options 2, 3 and 4 are installed-on-your-machine fonts. If you pick one of those, I would self-host a webfont equivalent so every visitor sees the same thing — otherwise the mismatch between laptops comes straight back.</p>
+</div>
+
+</body>
+</html>
