@@ -164,6 +164,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 /* ---------- sections ---------- */
 section{padding:clamp(46px,6vw,78px) 0;}
 .band{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+/* The blog's posts section sits on porcelain so it continues the strip the
+   featured card hangs onto, and so the white post cards have a ground to
+   read against. The top border would draw a seam across that join. */
+.blog-page .band{background:var(--paper);border-top:0;}
 /* a band that continues the section above it rather than starting a
    new thought, so it doesn't need the full run-up of space */
 .band.tight{padding-top:clamp(28px,3.2vw,42px);}
@@ -548,27 +552,33 @@ section{padding:clamp(46px,6vw,78px) 0;}
    Below 900px they stack and all of the offsetting comes off. */
 @media (min-width:900px){
   /* The band stops short of the section, so the title card crosses the
-     ink/paper edge and hangs into the light instead of ending flush with
-     it. The strip below is white so it meets the band underneath cleanly. */
+     ink edge and hangs into the light instead of ending flush with it.
+     The strip below is porcelain, not white: the card is white, and on a
+     white strip its bottom edge simply vanished. The posts section below
+     takes the same ground so there is no seam where they meet. */
   .blog-hero{
-    --strip:clamp(64px,7vw,116px);
+    --strip:clamp(72px,8vw,132px);
     background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
-                               var(--white) calc(100% - var(--strip)) 100%);
+                               var(--paper) calc(100% - var(--strip)) 100%);
   }
   .blog-slide{
     grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     align-items:start;
+    /* One height drives both blocks, so they read as a matched pair
+       filling the band rather than two offcuts floating in it. */
+    --blk:clamp(420px,38vw,580px);
   }
   .blog-slide__card{
     grid-column:1;grid-row:1;z-index:1;
-    margin-top:clamp(64px,8vw,118px);
+    margin-top:clamp(56px,7vw,104px);
     /* keep the copy clear of the photo's overhanging edge */
     padding-right:clamp(56px,7vw,104px);
+    min-height:var(--blk);
   }
   .blog-slide__photo{
     grid-column:2;grid-row:1;z-index:2;
     margin-left:clamp(-100px,-6vw,-44px);
-    aspect-ratio:720/500;
+    height:var(--blk);
   }
 }
 .blog-slide__card{
