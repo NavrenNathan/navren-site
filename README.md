@@ -43,6 +43,24 @@ and says so in the function log.
 Redeploy the Apps Script for a new URL and generate a new key rather than reusing
 the old ones.
 
+`netlify/functions/mailchimp-subscribe.mjs` copies newsletter signups into a
+Mailchimp audience. Netlify Forms remains the system of record; Mailchimp is a
+copy, so a failure here loses nothing.
+
+| Variable | Required | What it is |
+| --- | --- | --- |
+| `MAILCHIMP_API_KEY` | yes | Mailchimp → Account & billing → Extras → API keys. Paste it whole; the trailing `-us21` style suffix is the datacenter and is parsed out of the key. |
+| `MAILCHIMP_AUDIENCE_ID` | yes | Mailchimp → Audience → Settings → Audience name and defaults |
+| `MAILCHIMP_INBOUND_KEY` | recommended | A value the function requires as an `x-navren-relay-key` header, same convention as the Sheet relay. Without it, anyone who finds the function's URL can write straight into the audience. |
+| `MAILCHIMP_STATUS` | no | `pending` (default) sends a Mailchimp confirmation email and only counts the person once they click. `subscribed` skips that. |
+| `MAILCHIMP_FORMS` | no | Comma-separated form names allowed to sync. Defaults to `newsletter` alone. |
+
+Only the `newsletter` form syncs by default, on purpose: it is the only form on
+the site where submitting is itself a request for marketing email. `contact`,
+`questionnaire` and `small-business-initiative` are people asking a question or
+applying to something. Add those to `MAILCHIMP_FORMS` only alongside a consent
+checkbox on the form itself.
+
 ## Running it locally
 
 Any static server works:
