@@ -777,6 +777,15 @@ section{padding:clamp(46px,6vw,78px) 0;}
    of the site" the frame exists to do. Below 640px it goes back to edge
    to edge: there's no side to show once the margin itself would be down
    to a few px. */
+/* .blog-page .band sets the listing page's post grid onto paper, since
+   its white cards need something to read against - but every blog page
+   carries that body class, including this one, so the article section
+   inside the frame was inheriting it too: a paper band directly under a
+   white byline row, two shades of "white" touching with nothing between
+   them. Restore plain white for the band inside the frame specifically,
+   without touching the listing page's grid. */
+.post-frame .band{background:var(--white);}
+
 .post-frame{
   max-width:1400px;margin:clamp(20px,4vw,48px) auto;
   border-radius:16px;overflow:hidden;
