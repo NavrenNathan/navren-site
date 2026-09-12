@@ -822,7 +822,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .post-hero-byline .byline-text b{color:var(--ink);font-weight:700;}
 .post-hero-byline .dot{color:var(--line);margin:0 2px;}
 
-.post-body{max-width:70ch;margin:0 auto;}
+.post-body{max-width:84ch;margin:0 auto;}
 .post-body p{color:var(--slate);font-size:16.5px;line-height:1.7;margin-top:16px;}
 .post-body p.lede{color:var(--slate);font-size:17.5px;line-height:1.6;margin-top:0;}
 .post-body .h2{margin-top:38px;}
