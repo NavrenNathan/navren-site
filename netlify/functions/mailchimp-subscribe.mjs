@@ -27,17 +27,26 @@
  *                           header on the Netlify outgoing form webhook.
  *
  * Optional:
- *   MAILCHIMP_STATUS        "pending" (default, double opt-in) or "subscribed".
+ *   MAILCHIMP_STATUS        status for opted-in signups: "subscribed" or
+ *                           "pending" (double opt-in). Default "pending".
  *   MAILCHIMP_FORMS         comma-separated form names allowed to sync.
- *                           Defaults to "newsletter" alone — see the note at
- *                           the bottom of this comment.
+ *                           Defaults to all four site forms.
  *
- * Only the newsletter form is synced by default, and that is deliberate. It is
- * the only form on the site where submitting *is* a request for marketing
- * email. contact, questionnaire and small-business-initiative are people
- * asking a question or applying to something; adding them to a marketing
- * audience without a separate opt-in checkbox is the thing CAN-SPAM and GDPR
- * are about. Add them to MAILCHIMP_FORMS only alongside a consent checkbox.
+ * Every form is captured, but not everyone is marketable, and that difference
+ * is the whole point of this file.
+ *
+ * Submitting the newsletter form IS a request for marketing email, so those
+ * go in at MAILCHIMP_STATUS. contact, questionnaire and
+ * small-business-initiative are people asking a question or applying to
+ * something — they have not asked for a newsletter, and contact.html
+ * explicitly promises "we don't ... add you to a mailing list without
+ * asking." So they go in as "transactional", which Mailchimp shows as
+ * Non-subscribed: stored, searchable, taggable and segmentable, but excluded
+ * from campaigns. Keeping that promise and still capturing the address.
+ *
+ * To turn one of those into a real subscriber later, add an opt-in checkbox
+ * to that form named email_optin. Any truthy value flips that submission to
+ * MAILCHIMP_STATUS instead.
  * ---------------------------------------------------------------
  */
 
@@ -48,7 +57,11 @@ import { createHash } from "node:crypto";
 const UPSTREAM_TIMEOUT_MS = 8000;
 /* A newsletter submission is one email address. */
 const MAX_BODY_BYTES = 64 * 1024;
-const DEFAULT_FORMS = "newsletter";
+const DEFAULT_FORMS =
+  "newsletter,contact,questionnaire,small-business-initiative";
+/* Submitting these is a request for marketing email. Everything else is
+   captured as Non-subscribed unless it carries an email_optin tick. */
+const MARKETING_FORMS = new Set(["newsletter"]);
 
 function env(name) {
   try {
@@ -165,16 +178,35 @@ export default async (req) => {
     const dc = apiKey.split("-").pop();
     const hash = createHash("md5").update(email).digest("hex");
 
+    /* An unticked checkbox is not submitted at all, so presence is the
+       signal. "false"/"no"/"off"/"0" are treated as unticked anyway, in case a
+       form ever posts the field explicitly. */
+    const optinRaw = String(data.email_optin ?? "").trim().toLowerCase();
+    const optedIn = optinRaw !== "" && !["false", "no", "off", "0"].includes(optinRaw);
+    const marketable = MARKETING_FORMS.has(formName) || optedIn;
+
     /* status_if_new, not status: this adds new people but will never flip
-       someone who previously unsubscribed back to subscribed. */
+       someone who previously unsubscribed back to subscribed — nor demote a
+       real subscriber to Non-subscribed because they later used the contact
+       form. */
     const payload = {
       email_address: email,
-      status_if_new: env("MAILCHIMP_STATUS") || "pending",
+      status_if_new: marketable
+        ? env("MAILCHIMP_STATUS") || "pending"
+        : "transactional",
     };
     if (formName) payload.tags = [formName];
 
-    const first = String(data.first ?? "").trim();
-    const last = String(data.last ?? "").trim();
+    /* Field names differ per form: contact uses first/last, SBI uses
+       first_name/last_name, questionnaire has a single contact_name. */
+    let first = String(data.first ?? data.first_name ?? "").trim();
+    let last = String(data.last ?? data.last_name ?? "").trim();
+    const whole = String(data.contact_name ?? "").trim();
+    if (!first && !last && whole) {
+      const bits = whole.split(/\s+/);
+      first = bits.shift() || "";
+      last = bits.join(" ");
+    }
     if (first || last) {
       payload.merge_fields = {};
       if (first) payload.merge_fields.FNAME = first;
@@ -200,7 +232,10 @@ export default async (req) => {
          function logs are not the place for someone's email address to sit
          indefinitely. */
       if (resp.ok) {
-        console.log("mailchimp-subscribe: synced ok,", resp.status);
+        console.log(
+          `mailchimp-subscribe: synced ok, ${resp.status}` +
+            ` (${payload.status_if_new}, form ${formName || "unknown"})`
+        );
       } else {
         console.error("mailchimp-subscribe: Mailchimp refused it,", resp.status);
       }
