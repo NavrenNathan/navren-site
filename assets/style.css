@@ -557,7 +557,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
      white strip its bottom edge simply vanished. The posts section below
      takes the same ground so there is no seam where they meet. */
   .blog-hero{
-    --strip:clamp(58px,6.32vw,105px);
+    --strip:clamp(55px,6vw,100px);
     background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
                                var(--paper) calc(100% - var(--strip)) 100%);
   }
@@ -573,9 +573,9 @@ section{padding:clamp(46px,6vw,78px) 0;}
      and the heading rides along with it, keeping the label aligned to the
      card's edge. Measured against their page this lands within a few px at
      every width and exactly on 1550 at 1920. */
-  .blog-hero{padding-top:73px;}
+  .blog-hero{padding-top:69px;}
   .blog-hero > .wrap{
-    width:min(74vw,1259px);max-width:none;
+    width:min(81.4vw,1385px);max-width:none;
     padding-left:0;padding-right:0;
   }
   /* Their heading is not aligned to the slide: it sits in its own fixed
@@ -591,7 +591,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
     margin-left:calc(50% - var(--tw) / 2);
   }
   /* title baseline to the top of the slide */
-  .blog-slider{margin-top:48px;}
+  .blog-slider{margin-top:46px;}
   /* The middle column is the overlap itself, so both blocks are literally
      the same track count wide - 47 + 6 and 6 + 47 - and come out identical
      without any arithmetic. A negative percentage margin cannot do this:
@@ -602,10 +602,10 @@ section{padding:clamp(46px,6vw,78px) 0;}
     align-items:start;
   }
   .blog-slide__card,
-  .blog-slide__photo{height:325px;}
+  .blog-slide__photo{height:358px;}
   .blog-slide__card{
     grid-column:1 / 3;grid-row:1;z-index:1;
-    margin-top:102px;
+    margin-top:112px;
     /* keep the copy clear of the photo's overhanging edge */
     padding-right:clamp(56px,7vw,104px);
   }
@@ -615,7 +615,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 }
 @media (min-width:1400px){
   .blog-slide__card,
-  .blog-slide__photo{height:387px;}
+  .blog-slide__photo{height:426px;}
 }
 .blog-slide__card{
   background:var(--white);padding:clamp(30px,4vw,56px) clamp(24px,3.4vw,44px);
