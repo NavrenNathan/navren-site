@@ -620,10 +620,10 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .post-body code{font-family:var(--mono);font-size:.88em;background:var(--mist);padding:1px 6px;border-radius:3px;color:var(--ink);}
 
 /* Underlines in a post carry meaning: the author marks takeaways with them,
-   so they get the jade rule rather than the browser's hairline default. */
+   so they get a solid ink rule rather than the browser's hairline default. */
 .post-body u{
   text-decoration:underline;text-decoration-thickness:1.5px;
-  text-underline-offset:3px;text-decoration-color:var(--jade);
+  text-underline-offset:3px;text-decoration-color:var(--ink);
 }
 /* Footnote markers. Bold in the source; here they also jump to the entry. */
 .post-body .cite{font-weight:700;color:var(--jade);white-space:nowrap;}
@@ -649,32 +649,45 @@ section{padding:clamp(46px,6vw,78px) 0;}
   width:6px;height:6px;border-radius:50%;background:var(--jade);
 }
 
-/* The four-step framework table. Two by two on desktop, stacked on a phone,
-   with the cell rules drawn by the borders rather than a <table>. */
+/* The four-step framework table, and the one thing in the piece a reader
+   should leave with. So it is built as a spotlight rather than a box: ink
+   ground against the porcelain band, and wider than the reading measure, so
+   it interrupts the column instead of sitting politely inside it. The
+   breakout only runs once there is gutter to spend - below 1000px the panel
+   stays exactly as wide as the text. */
 .post-body .steps{
-  display:grid;grid-template-columns:1fr;margin:28px 0;
-  background:var(--white);border:1px solid var(--line);border-radius:9px;overflow:hidden;
+  display:grid;grid-template-columns:1fr;margin:40px 0;
+  background:var(--ink);border-radius:12px;overflow:hidden;
+  box-shadow:0 20px 44px rgba(14,21,19,.20);
 }
 @media (min-width:720px){ .post-body .steps{grid-template-columns:1fr 1fr;} }
-.post-body .step{padding:22px 24px 24px;border-bottom:1px solid var(--line);}
+@media (min-width:1000px){ .post-body .steps{width:calc(100% + 180px);} }
+.post-body .step{padding:28px 30px 32px;border-bottom:1px solid rgba(255,255,255,.13);}
 .post-body .step:last-child{border-bottom:0;}
 @media (min-width:720px){
-  .post-body .step:nth-child(odd){border-right:1px solid var(--line);}
+  .post-body .step:nth-child(odd){border-right:1px solid rgba(255,255,255,.13);}
   .post-body .step:nth-last-child(-n+2){border-bottom:0;}
 }
-.post-body .step-head{
-  font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--jade);margin:0 0 14px;
+/* "STEP 1:" stays a quiet label; "DEFINE" is what has to be memorable, so
+   it gets the display face at heading size. */
+.post-body .step-head{margin:0 0 16px;}
+.post-body .step-n{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:#5BD3A6;margin-bottom:7px;
 }
-.post-body .step ul{display:grid;gap:10px;}
+.post-body .step-w{
+  display:block;font-family:var(--display);font-weight:700;
+  font-size:clamp(23px,2.7vw,31px);letter-spacing:-.022em;line-height:1;color:#fff;
+}
+.post-body .step ul{display:grid;gap:11px;}
 .post-body .step li{
-  color:var(--slate);font-size:15.5px;line-height:1.6;
-  padding-left:20px;position:relative;
+  color:#B9CCC5;font-size:15.5px;line-height:1.6;
+  padding-left:21px;position:relative;
 }
 /* Hollow rings, the way the source document marks these sub-points. */
 .post-body .step li::before{
   content:"";position:absolute;left:0;top:.5em;
-  width:7px;height:7px;border-radius:50%;border:1.5px solid var(--jade);
+  width:7px;height:7px;border-radius:50%;border:1.5px solid #5BD3A6;
 }
 
 /* The entries carry their own [n] markers, as the source document does, so
