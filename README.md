@@ -51,7 +51,7 @@ copy, so a failure here loses nothing.
 | --- | --- | --- |
 | `MAILCHIMP_API_KEY` | yes | Mailchimp → Account & billing → Extras → API keys. Paste it whole; the trailing `-us21` style suffix is the datacenter and is parsed out of the key. |
 | `MAILCHIMP_AUDIENCE_ID` | yes | Mailchimp → Audience → Settings → Audience name and defaults |
-| `MAILCHIMP_INBOUND_KEY` | recommended | A value the function requires as an `x-navren-relay-key` header, same convention as the Sheet relay. Without it, anyone who finds the function's URL can write straight into the audience. |
+| `MAILCHIMP_INBOUND_KEY` | recommended | A value the function requires as `?key=` on the webhook URL (an `x-navren-relay-key` header also works, for curl testing). Netlify's form webhook UI has no custom-header field, only a URL, so the key goes in the query string. Without it, anyone who finds the function's URL can write straight into the audience. |
 | `MAILCHIMP_STATUS` | no | `pending` (default) sends a Mailchimp confirmation email and only counts the person once they click. `subscribed` skips that. |
 | `MAILCHIMP_FORMS` | no | Comma-separated form names allowed to sync. Defaults to `newsletter` alone. |
 
