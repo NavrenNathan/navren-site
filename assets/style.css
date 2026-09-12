@@ -555,9 +555,16 @@ section{padding:clamp(46px,6vw,78px) 0;}
      ink edge and hangs into the light instead of ending flush with it.
      The strip below is porcelain, not white: the card is white, and on a
      white strip its bottom edge simply vanished. The posts section below
-     takes the same ground so there is no seam where they meet. */
+     takes the same ground so there is no seam where they meet.
+
+     The photo sits 112px above the card (its own margin-top), so with a
+     strip shorter than that offset the photo's bottom edge landed inside
+     the ink and never reached the porcelain at all - a block of bare dark
+     green below the photo with nothing in it. 137px clears that at every
+     width from 900px up, so the photo now crosses the seam by a real
+     margin instead of stopping short of it. */
   .blog-hero{
-    --strip:clamp(55px,6vw,100px);
+    --strip:137px;
     background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
                                var(--paper) calc(100% - var(--strip)) 100%);
   }
