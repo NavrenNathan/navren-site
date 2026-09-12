@@ -23,6 +23,14 @@
     item.classList.toggle("open", open);
     var trigger = item.querySelector(".menu-trigger");
     if (trigger) trigger.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open){
+      /* Read a layout property to force the style recalculation now. The
+         panel is visibility:hidden until the class lands, and until the
+         browser has recalculated, a Tab pressed in the same moment steps
+         straight over every link inside it. */
+      var panel = item.querySelector(".mega");
+      if (panel) void panel.offsetHeight;
+    }
   }
   function closeAll(except){
     megas.forEach(function(m){ if (m !== except) setOpen(m, false); });
@@ -37,12 +45,23 @@
     var trigger = item.querySelector(".menu-trigger");
     if (!trigger) return;
 
+    /* A mouse click on an unfocused trigger fires focusin first, which
+       opens the menu, and the click handler then read that fresh state
+       and toggled it straight back shut — so clicking appeared to do
+       nothing. Take the state at mousedown, before focus moves, and
+       toggle from that instead. */
+    var stateAtPress = null;
+    trigger.addEventListener("mousedown", function(){
+      stateAtPress = item.classList.contains("open");
+    });
+
     trigger.addEventListener("click", function(e){
       e.preventDefault();
-      var willOpen = !item.classList.contains("open");
+      var wasOpen = stateAtPress === null ? item.classList.contains("open") : stateAtPress;
+      stateAtPress = null;
       clearTimer();
       closeAll(item);
-      setOpen(item, willOpen);
+      setOpen(item, !wasOpen);
     });
 
     item.addEventListener("mouseenter", function(){
@@ -73,7 +92,25 @@
   });
 
   document.addEventListener("keydown", function(e){
-    if (e.key === "Escape"){ clearTimer(); closeAll(null); closeNav(); }
+    if (e.key !== "Escape") return;
+    /* Escape inside an open menu should hand focus back to the control
+       that opened it, rather than leaving it on a link that has just
+       been hidden. */
+    var openMega = null;
+    for (var m = 0; m < megas.length; m++){
+      if (megas[m].classList.contains("open") && megas[m].contains(document.activeElement)){
+        openMega = megas[m]; break;
+      }
+    }
+    var panelHadFocus = navPanel && navPanel.classList.contains("open") &&
+                        navPanel.contains(document.activeElement);
+    clearTimer(); closeAll(null); closeNav();
+    if (openMega){
+      var t = openMega.querySelector(".menu-trigger");
+      if (t) t.focus();
+    } else if (panelHadFocus && navToggle){
+      navToggle.focus();
+    }
   });
   document.addEventListener("click", function(e){
     if (nav && !nav.contains(e.target)){ clearTimer(); closeAll(null); closeNav(); }
@@ -200,6 +237,10 @@
   var honey = form.querySelector('input[name="company_url"]');
   var state = form.querySelector(".news-state");
   var btn   = form.querySelector("button");
+  /* If a future footer edit drops any one of these on a single page, the
+     handler would throw part-way through and leave that page's Subscribe
+     button disabled for good. Let the native POST handle it instead. */
+  if (!email || !state || !btn) return;
 
   function encode(data){
     return Object.keys(data).map(function(k){
@@ -242,10 +283,11 @@
 })();
 
 /* ============================================================
-   Blog topic filter
+   Blog search + topic filter
    Progressive: the cards are all in the markup and visible, so with no
    JavaScript the page is a complete list. This only hides and shows what
-   is already there.
+   is already there. A post matches when it satisfies both the topic
+   dropdown and the free-text search.
    ============================================================ */
 (function(){
   "use strict";
@@ -253,17 +295,22 @@
   var list = document.getElementById("postList");
   if (!list) return;
 
-  var chips  = Array.prototype.slice.call(document.querySelectorAll(".topic"));
   var posts  = Array.prototype.slice.call(list.querySelectorAll("article"));
+  var search = document.getElementById("blogSearch");
+  var select = document.getElementById("blogTopic");
   var count  = document.querySelector(".topic-count");
   var empty  = document.querySelector(".topic-empty");
   var reset  = document.querySelector("[data-reset]");
-  if (!chips.length || !posts.length) return;
+  if (!posts.length) return;
 
-  function apply(topic){
+  function apply(){
+    var topic = select ? select.value : "all";
+    var q = search ? search.value.trim().toLowerCase() : "";
     var shown = 0;
     posts.forEach(function(p){
-      var match = topic === "all" || p.getAttribute("data-topic") === topic;
+      var topicMatch = topic === "all" || p.getAttribute("data-topic") === topic;
+      var textMatch = !q || (p.getAttribute("data-search") || p.textContent).toLowerCase().indexOf(q) !== -1;
+      var match = topicMatch && textMatch;
       /* Set display directly rather than leaning on the hidden attribute.
          .cards article carries display:flex, which outranks the browser's
          [hidden]{display:none}, so a stale stylesheet would leave every card
@@ -277,15 +324,6 @@
          space where the post should be. Mark anything we show as revealed. */
       if (match){ p.classList.add("in"); shown++; }
     });
-    chips.forEach(function(c){
-      var on = c.getAttribute("data-topic") === topic;
-      c.classList.toggle("is-on", on);
-      c.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    /* The rail keeps whatever horizontal scroll it had, so after filtering
-       the visitor could be looking at the middle of a shorter list with the
-       first card cut off. Send it back to the start. */
-    if (list.scrollLeft) list.scrollLeft = 0;
     if (empty) empty.hidden = shown !== 0;
     if (count){
       count.textContent = shown === posts.length
@@ -294,12 +332,16 @@
     }
   }
 
-  chips.forEach(function(c){
-    c.addEventListener("click", function(){ apply(c.getAttribute("data-topic")); });
-  });
+  if (search) search.addEventListener("input", apply);
+  if (select) select.addEventListener("change", apply);
   if (reset){
-    reset.addEventListener("click", function(e){ e.preventDefault(); apply("all"); });
+    reset.addEventListener("click", function(e){
+      e.preventDefault();
+      if (search) search.value = "";
+      if (select) select.value = "all";
+      apply();
+    });
   }
 
-  apply("all");
+  apply();
 })();

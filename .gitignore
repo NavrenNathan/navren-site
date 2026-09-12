@@ -1,1 +1,16 @@
 .netlify/
+
+# Nothing here today, but a secret is only committed once. The relay
+# function reads its keys from Netlify environment variables, and these
+# patterns keep a local copy of them from following.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+serviceAccount.json
+
+.DS_Store

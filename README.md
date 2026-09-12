@@ -18,9 +18,30 @@ robots.txt      crawler policy
 sitemap.xml     regenerate when pages are added or removed
 ```
 
-`disclaimers.html`, `privacy.html` and `questionnaire.html` are self-contained:
-they carry their own inline styles and do not load `assets/style.css`. Changes to
-the shared stylesheet do not reach them.
+`disclaimers.html`, `privacy.html`, `program-agreement.html` and
+`questionnaire.html` are self-contained: they carry their own inline styles and do
+not load `assets/style.css`. Changes to the shared stylesheet do not reach them.
+
+## Environment variables
+
+`netlify/functions/sbi-sheet-relay.mjs` forwards Small Business Initiative
+signups to the Google Sheet. Its URL and keys used to be literals in that file,
+which put them in a public repository, so they are read from the environment
+instead. Set these under **Site configuration → Environment variables**:
+
+| Variable | Required | What it is |
+| --- | --- | --- |
+| `SBI_APPS_SCRIPT_URL` | yes | The Apps Script Web App `/exec` URL |
+| `SBI_APPS_SCRIPT_KEY` | yes | The key that URL expects as `?key=` |
+| `SBI_RELAY_INBOUND_KEY` | recommended | A value the function requires as an `x-navren-relay-key` header. Set the same value as a custom header on the outgoing form webhook. Without it, anyone who finds the function's URL can write straight into the Sheet. |
+
+Without the first two the function still answers Netlify normally and the
+submission is still captured by Netlify Forms — it just does not reach the Sheet,
+and says so in the function log.
+
+**The previous values are in git history and must be treated as compromised.**
+Redeploy the Apps Script for a new URL and generate a new key rather than reusing
+the old ones.
 
 ## Running it locally
 

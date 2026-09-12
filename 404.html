@@ -4,7 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Page not found | Navren</title>
+<meta name="description" content="That page isn't here. Navren is a marketing agency for startups — the rest of the site is a click away." />
 <meta name="robots" content="noindex" />
+<!-- No canonical: a 404 should not claim to be a real URL. These only
+     exist so a mistyped link shared in a chat still previews as Navren
+     rather than as a blank card. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Navren" />
+<meta property="og:title" content="Page not found | Navren" />
+<meta property="og:description" content="That page isn't here. Navren is a marketing agency for startups — the rest of the site is a click away." />
+<meta property="og:image" content="https://navrenagency.com/images/og-navren.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Page not found | Navren" />
+<meta name="twitter:description" content="That page isn't here. Navren is a marketing agency for startups — the rest of the site is a click away." />
+<meta name="twitter:image" content="https://navrenagency.com/images/og-navren.jpg" />
 <link rel="icon" type="image/png" sizes="144x144" href="favicon-144-light.png" media="(prefers-color-scheme: light)" />
 <link rel="icon" type="image/png" sizes="144x144" href="favicon-144-dark.png" media="(prefers-color-scheme: dark)" />
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96-light.png" media="(prefers-color-scheme: light)" />
@@ -21,7 +36,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=a4a44232" />
+<link rel="stylesheet" href="assets/style.css?v=b21a340f" />
 <script>document.documentElement.className += " js";</script>
 </head>
 <body>
@@ -31,6 +46,7 @@
     <a class="word" href="index.html"><img src="images/navren-logo.png" alt="Navren" width="1390" height="172" /></a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel"><span>Menu</span></button>
     <div class="nav-panel" id="navPanel">
+      <nav aria-label="Primary">
       <ul class="menu">
         <li class="has-mega" data-mega>
           <button class="menu-trigger" aria-expanded="false" aria-controls="megaWho">Who we help <span class="chev" aria-hidden="true"></span></button>
@@ -59,8 +75,10 @@
         </li>
         <li><a class="menu-link" href="approach.html">Approach</a></li>
         <li><a class="menu-link" href="about.html">About</a></li>
+        <li><a class="menu-link" href="blog.html">Blog</a></li>
         <li><a class="btn nav-cta" href="contact.html">Get in touch</a></li>
       </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -140,6 +158,7 @@
           <li><a href="approach.html">Approach</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="questionnaire.html">Questionnaire</a></li>
@@ -182,6 +201,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=a8f83dd7"></script>
+<script src="assets/site.js?v=56ac117a"></script>
 </body>
 </html>

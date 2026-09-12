@@ -35,7 +35,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=a4a44232" />
+<link rel="stylesheet" href="assets/style.css?v=b21a340f" />
 <script>document.documentElement.className += " js";</script>
 <style>
 /* ---------- Small Business Initiative — join form ----------
@@ -54,7 +54,7 @@
   transition:width .35s cubic-bezier(.2,.7,.2,1);}
 .jsection{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.1em;
   text-transform:uppercase;color:var(--jade);}
-.jstep h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+.jstep h2,.jdone h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
   font-size:clamp(21px,2.8vw,27px);line-height:1.08;margin-top:12px;text-wrap:balance;}
 .jhelp{color:var(--slate);margin-top:10px;font-size:16px;max-width:52ch;}
 .jfields{margin-top:22px;display:grid;gap:10px;}
@@ -69,7 +69,7 @@
   transition:border-color .2s ease,box-shadow .2s ease;
 }
 .join input:focus{outline:none;border-color:var(--jade);box-shadow:0 0 0 3px var(--jade-wash);}
-.join input::placeholder{color:#9BA8A4;}
+.join input::placeholder{color:var(--slate-soft);}
 .jchoice{position:relative;display:block;}
 .jchoice input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}
 .jchoice span{display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
@@ -140,28 +140,28 @@
           <!-- Section 1 -->
           <section class="jstep" data-jstep="0">
             <p class="jsection">About you</p>
-            <h3>Let's start with the basics.</h3>
+            <h2 id="jstep-0">Let's start with the basics.</h2>
             <div class="jfields">
               <div class="jrow two">
                 <div>
                   <label class="jlabel" for="first_name">First Name</label>
-                  <input type="text" id="first_name" name="first_name" data-required placeholder="Alex" autocomplete="given-name" />
+                  <input type="text" id="first_name" name="first_name" maxlength="100" data-required aria-required="true" placeholder="Alex" autocomplete="given-name" />
                   <p class="jerr" data-jerr="first_name"></p>
                 </div>
                 <div>
                   <label class="jlabel" for="last_name">Last Name</label>
-                  <input type="text" id="last_name" name="last_name" data-required placeholder="Moreau" autocomplete="family-name" />
+                  <input type="text" id="last_name" name="last_name" maxlength="100" data-required aria-required="true" placeholder="Moreau" autocomplete="family-name" />
                   <p class="jerr" data-jerr="last_name"></p>
                 </div>
               </div>
               <label class="jlabel" for="email">Email Address</label>
-              <input type="email" id="email" name="email" data-required placeholder="alex@example.com" autocomplete="email" />
+              <input type="email" id="email" name="email" maxlength="254" data-required aria-required="true" placeholder="alex@example.com" autocomplete="email" />
               <p class="jerr" data-jerr="email"></p>
               <label class="jlabel" for="city">City</label>
-              <input type="text" id="city" name="city" data-required placeholder="Seattle" autocomplete="address-level2" />
+              <input type="text" id="city" name="city" maxlength="120" data-required aria-required="true" placeholder="Seattle" autocomplete="address-level2" />
               <p class="jerr" data-jerr="city"></p>
               <label class="jlabel" for="social">Instagram / TikTok / Other Social Handle</label>
-              <input type="text" id="social" name="social" placeholder="@yourhandle" autocomplete="off" />
+              <input type="text" id="social" name="social" maxlength="120" placeholder="@yourhandle" autocomplete="off" />
               <p class="jhint" style="font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);">Optional. You do not need a social media following to participate.</p>
             </div>
           </section>
@@ -169,9 +169,9 @@
           <!-- Section 2 -->
           <section class="jstep" data-jstep="1" hidden>
             <p class="jsection">What are you into?</p>
-            <h3>Pick whatever interests you.</h3>
+            <h2 id="jstep-1">Pick whatever interests you.</h2>
             <p class="jhelp">Select anything that interests you.</p>
-            <fieldset class="jfields">
+            <fieldset class="jfields" aria-labelledby="jstep-1">
               <legend class="jlabel">All optional</legend>
               <label class="jchoice"><input type="checkbox" name="interests" value="Food &amp; Drink" /><span>Food &amp; Drink</span></label>
               <label class="jchoice"><input type="checkbox" name="interests" value="Retail &amp; Shopping" /><span>Retail &amp; Shopping</span></label>
@@ -190,9 +190,9 @@
           <!-- Section 3 -->
           <section class="jstep" data-jstep="2" hidden>
             <p class="jsection">How would you like to help?</p>
-            <h3>However suits you.</h3>
+            <h2 id="jstep-2">However suits you.</h2>
             <p class="jhelp">Select all that apply.</p>
-            <fieldset class="jfields">
+            <fieldset class="jfields" aria-labelledby="jstep-2">
               <legend class="jlabel">All optional</legend>
               <label class="jchoice"><input type="checkbox" name="help" value="Discover and visit local businesses" /><span>Discover and visit local businesses</span></label>
               <label class="jchoice"><input type="checkbox" name="help" value="Try new products or services" /><span>Try new products or services</span></label>
@@ -208,15 +208,20 @@
           <!-- Section 4 -->
           <section class="jstep" data-jstep="3" hidden>
             <p class="jsection">Last thing</p>
-            <h3>One quick confirmation.</h3>
+            <h2 id="jstep-3">One quick confirmation.</h2>
             <div class="jfields">
               <label class="jconsent">
-                <input type="checkbox" id="agreed_terms" name="agreed_terms" data-required />
+                <input type="checkbox" id="agreed_terms" name="agreed_terms" data-required aria-required="true" />
                 <span>By joining, I hereby agree to the <a href="program-agreement.html">Small Business Initiative Program Agreement</a>.</span>
               </label>
               <p class="jerr" data-jerr="agreed_terms"></p>
             </div>
           </section>
+
+          <div class="hp" aria-hidden="true">
+            <label for="bot-field">Leave this blank</label>
+            <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
+          </div>
 
           <div class="jactions" id="jactions">
             <button type="button" class="btn" id="jnext">Continue</button>
@@ -226,9 +231,9 @@
 
         <div class="jdone" id="jdone">
           <p class="jsection">You're in</p>
-          <h3>Welcome to the Initiative.</h3>
+          <h2>Welcome to the Initiative.</h2>
           <p class="jhelp" id="jdoneIntro"></p>
-          <p class="jsent" id="jsent"></p>
+          <p class="jsent" id="jsent" role="status" aria-live="polite"></p>
           <div class="jactions">
             <a class="btn-ghost" href="small-business-initiative.html">Back to the Initiative</a>
           </div>
@@ -282,6 +287,7 @@
           <li><a href="approach.html">Approach</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="questionnaire.html">Questionnaire</a></li>
@@ -324,7 +330,7 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=a8f83dd7"></script>
+<script src="assets/site.js?v=56ac117a"></script>
 
 <script>
 (function(){
@@ -349,6 +355,10 @@
   var bar    = document.getElementById("jbarfill");
   var label  = document.getElementById("jlabel");
   var current= 0;
+  /* an explicit behavior:"smooth" overrides the stylesheet's
+     reduced-motion rule, so it has to be checked here */
+  var REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var SCROLL = { behavior: REDUCED_MOTION ? "auto" : "smooth", block: "start" };
 
   var TEXT   = ["first_name","last_name","email","city","social"];
   var GROUPS = ["interests","help"];
@@ -364,7 +374,8 @@
       out[n] = Array.prototype.slice.call(form.querySelectorAll('[name="'+n+'"]:checked'))
                     .map(function(el){ return el.value; });
     });
-    out.agreed_terms = !!document.getElementById("agreed_terms").checked;
+    var terms = document.getElementById("agreed_terms");
+    out.agreed_terms = !!(terms && terms.checked);
     return out;
   }
   function save(){
@@ -385,14 +396,42 @@
           if (box) box.checked = true;
         });
       });
-      if (d.agreed_terms) document.getElementById("agreed_terms").checked = true;
-      if (typeof d.__step === "number") current = Math.min(d.__step, steps.length - 1);
+      var terms = document.getElementById("agreed_terms");
+      if (d.agreed_terms && terms) terms.checked = true;
+      /* typeof NaN is "number", and Math.min(NaN, n) is NaN, which hides
+         every step at once and leaves a blank form. */
+      if (Number.isInteger(d.__step) && d.__step >= 0){
+        current = Math.min(d.__step, steps.length - 1);
+      }
     } catch(e){ /* corrupt payload, start clean */ }
   }
 
   /* ---------- validation ---------- */
-  function clearError(k){ var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = ""; }
-  function setError(k,m){ var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = m; }
+  /* Tie the message to the field, so it is announced as that field's
+     error rather than read as loose text somewhere on the page. */
+  function markField(k, msg){
+    var el = form.querySelector('[data-jerr="'+k+'"]');
+    if (!el) return;
+    if (!el.id) el.id = "jerr-" + k;
+    var fields = form.querySelectorAll('[name="'+k+'"]');
+    for (var i = 0; i < fields.length; i++){
+      if (msg){
+        fields[i].setAttribute("aria-invalid","true");
+        fields[i].setAttribute("aria-describedby", el.id);
+      } else {
+        fields[i].removeAttribute("aria-invalid");
+        fields[i].removeAttribute("aria-describedby");
+      }
+    }
+  }
+  function clearError(k){
+    var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = "";
+    markField(k, "");
+  }
+  function setError(k,m){
+    var el = form.querySelector('[data-jerr="'+k+'"]'); if (el) el.textContent = m;
+    markField(k, m);
+  }
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var NICE = { first_name:"first name", last_name:"last name", city:"city", email:"email address" };
 
@@ -434,13 +473,27 @@
   }
 
   /* ---------- navigation ---------- */
-  function show(index){
+  /* moveFocus is false on the first render: focusing a heading as the
+     page loads puts a focus ring on it before anyone has done anything. */
+  function show(index, moveFocus){
     steps.forEach(function(s,i){ s.hidden = i !== index; });
     current = index;
     backBtn.hidden = index === 0;
     nextBtn.textContent = index === steps.length - 1 ? "Join the Initiative" : "Continue";
     label.textContent = TITLES[index] || "";
     bar.style.width = (index / steps.length * 100) + "%";
+    /* Focus has to follow the step. Without this it stayed on Continue,
+       which the scroll then carried off screen, and nothing told anyone
+       using a screen reader that the step had changed at all. */
+    if (moveFocus){
+      var heading = steps[index].querySelector("h2");
+      var first   = steps[index].querySelector("input");
+      var target  = heading || first;
+      if (target){
+        if (target === heading) target.setAttribute("tabindex", "-1");
+        try { target.focus({ preventScroll:true }); } catch(e){ target.focus(); }
+      }
+    }
     save();
   }
 
@@ -448,14 +501,18 @@
     if (!validate(current)) return;
     save();
     if (current === steps.length - 1){ finish(); return; }
-    show(current + 1);
-    prog.scrollIntoView({ behavior:"smooth", block:"start" });
+    show(current + 1, true);
+    prog.scrollIntoView(SCROLL);
   });
   backBtn.addEventListener("click", function(){
-    if (current > 0){ show(current - 1); prog.scrollIntoView({ behavior:"smooth", block:"start" }); }
+    if (current > 0){ show(current - 1, true); prog.scrollIntoView(SCROLL); }
   });
   form.addEventListener("keydown", function(e){
     if (e.key !== "Enter") return;
+    /* Enter inside a textarea makes a new line; only elsewhere does it
+       mean "next". The questionnaire already does this, and this form
+       will grow a free-text field sooner or later. */
+    if (e.target.tagName === "TEXTAREA") return;
     e.preventDefault();
     nextBtn.click();
   });
@@ -468,8 +525,12 @@
   /* ---------- delivery ---------- */
   function payload(){
     var a = collect();
+    var honey = document.getElementById("bot-field");
     return {
       "form-name":  FORM_NAME,
+      /* Declared as the honeypot on the static form Netlify scans, but
+         never actually sent, so it filtered nothing. */
+      "bot-field":  honey ? honey.value : "",
       first_name:   a.first_name,
       last_name:    a.last_name,
       email:        a.email,
@@ -493,11 +554,16 @@
       body: urlencode(p)
     }).then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r; });
   }
+  /* The iframe is loaded blank before the form is submitted, because a
+     fresh iframe fires a load event for its own empty document straight
+     away and that was being read as the server's reply — which is how a
+     submission that never left the browser came back marked "Sent". A
+     timeout is a failure now, so the queue below can do its job. */
   function postViaForm(p){
     return new Promise(function(resolve, reject){
       var sinkName = "navren-sbi-sink-" + Date.now();
       var sink = document.createElement("iframe");
-      sink.name = sinkName; sink.style.display = "none";
+      sink.name = sinkName; sink.style.display = "none"; sink.src = "about:blank";
       var f = document.createElement("form");
       f.method = "POST"; f.action = FORM_ACTION; f.target = sinkName; f.style.display = "none";
       Object.keys(p).forEach(function(k){
@@ -506,15 +572,27 @@
         f.appendChild(i);
       });
       var settled = false;
+      var overall = setTimeout(function(){ cleanup(false); }, 10000);
       function cleanup(ok){
         if (settled) return;
         settled = true;
+        clearTimeout(overall);
         setTimeout(function(){ try{ f.remove(); sink.remove(); }catch(e){} }, 1500);
-        ok ? resolve() : reject(new Error("form post timed out"));
+        ok ? resolve() : reject(new Error("form post did not complete"));
       }
-      sink.addEventListener("load", function(){ cleanup(true); });
-      setTimeout(function(){ cleanup(true); }, 5000);
-      try { document.body.appendChild(sink); document.body.appendChild(f); f.submit(); }
+      function onReply(){
+        var reached = false;
+        try { reached = !!(sink.contentDocument && sink.contentDocument.location); }
+        catch(e){ reached = false; }
+        cleanup(reached);
+      }
+      sink.addEventListener("load", function ready(){
+        sink.removeEventListener("load", ready);
+        sink.addEventListener("load", onReply);
+        try { document.body.appendChild(f); f.submit(); }
+        catch(e){ cleanup(false); }
+      });
+      try { document.body.appendChild(sink); }
       catch(e){ cleanup(false); }
     });
   }
@@ -527,8 +605,8 @@
   function flushQueue(){
     var q;
     try { q = JSON.parse(localStorage.getItem(QUEUE) || "[]"); } catch(e){ return; }
-    if (!q.length) return;
-    localStorage.removeItem(QUEUE);
+    if (!Array.isArray(q) || !q.length) return;
+    try { localStorage.removeItem(QUEUE); } catch(e){ return; }
     q.forEach(function(i){ post(i).catch(function(){ park(i); }); });
   }
 
@@ -554,12 +632,12 @@
         state.textContent = "Could not send. Email hello@navrenagency.com";
       });
     });
-    done.scrollIntoView({ behavior:"smooth", block:"start" });
+    done.scrollIntoView(SCROLL);
   }
 
   restore();
   syncCounts();
-  show(current);
+  show(current, false);
   flushQueue();
 })();
 </script>

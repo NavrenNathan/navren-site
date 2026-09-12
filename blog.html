@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blog | Navren</title>
 <meta name="description" content="Notes from Navren on positioning, channel testing and what is actually driving results for the companies we work with." />
-<meta name="robots" content="noindex" />
 <link rel="canonical" href="https://navrenagency.com/blog" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Navren" />
@@ -35,7 +34,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=a4a44232" />
+<link rel="stylesheet" href="assets/style.css?v=b21a340f" />
 <script>document.documentElement.className += " js";</script>
 </head>
 <body>
@@ -45,6 +44,7 @@
     <a class="word" href="index.html"><img src="images/navren-logo.png" alt="Navren" width="1390" height="172" /></a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel"><span>Menu</span></button>
     <div class="nav-panel" id="navPanel">
+      <nav aria-label="Primary">
       <ul class="menu">
         <li class="has-mega" data-mega>
           <button class="menu-trigger" aria-expanded="false" aria-controls="megaWho">Who we help <span class="chev" aria-hidden="true"></span></button>
@@ -73,8 +73,10 @@
         </li>
         <li><a class="menu-link" href="approach.html">Approach</a></li>
         <li><a class="menu-link" href="about.html">About</a></li>
+        <li><a class="menu-link" href="blog.html">Blog</a></li>
         <li><a class="btn nav-cta" href="contact.html">Get in touch</a></li>
       </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -94,85 +96,55 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow">Latest</p>
-        <h2 class="h2">Nothing published yet.</h2>
-        <p class="lede">Everything here will come out of a real engagement. If we have not tried it, it does not get written up.</p>
+        <h2 class="h2">Notes from the work.</h2>
+        <p class="lede">Everything here comes out of a real engagement. If we have not tried it, it does not get written up.</p>
       </div>
 
-      <!-- ============================================================
-           WHEN THE FIRST POST GOES UP
-           1. Duplicate blog-post-template.html -> blog-your-title.html
-           2. Delete the .blog-empty panel directly below
-           3. Uncomment the filter chips and the card rail underneath it,
-              then edit the one example card to point at your post
-           4. Add the post's URL to sitemap.xml
-           ============================================================ -->
-
-      <div class="panel accent reveal blog-empty">
-        <p class="stat">Coming soon</p>
-        <h3>The first pieces are being written.</h3>
-        <p>In the meantime, <a class="inline" href="approach.html">how we work &rarr;</a> walks through an engagement step by step, and <a class="inline" href="who-we-help.html">who we help &rarr;</a> covers the four kinds of business we build playbooks for.</p>
-      </div>
-
-      <!-- FILTER CHIPS - uncomment once there are posts to filter
-      <div class="topics" role="group" aria-label="Filter posts by topic">
-        <button class="topic is-on" data-topic="all" aria-pressed="true">Everything</button>
-        <button class="topic" data-topic="strategy" aria-pressed="false">Strategy</button>
-        <button class="topic" data-topic="channels" aria-pressed="false">Channels</button>
-        <button class="topic" data-topic="positioning" aria-pressed="false">Positioning</button>
+      <div class="blog-toolbar reveal">
+        <label class="blog-search">
+          <span class="sr-only">Search posts</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="blogSearch" placeholder="Search posts" />
+        </label>
+        <span class="blog-filter">
+          <label class="sr-only" for="blogTopic">Filter by topic</label>
+          <select id="blogTopic">
+            <option value="all">All topics</option>
+            <option value="strategy">Strategy</option>
+            <option value="channels">Channels</option>
+            <option value="positioning">Positioning</option>
+          </select>
+        </span>
       </div>
       <p class="topic-count" role="status" aria-live="polite"></p>
-      -->
 
-      <!-- CARD RAIL - uncomment and duplicate the article for each post.
+      <!-- CARD GRID - duplicate the article for each new post.
            Swap the image for the post's own: drop the file in images/, then
-           update src, srcset and the real width and height. The byline is
-           "date . read time"; add an author the same way if you want one.
+           update src, srcset and the real width and height. Tags are the
+           topics that appear in the dropdown above; data-search backs the
+           search box with the title and excerpt in plain text. -->
       <div class="postrow" id="postList">
-        <article class="reveal" data-topic="strategy">
-          <a class="thumb" href="blog-your-title.html" tabindex="-1" aria-hidden="true">
-            <img src="images/your-picture.jpg" srcset="images/your-picture-sm.jpg 800w, images/your-picture.jpg 1448w"
+        <article class="reveal" data-topic="positioning" data-search="you don't need to go viral what good marketing actually looks like why most businesses do not need to go viral audience targeting relevance">
+          <a class="thumb" href="blog-you-dont-need-to-go-viral.html" tabindex="-1" aria-hidden="true">
+            <img src="images/section-1-picture.jpg" srcset="images/section-1-picture-sm.jpg 800w, images/section-1-picture.jpg 1448w"
                  sizes="(min-width:900px) 320px, 80vw"
                  alt="" width="1448" height="1086" loading="lazy" />
           </a>
           <div class="card-in">
-            <p class="byline">15 August 2026 &middot; 4 min read</p>
-            <h3>Your post title</h3>
-            <p class="excerpt">One or two sentences describing the piece.</p>
-            <p class="read"><a class="inline" href="blog-your-title.html">Read more &rarr;</a></p>
+            <p class="tags">Strategy &middot; Positioning</p>
+            <h3>You don't need to go viral: what good marketing actually looks like</h3>
+            <p class="excerpt">Why most businesses do not need to go viral, what the research on audience targeting actually shows, and a four-step framework for marketing that produces outcomes instead of impressions.</p>
+            <p class="byline">11 September 2026</p>
+            <p class="read"><a class="inline" href="blog-you-dont-need-to-go-viral.html">Read more &rarr;</a></p>
           </div>
         </article>
       </div>
 
-      <p class="topic-empty" hidden>Nothing under that topic yet. <a class="inline" href="#" data-reset>Show everything &rarr;</a></p>
+      <p class="topic-empty" hidden>Nothing under that topic yet. <button type="button" class="inline" data-reset>Show everything &rarr;</button></p>
 
       <div class="postrow-foot">
         <a class="btn-ghost" href="blog.html">View more articles &rarr;</a>
       </div>
-      -->
-
-
-      <!-- ============================================================
-           TO ADD A POST
-           1. Duplicate blog-post-template.html and rename it
-              blog-your-title-here.html
-           2. Edit the title, description, canonical and body inside it
-           3. Copy the commented-out card below, paste it above this
-              comment, and point the links at your new file
-           4. Add the new URL to sitemap.xml
-           5. Delete the "Nothing published yet" sec-head above once
-              there is at least one card here
-           ============================================================ -->
-
-      <!--
-      <div class="cards c2">
-        <article class="reveal">
-          <h3>Your post title</h3>
-          <p>One or two sentences describing the piece, in the same voice as the rest of the site.</p>
-          <p class="meta">15 August 2026 · 4 min read</p>
-          <p><a class="inline" href="blog-your-title-here.html">Read it &rarr;</a></p>
-        </article>
-      </div>
-      -->
 
     </div>
   </section>
@@ -241,6 +213,7 @@
           <li><a href="approach.html">Approach</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="questionnaire.html">Questionnaire</a></li>
@@ -283,6 +256,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=a8f83dd7"></script>
+<script src="assets/site.js?v=56ac117a"></script>
 </body>
 </html>

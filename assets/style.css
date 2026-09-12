@@ -8,28 +8,29 @@
    not spend a DNS lookup, a TLS handshake and a second request chain on
    fonts.googleapis.com before it can paint. Jost and Karla are variable
    fonts: one file backs every weight, which is why several rules below
-   point at the same url. Families, weights, unicode-ranges and
-   font-display are unchanged, so text renders exactly as before. */
-@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/ibm-plex-mono-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/ibm-plex-mono-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/ibm-plex-mono-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:block;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:block;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:block;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:block;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:block;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:500;font-display:block;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:600;font-display:block;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:600;font-display:block;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:700;font-display:block;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Karla';font-style:normal;font-weight:700;font-display:block;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+   point at the same url. font-display is swap rather than block, so a
+   slow font can never leave the page with no visible text at all; the
+   four latin files are preloaded, so in practice the swap rarely shows. */
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/ibm-plex-mono-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/ibm-plex-mono-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/ibm-plex-mono-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/jost-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/jost-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/karla-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Karla';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/karla-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 :root{
   --paper:#F0F2F0;
   --white:#FFFFFF;
@@ -64,7 +65,7 @@ h1,h2,h3,h4,p,ul,ol,fieldset,legend,figure{margin:0;}
 fieldset{border:0;padding:0;min-width:0;}
 ul{list-style:none;padding:0;}
 a{color:inherit;text-decoration:none;}
-img{max-width:100%;display:block;}
+img{max-width:100%;height:auto;display:block;}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 ::selection{background:var(--jade);color:#fff;}
 :focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:2px;}
@@ -73,6 +74,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 .foot :focus-visible,.imgband :focus-visible,.cta :focus-visible{outline-color:#5BD3A6;}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);}
+
+/* ---------- utilities ---------- */
+/* Read by a screen reader, never seen. */
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+/* Honeypot. aria-hidden and tabindex="-1" on the input keep it away from
+   anyone using a keyboard or a screen reader; only a bot filling every
+   field it can find will touch it. */
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}
 
 /* ---------- shared type ---------- */
 /* Uppercase plus wide tracking plus a mono face at 11px was three
@@ -106,9 +115,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 
 .menu{display:flex;align-items:center;gap:4px;}
 .menu > li{position:static;}
+/* 11px rather than 9px: at 9px these rendered ~41.5px tall, under the
+   44px a touch target should clear, which matters on the touch laptops
+   and tablets that still get the desktop nav. The bar is a fixed 66px,
+   so nothing moves. */
 .menu-link,.menu-trigger{
   display:inline-flex;align-items:center;gap:7px;
-  padding:9px 13px;border-radius:4px;
+  padding:11px 13px;border-radius:4px;
   font-weight:600;font-size:14.5px;color:var(--slate);
   transition:color .2s ease,background .2s ease;
 }
@@ -124,7 +137,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
   background:var(--white);border-bottom:1px solid var(--line);
   box-shadow:0 26px 50px -34px rgba(14,21,19,.5);
   opacity:0;visibility:hidden;transform:translateY(-8px);
-  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+  /* visibility is deliberately not transitioned. While it was, there was
+     a frame or two after the menu opened where the panel was still
+     computed hidden, and a Tab pressed in that window stepped straight
+     over every link inside it to the next nav item. */
+  transition:opacity .2s ease,transform .2s ease;
 }
 .has-mega.open .mega{opacity:1;visibility:visible;transform:none;}
 .mega-in{max-width:var(--maxw);margin:0 auto;padding:26px var(--gut) 22px;}
@@ -433,51 +450,6 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .imgband.light .phases .when{color:var(--jade);}
 .imgband.light .phases h3{color:var(--ink);}
 .imgband.light .phases p{color:var(--slate);}
-.imgband.light .simnote{color:rgba(14,21,19,.3);}
-
-/* honesty marker while the pictures are fake */
-.simnote{
-  position:absolute;right:16px;bottom:13px;z-index:5;pointer-events:none;
-  font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:rgba(255,255,255,.34);
-}
-
-/* ---------- direction C, detail crops (DRAFT) ---------- */
-.crops{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;}
-.crops figure{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:7px;isolation:isolate;}
-.crops .shot{position:absolute;inset:0;filter:grayscale(1) contrast(1.12) brightness(1.04);}
-.crops .shot img{width:100%;height:100%;object-fit:cover;display:block;}
-.crops figure::before{content:"";position:absolute;inset:0;z-index:1;background:var(--jade);mix-blend-mode:multiply;}
-.crops figure::after{content:"";position:absolute;inset:0;z-index:2;background:#EAF2EE;mix-blend-mode:lighten;opacity:.42;}
-.crops figcaption{
-  position:absolute;left:0;right:0;bottom:0;z-index:5;padding:30px 14px 12px;
-  background:linear-gradient(to top, rgba(14,21,19,.85), rgba(14,21,19,0));
-  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#DCE7E2;
-}
-
-/* ---------- simulated photography, delete when real shots land ---------- */
-.sim-desk{background-color:#6E736C;background-image:
-  radial-gradient(120% 90% at 74% 8%, rgba(255,247,228,.92), rgba(255,247,228,0) 55%),
-  radial-gradient(80% 70% at 18% 88%, rgba(28,32,30,.72), rgba(28,32,30,0) 60%),
-  radial-gradient(60% 50% at 44% 56%, rgba(150,138,116,.6), rgba(150,138,116,0) 70%),
-  linear-gradient(168deg, #9A9384 0%, #6B6A60 46%, #33362F 100%);}
-.sim-screen{background-color:#4A5A54;background-image:
-  radial-gradient(70% 60% at 62% 40%, rgba(120,205,175,.5), rgba(120,205,175,0) 62%),
-  radial-gradient(90% 80% at 12% 12%, rgba(226,233,229,.55), rgba(226,233,229,0) 58%),
-  radial-gradient(60% 70% at 88% 92%, rgba(10,18,16,.8), rgba(10,18,16,0) 66%),
-  linear-gradient(150deg, #5F6E68 0%, #3A4A44 52%, #18211E 100%);}
-.sim-street{background-color:#7C877F;background-image:
-  linear-gradient(90deg, rgba(20,26,24,.5) 0 6%, rgba(20,26,24,0) 6% 13%,
-    rgba(20,26,24,.38) 13% 17%, rgba(20,26,24,0) 17% 27%,
-    rgba(20,26,24,.55) 27% 33%, rgba(20,26,24,0) 33% 46%,
-    rgba(20,26,24,.3) 46% 52%, rgba(20,26,24,0) 52% 68%,
-    rgba(20,26,24,.48) 68% 74%, rgba(20,26,24,0) 74%),
-  radial-gradient(90% 70% at 50% 6%, rgba(246,244,232,.9), rgba(246,244,232,0) 62%),
-  linear-gradient(180deg, #B9BFB8 0%, #7C877F 58%, #2B332E 100%);}
-.sim-paper{background-color:#A9A99A;background-image:
-  radial-gradient(80% 70% at 24% 18%, rgba(255,253,244,.95), rgba(255,253,244,0) 62%),
-  radial-gradient(70% 60% at 84% 84%, rgba(40,46,42,.55), rgba(40,46,42,0) 64%),
-  linear-gradient(140deg, #E4E0D2 0%, #A9A99A 55%, #5B5F55 100%);}
 
 /* ---------- split (text + panel) ---------- */
 .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,52px);align-items:start;}
@@ -496,21 +468,15 @@ section{padding:clamp(46px,6vw,78px) 0;}
    every other page. Only the vertical rhythm of running prose is new,
    because no page carried long-form copy before. */
 /* ---------- blog post cards ---------- */
-/* A horizontal rail: image on top, then the meta line, title, standfirst and
-   a read link. The card surface, border, radius and hover lift are the same
+/* A wrapping grid: image on top, then category tags, title, excerpt and a
+   read link. The card surface, border, radius and hover lift are the same
    ones .cards article already uses, so this reads as the site's card in a
    different arrangement rather than a new component. */
 .postrow{
-  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(268px,1fr);
-  gap:14px;margin-top:22px;
-  overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x proximity;
-  padding-bottom:6px;
-  scrollbar-width:thin;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));
+  gap:22px 20px;margin-top:26px;
 }
-@media (min-width:900px){ .postrow{grid-auto-columns:minmax(300px,1fr);} }
 .postrow > article{
-  scroll-snap-align:start;
   background:var(--white);border:1px solid var(--line);border-radius:7px;
   overflow:hidden;display:flex;flex-direction:column;
   transition:border-color .25s ease,transform .25s ease;
@@ -519,6 +485,10 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .postrow .thumb{display:block;background:var(--mist);}
 .postrow .thumb img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;}
 .postrow .card-in{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.postrow .tags{
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+  color:var(--jade);text-transform:uppercase;font-weight:500;
+}
 .postrow .byline{
   font-family:var(--mono);font-size:11px;letter-spacing:.05em;
   color:var(--slate-soft);text-transform:uppercase;
@@ -531,6 +501,46 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .postrow .read{margin-top:auto;padding-top:4px;}
 .postrow > article[hidden]{display:none;}
 .postrow-foot{margin-top:22px;}
+
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* ---------- blog toolbar: search + topic dropdown ---------- */
+/* Same surface language as .topic (mono label, white field, jade on focus),
+   just laid out as a search box and a select instead of a row of chips. */
+.blog-toolbar{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+.blog-search{
+  position:relative;flex:1 1 260px;
+}
+.blog-search svg{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;stroke:var(--slate-soft);fill:none;stroke-width:1.8;
+  pointer-events:none;
+}
+.blog-search input{
+  width:100%;min-height:46px;padding:0 14px 0 40px;
+  font-family:var(--body);font-size:15px;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-radius:6px;
+  transition:border-color .2s ease;
+}
+.blog-search input::placeholder{color:var(--slate-soft);}
+.blog-search input:focus-visible{outline:2px solid var(--jade);outline-offset:1px;}
+.blog-filter{position:relative;flex:0 0 auto;}
+.blog-filter select{
+  appearance:none;min-height:46px;padding:0 38px 0 16px;
+  font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-radius:6px;
+  cursor:pointer;transition:border-color .2s ease;
+}
+.blog-filter select:hover,.blog-filter select:focus-visible{border-color:var(--jade);outline:none;}
+.blog-filter::after{
+  content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;
+  border-right:2px solid var(--jade);border-bottom:2px solid var(--jade);
+  transform:translateY(-65%) rotate(45deg);pointer-events:none;
+}
 
 /* ---------- blog images inside a post ---------- */
 .post-body figure{margin:28px 0;}
@@ -564,7 +574,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .topic-empty{margin-top:20px;color:var(--slate);font-size:16px;}
 .cards article[hidden]{display:none;}
 
-.post-body{max-width:70ch;}
+.post-body{max-width:70ch;margin:0 auto;}
 .post-body p{color:var(--slate);font-size:16.5px;line-height:1.7;margin-top:16px;}
 .post-body p.lede{color:var(--slate);font-size:17.5px;line-height:1.6;margin-top:0;}
 .post-body .h2{margin-top:38px;}
@@ -572,6 +582,16 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .post-body .ticks{margin-top:16px;}
 .post-body b.hl{font-weight:700;}
 .post-body code{font-family:var(--mono);font-size:.88em;background:var(--mist);padding:1px 6px;border-radius:3px;color:var(--ink);}
+.post-body .sources{margin-top:14px;display:grid;gap:9px;counter-reset:src;}
+.post-body .sources li{
+  font-size:13.5px;color:var(--slate-soft);line-height:1.55;
+  padding-left:24px;position:relative;
+}
+.post-body .sources li::before{
+  counter-increment:src;content:"[" counter(src) "]";
+  position:absolute;left:0;top:0;
+  font-family:var(--mono);color:var(--jade);font-size:12px;
+}
 
 .faq details{border-bottom:1px solid var(--line);}
 .faq summary{
@@ -745,6 +765,11 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .foot-news .news-state.fail{color:#E58C74;}
 @media (max-width:820px){
   .foot-news{grid-template-columns:1fr;}
+  /* The content grids above the footer collapse at 1080px while this
+     stayed at four columns until 640px, so on a tablet the page read as
+     two columns above a cramped four-column footer. Collapsing here
+     lines it up with the two rows directly above it. */
+  .foot-top{grid-template-columns:1fr 1fr;}
 }
 
 /* ---------- reveal (gated on .js so a script failure can't blank a page) ---------- */
@@ -808,9 +833,8 @@ section{padding:clamp(46px,6vw,78px) 0;}
      rather than four squeezed columns */
   .phases,.phases.four{grid-template-columns:1fr;}
   .phases.four h3{font-size:20px;}
-  .crops{grid-template-columns:1fr;}
-  .crops figure{aspect-ratio:16/9;}
-  .foot-top{grid-template-columns:1fr 1fr;}
+  /* .foot-top drops to two columns at 820px now, so it no longer needs
+     a rule here; 560px still takes it down to one. */
   /* On a phone the copy runs the full width, so there is no clear
      side for the veil to thin out into. Flat, and set by measuring
      the worst pixel in the photo rather than by eye: .72 leaves the

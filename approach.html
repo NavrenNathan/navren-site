@@ -34,7 +34,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=a4a44232" />
+<link rel="stylesheet" href="assets/style.css?v=b21a340f" />
 <script>document.documentElement.className += " js";</script>
 <style>
 /* The answer text under each FAQ question snapped open/closed by
@@ -65,6 +65,7 @@
     <a class="word" href="index.html"><img src="images/navren-logo.png" alt="Navren" width="1390" height="172" /></a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel"><span>Menu</span></button>
     <div class="nav-panel" id="navPanel">
+      <nav aria-label="Primary">
       <ul class="menu">
         <li class="has-mega" data-mega>
           <button class="menu-trigger" aria-expanded="false" aria-controls="megaWho">Who we help <span class="chev" aria-hidden="true"></span></button>
@@ -91,10 +92,12 @@
             <div class="mega-foot"><p><b>Measurement is part of all of it.</b> Tracking, dashboards and reporting come with every engagement.</p><a class="btn" href="approach.html">How we work</a></div>
           </div></div>
         </li>
-        <li><a class="menu-link current" href="approach.html">Approach</a></li>
+        <li><a class="menu-link current" href="approach.html" aria-current="page">Approach</a></li>
         <li><a class="menu-link" href="about.html">About</a></li>
+        <li><a class="menu-link" href="blog.html">Blog</a></li>
         <li><a class="btn nav-cta" href="contact.html">Get in touch</a></li>
       </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -371,6 +374,7 @@
           <li><a href="approach.html">Approach</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="questionnaire.html">Questionnaire</a></li>
@@ -413,7 +417,7 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=a8f83dd7"></script>
+<script src="assets/site.js?v=56ac117a"></script>
 <script>
 (function(){
   var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -434,15 +438,33 @@
       answer.parentNode.insertBefore(wrap, answer);
       wrap.appendChild(answer);
 
+      /* details.open is only cleared once the closing transition ends.
+         If that event never arrives — an unsupported browser, a stale
+         stylesheet, a second click mid-animation — the panel stays open
+         for good and each further click stacks another listener. A
+         guard plus the same kind of timeout safety net site.js already
+         uses for reveals keeps it recoverable. */
+      var animating = false;
       summary.addEventListener("click", function(e){
         e.preventDefault();
+        if (animating) return;
         if (details.open){
+          animating = true;
           wrap.classList.remove("is-open");
-          wrap.addEventListener("transitionend", function close(ev){
-            if (ev.propertyName !== "grid-template-rows") return;
+          var settle = null;
+          function finishClose(){
+            if (!animating) return;
+            animating = false;
+            clearTimeout(settle);
+            wrap.removeEventListener("transitionend", onEnd);
             details.open = false;
-            wrap.removeEventListener("transitionend", close);
-          });
+          }
+          function onEnd(ev){
+            if (ev.propertyName !== "grid-template-rows") return;
+            finishClose();
+          }
+          wrap.addEventListener("transitionend", onEnd);
+          settle = setTimeout(finishClose, 600);
         } else {
           details.open = true;
           requestAnimationFrame(function(){ wrap.classList.add("is-open"); });

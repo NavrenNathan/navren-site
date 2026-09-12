@@ -27,6 +27,12 @@
   "email": "hello@navrenagency.com",
   "image": "https://navrenagency.com/images/og-navren.jpg",
   "description": "A marketing agency for startups and entrepreneurs. We help ambitious companies find their market, build demand, and scale.",
+  "sameAs": [
+    "https://www.linkedin.com/company/navren-agency/",
+    "https://www.instagram.com/navrenagency/",
+    "https://www.facebook.com/navrenagency",
+    "https://www.reddit.com/user/NavrenAgency/"
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "11900 N.E. 1st Street, Suite 300, Building G",
@@ -53,11 +59,11 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=a4a44232" />
+<link rel="stylesheet" href="assets/style.css?v=b21a340f" />
 <script>document.documentElement.className += " js";</script>
 <style>
-/* contact-specific only. Shared rules live in assets/style.css?v=a4a44232 */
-/* nav, buttons and footer all come from assets/style.css?v=a4a44232 now */
+/* contact-specific only. Shared rules live in assets/style.css?v=b21a340f */
+/* nav, buttons and footer all come from assets/style.css?v=b21a340f now */
 
 /* ---------- head ---------- */.head{padding:clamp(44px,6vw,76px) 0 clamp(28px,3vw,40px);}.head h1{font-family:var(--display);font-weight:700;letter-spacing:-.024em;font-size:clamp(32px,5vw,54px);line-height:1.0;margin-top:18px;max-width:16ch;text-wrap:balance;}.head p{margin-top:18px;color:var(--slate);max-width:52ch;font-size:17px;}
 
@@ -72,9 +78,9 @@ input[type=text],input[type=email],input[type=tel],textarea,select{
 select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--slate) 50%),linear-gradient(135deg,var(--slate) 50%,transparent 50%);background-position:calc(100% - 20px) calc(1em + 4px),calc(100% - 15px) calc(1em + 4px);background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px;}
 textarea{min-height:132px;resize:vertical;line-height:1.6;}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--jade);background:var(--white);box-shadow:0 0 0 3px var(--jade-wash);}
-input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;gap:11px;align-items:flex-start;margin:4px 0 18px;font-size:13.5px;color:var(--slate);line-height:1.6;}.consent input{width:17px;height:17px;margin:2px 0 0;accent-color:var(--jade);flex:0 0 auto;}.consent a{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}.err{color:#A3341F;font-size:13px;min-height:1.1em;}.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}.sent{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;}.sent.ok{color:var(--jade);}.sent.fail{color:#A3341F;}.submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;}
+input::placeholder,textarea::placeholder{color:var(--slate-soft);}.consent{display:flex;gap:11px;align-items:flex-start;margin:4px 0 18px;font-size:13.5px;color:var(--slate);line-height:1.6;}.consent input{width:17px;height:17px;margin:2px 0 0;accent-color:var(--jade);flex:0 0 auto;}.consent a{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}.err{color:#A3341F;font-size:13px;min-height:1.1em;}.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}.sent{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;}.sent.ok{color:var(--jade);}.sent.fail{color:#A3341F;}.submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;}
 
-/* ---------- aside ---------- */.aside{display:grid;gap:14px;}.panel{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:22px;}.panel.accent{border-left:3px solid var(--jade);border-radius:0 9px 9px 0;}.panel h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.018em;margin-bottom:9px;}.panel p{font-size:15px;color:var(--slate);line-height:1.65;}.panel .stat{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);margin-bottom:9px;}.panel a.inline{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}.panel ul{display:grid;gap:8px;margin-top:11px;}.panel li{font-size:15px;display:flex;gap:9px;align-items:baseline;}.panel li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--jade);flex:0 0 auto;transform:translateY(-2px);}
+/* ---------- aside ---------- */.aside{display:grid;gap:14px;}.panel{background:var(--white);border:1px solid var(--line);border-radius:9px;padding:22px;}.panel.accent{border-left:3px solid var(--jade);border-radius:0 9px 9px 0;}.panel h3,.panel h2{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.018em;margin-bottom:9px;}.panel p{font-size:15px;color:var(--slate);line-height:1.65;}.panel .stat{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--jade);margin-bottom:9px;}.panel a.inline{color:var(--jade);border-bottom:1px solid rgba(13,107,84,.35);}.panel ul{display:grid;gap:8px;margin-top:11px;}.panel li{font-size:15px;display:flex;gap:9px;align-items:baseline;}.panel li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--jade);flex:0 0 auto;transform:translateY(-2px);}
 
 /* ---------- thanks ---------- */.thanks{background:var(--white);border:1px solid var(--jade);border-radius:9px;padding:clamp(26px,4vw,40px);}.thanks h2{font-family:var(--display);font-weight:700;font-size:clamp(23px,3vw,31px);letter-spacing:-.02em;margin-top:12px;}.thanks p{margin-top:14px;color:var(--slate);max-width:48ch;}.thanks.btn.thanks.btn-ghost{margin-top:22px;}
 
@@ -92,6 +98,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
     <a class="word" href="index.html"><img src="images/navren-logo.png" alt="Navren" width="1390" height="172" /></a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel"><span>Menu</span></button>
     <div class="nav-panel" id="navPanel">
+      <nav aria-label="Primary">
       <ul class="menu">
         <li class="has-mega" data-mega>
           <button class="menu-trigger" aria-expanded="false" aria-controls="megaWho">Who we help <span class="chev" aria-hidden="true"></span></button>
@@ -120,8 +127,10 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
         </li>
         <li><a class="menu-link" href="approach.html">Approach</a></li>
         <li><a class="menu-link" href="about.html">About</a></li>
+        <li><a class="menu-link" href="blog.html">Blog</a></li>
         <li><a class="btn nav-cta" href="questionnaire.html">Questionnaire</a></li>
       </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -137,16 +146,17 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
     <div class="cols">
       <div>
         <div class="card" id="formCard">
-          <form id="contactForm" novalidate>
+          <form id="contactForm" action="/" method="POST" novalidate>
+            <input type="hidden" name="form-name" value="contact" />
             <div class="grid2">
               <div class="field">
                 <label for="first">First name <span class="req">*</span></label>
-                <input type="text" id="first" name="first" autocomplete="given-name" />
+                <input type="text" id="first" name="first" maxlength="100" autocomplete="given-name" />
                 <p class="err" data-err="first"></p>
               </div>
               <div class="field">
                 <label for="last">Last name <span class="req">*</span></label>
-                <input type="text" id="last" name="last" autocomplete="family-name" />
+                <input type="text" id="last" name="last" maxlength="100" autocomplete="family-name" />
                 <p class="err" data-err="last"></p>
               </div>
             </div>
@@ -154,23 +164,23 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
             <div class="grid2">
               <div class="field">
                 <label for="email">Email <span class="req">*</span></label>
-                <input type="email" id="email" name="email" autocomplete="email" />
+                <input type="email" id="email" name="email" maxlength="254" autocomplete="email" />
                 <p class="err" data-err="email"></p>
               </div>
               <div class="field">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                <input type="tel" id="phone" name="phone" maxlength="40" autocomplete="tel" />
               </div>
             </div>
 
             <div class="grid2">
               <div class="field">
                 <label for="company">Company</label>
-                <input type="text" id="company" name="company" autocomplete="organization" />
+                <input type="text" id="company" name="company" maxlength="150" autocomplete="organization" />
               </div>
               <div class="field">
                 <label for="website">Website</label>
-                <input type="text" id="website" name="website" autocomplete="url" />
+                <input type="text" id="website" name="website" maxlength="300" autocomplete="url" />
               </div>
             </div>
 
@@ -188,7 +198,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
 
             <div class="field">
               <label for="message">What's going on? <span class="req">*</span></label>
-              <textarea id="message" name="message" placeholder="Where you're at, what you've tried, and what you'd like to be true in six months."></textarea>
+              <textarea id="message" name="message" maxlength="4000" placeholder="Where you're at, what you've tried, and what you'd like to be true in six months."></textarea>
               <p class="err" data-err="message"></p>
             </div>
 
@@ -220,7 +230,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
               <button type="submit" class="btn" id="submitBtn">Send inquiry</button>
               <span style="font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);">Reply within 2 business days</span>
             </div>
-            <p class="sent" id="sentState"></p>
+            <p class="sent" id="sentState" role="status" aria-live="polite"></p>
           </form>
         </div>
 
@@ -236,7 +246,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
       <aside class="aside">
         <div class="panel accent">
           <p class="stat">Prefer something more useful?</p>
-          <h3>Answer a few questions instead</h3>
+          <h2>Answer a few questions instead</h2>
           <p>Rather than waiting on us, the questionnaire walks through your business, your stage and what you've tried, so the first conversation starts further along.</p>
           <p style="margin-top:14px;"><a class="inline" href="questionnaire.html">Take the questionnaire &rarr;</a></p>
         </div>
@@ -317,6 +327,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
           <li><a href="approach.html">Approach</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-help.html">Who we help</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="questionnaire.html">Questionnaire</a></li>
@@ -376,7 +387,7 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
   <input type="text" name="source" />
 </form>
 
-<script src="assets/site.js?v=a8f83dd7"></script>
+<script src="assets/site.js?v=56ac117a"></script>
 <script>
 (function(){
   "use strict";
@@ -386,10 +397,25 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
   var thanks = document.getElementById("thanks");
   var state  = document.getElementById("sentState");
   var btn    = document.getElementById("submitBtn");
+  var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* An error sitting next to a field is only visible information. Tying
+     it to the field with aria-describedby, and marking the field invalid,
+     is what makes it reach someone using a screen reader. */
   function setErr(k, msg){
     var el = form.querySelector('[data-err="' + k + '"]');
-    if (el) el.textContent = msg || "";
+    if (!el) return;
+    el.textContent = msg || "";
+    if (!el.id) el.id = "err-" + k;
+    var field = document.getElementById(k);
+    if (!field) return;
+    if (msg){
+      field.setAttribute("aria-invalid", "true");
+      field.setAttribute("aria-describedby", el.id);
+    } else {
+      field.removeAttribute("aria-invalid");
+      field.removeAttribute("aria-describedby");
+    }
   }
   function val(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; }
 
@@ -403,6 +429,13 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
     if (!val("message")) { setErr("message", "Tell us a little about it."); ok = false; }
     if (!val("source"))  { setErr("source", "Pick one."); ok = false; }
     if (!document.getElementById("consent").checked) { setErr("consent", "Please agree before sending."); ok = false; }
+
+    /* Send them to the first thing that needs fixing rather than leaving
+       them at the bottom of the form wondering what happened. */
+    if (!ok){
+      var bad = form.querySelector('[aria-invalid="true"]');
+      if (bad){ try { bad.focus(); } catch(e){} }
+    }
     return ok;
   }
 
@@ -424,12 +457,20 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
 
   /* Same belt-and-braces approach as the questionnaire: try fetch, fall
      back to a form post into a hidden iframe when the browser blocks it
-     (opening the page from disk is the usual cause). */
+     (opening the page from disk is the usual cause).
+
+     Two things this has to get right, and previously did not. The iframe
+     is pointed at about:blank and given a chance to load *before* the
+     form is submitted, because a fresh iframe fires a load event for its
+     own blank document almost immediately and that was being read as the
+     server's reply. And a timeout now rejects rather than resolving: a
+     submission that never left the browser used to report itself as sent,
+     which is the one outcome worse than an error message. */
   function postViaForm(data){
-    return new Promise(function(resolve){
+    return new Promise(function(resolve, reject){
       var name = "sink-" + Date.now();
       var sink = document.createElement("iframe");
-      sink.name = name; sink.style.display = "none";
+      sink.name = name; sink.style.display = "none"; sink.src = "about:blank";
       var f = document.createElement("form");
       f.method = "POST"; f.action = FORM_ACTION; f.target = name; f.style.display = "none";
       Object.keys(data).forEach(function(k){
@@ -437,25 +478,49 @@ input::placeholder,textarea::placeholder{color:#9BA8A4;}.consent{display:flex;ga
         i.type = "hidden"; i.name = k; i.value = data[k];
         f.appendChild(i);
       });
+
       var done = false;
-      function finish(){
+      var overall = setTimeout(function(){ finish(false); }, 10000);
+      function finish(ok){
         if (done) return;
         done = true;
+        clearTimeout(overall);
         setTimeout(function(){ try { f.remove(); sink.remove(); } catch(e){} }, 1500);
-        resolve();
+        if (ok) resolve(); else reject(new Error("form post did not complete"));
       }
-      sink.addEventListener("load", finish);
-      setTimeout(finish, 5000);
-      document.body.appendChild(sink);
-      document.body.appendChild(f);
-      f.submit();
+      function onReply(){
+        /* Netlify is same-origin, so a page that genuinely came back can
+           be read. A browser's own network-error page cannot, and that is
+           the tell that nothing was delivered. */
+        var reached = false;
+        try { reached = !!(sink.contentDocument && sink.contentDocument.location); }
+        catch (e){ reached = false; }
+        finish(reached);
+      }
+      sink.addEventListener("load", function ready(){
+        sink.removeEventListener("load", ready);
+        sink.addEventListener("load", onReply);
+        try {
+          document.body.appendChild(f);
+          f.submit();
+        } catch (e){ finish(false); }
+      });
+      try { document.body.appendChild(sink); } catch (e){ finish(false); }
     });
   }
 
   function succeed(){
     card.hidden = true;
     thanks.hidden = false;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" });
+    /* The form card has just been replaced by a panel further up the
+       page. Move focus into it, or someone not looking at the screen is
+       left on a button that no longer exists. */
+    var heading = thanks.querySelector("h2");
+    if (heading){
+      heading.setAttribute("tabindex", "-1");
+      try { heading.focus({ preventScroll:true }); } catch(e){ heading.focus(); }
+    }
   }
 
   form.addEventListener("submit", function(e){

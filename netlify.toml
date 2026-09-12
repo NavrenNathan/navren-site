@@ -1,2 +1,10 @@
 [build]
   functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
+
+# Password-gates /blog and every /blog-*.html post behind netlify/edge-functions/blog-gate.mjs
+# while it's being reviewed internally. Remove this block (and the function
+# file) once the blog is ready to be fully public.
+[[edge_functions]]
+  path = "/blog*"
+  function = "blog-gate"
