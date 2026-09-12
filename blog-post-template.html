@@ -31,7 +31,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=e60888c6" />
+<link rel="stylesheet" href="assets/style.css?v=e3169dd7" />
 <script>document.documentElement.className += " js";</script>
 </head>
 <body class="blog-page">
@@ -81,31 +81,31 @@
 <main>
 
   <!-- ============================================================
-       POST BANNER
-       Matches TKN Tyson's post-page structure: a fixed-width centred
-       container (post-hero-in) holding categories + a big white title on
-       a dark band, and a narrower white card (post-hero-card) rising into
-       that band to hold the byline, rather than the article starting
-       flush below it.
-       To fill this in for a real post: edit the crumb, tags, h1 text,
-       and the byline's name/date. Nothing else needs to change.
+       POST FRAME
+       The whole post - banner, byline, article - sits inside one card,
+       inset from the browser edges with visible margin on both sides,
+       instead of the banner and article each running edge to edge. The
+       banner's crumb/tags/title and the byline are centre-aligned text,
+       not just centred containers.
+       To fill this in for a real post: edit the crumb, tags, h1 text, and
+       the byline's name/date. The frame, centering and overlap need no
+       changes.
        ============================================================ -->
-  <section class="post-hero">
-    <div class="post-hero-in">
-      <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <a href="blog.html">Blog</a> &nbsp;/&nbsp; Post title</p>
-      <p class="tags"><span>Topic one</span><span class="tag-div" aria-hidden="true">|</span><span>Topic two</span></p>
-      <h1>The headline of the post.</h1>
-    </div>
-  </section>
+  <div class="post-frame">
+    <section class="post-hero">
+      <div class="wrap">
+        <p class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <a href="blog.html">Blog</a> &nbsp;/&nbsp; Post title</p>
+        <p class="tags"><span>Topic one</span><span class="tag-div" aria-hidden="true">|</span><span>Topic two</span></p>
+        <h1>The headline of the post.</h1>
+      </div>
+    </section>
 
-  <div class="post-hero-card">
     <div class="post-hero-byline">
       <span class="avatar" aria-hidden="true">N</span>
       <span class="byline-text"><b>By Navren</b> <span class="dot" aria-hidden="true">&middot;</span> 15 August 2026</span>
     </div>
-  </div>
 
-  <section class="band">
+    <section class="band">
     <div class="wrap">
       <div class="post-body reveal">
 
@@ -157,7 +157,8 @@
         <p style="margin-top:30px;"><a class="inline" href="blog.html">&larr; Back to the blog</a></p>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 
   <section class="cta imgband">
     <div class="shot">
