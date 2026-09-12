@@ -535,14 +535,41 @@ section{padding:clamp(46px,6vw,78px) 0;}
    in layout, hit-testing and the tab order. */
 .blog-slide{
   grid-area:1/1;display:grid;grid-template-columns:1fr;
-  border-radius:8px 8px 0 0;overflow:hidden;
   opacity:0;visibility:hidden;transition:opacity .45s ease;
 }
 .blog-slide.is-on{opacity:1;visibility:visible;}
 .js .blog-slide:not(.is-on){pointer-events:none;}
 @media (prefers-reduced-motion:reduce){ .blog-slide{transition:none;} }
-@media (min-width:800px){
-  .blog-slide{grid-template-columns:minmax(300px,42%) 1fr;min-height:440px;}
+
+/* Two separate blocks rather than one joined rectangle. The photo sits high
+   on the right; the title card drops below it on the left and slides under
+   its edge, so the pair reads as a cover and a title rather than a single
+   panel cut down the middle. Square corners, since nothing is a card here.
+   Below 900px they stack and all of the offsetting comes off. */
+@media (min-width:900px){
+  /* The band stops short of the section, so the title card crosses the
+     ink/paper edge and hangs into the light instead of ending flush with
+     it. The strip below is white so it meets the band underneath cleanly. */
+  .blog-hero{
+    --strip:clamp(64px,7vw,116px);
+    background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
+                               var(--white) calc(100% - var(--strip)) 100%);
+  }
+  .blog-slide{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-items:start;
+  }
+  .blog-slide__card{
+    grid-column:1;grid-row:1;z-index:1;
+    margin-top:clamp(64px,8vw,118px);
+    /* keep the copy clear of the photo's overhanging edge */
+    padding-right:clamp(56px,7vw,104px);
+  }
+  .blog-slide__photo{
+    grid-column:2;grid-row:1;z-index:2;
+    margin-left:clamp(-100px,-6vw,-44px);
+    aspect-ratio:720/500;
+  }
 }
 .blog-slide__card{
   background:var(--white);padding:clamp(30px,4vw,56px) clamp(24px,3.4vw,44px);
@@ -570,6 +597,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 
 /* Arrows and dots. The strip carries a hidden attribute in the markup and
    the script only reveals it once there is a second slide to move to. */
+.blog-slider{position:relative;}
 .blog-slider__controls{
   display:flex;align-items:center;gap:16px;
   padding:16px 2px 4px;
@@ -577,6 +605,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 /* display:flex outranks the browser's [hidden]{display:none}, so a single
    featured post would still draw a pair of dead arrows without this. */
 .blog-slider__controls[hidden]{display:none;}
+
 .blog-slider__arrow{
   width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;
   background:transparent;border:1px solid rgba(255,255,255,.28);border-radius:50%;
@@ -591,6 +620,28 @@ section{padding:clamp(46px,6vw,78px) 0;}
   background:rgba(255,255,255,.32);transition:background .2s ease,transform .2s ease;
 }
 .blog-slider__dots button[aria-selected="true"]{background:#5BD3A6;transform:scale(1.25);}
+
+/* Once the two blocks stagger, the controls go where the reference puts
+   them: arrows pinned to the outer edges and centred on the photo, dots
+   centred underneath. The arrows cross both the white card and the photo,
+   so they carry their own ink disc - a white-stroked arrow alone vanishes
+   against the card. The dots land on the white strip, so they invert too.
+   This block has to sit after the base rules above, not before: it is the
+   same specificity, so order is the only thing deciding it. */
+@media (min-width:900px){
+  .blog-slider__controls{display:block;padding:0;}
+  .blog-slider__arrow{
+    position:absolute;top:34%;transform:translateY(-50%);z-index:4;
+    background:rgba(14,21,19,.66);border-color:rgba(255,255,255,.45);
+  }
+  .blog-slider__arrow:hover:not(:disabled){background:rgba(14,21,19,.88);border-color:#5BD3A6;}
+  .blog-slider__arrow:disabled{opacity:.45;}
+  .blog-slider__arrow[data-prev]{left:-8px;}
+  .blog-slider__arrow[data-next]{right:-8px;}
+  .blog-slider__dots{justify-content:center;margin:0;padding:18px 0 4px;}
+  .blog-slider__dots button{background:rgba(14,21,19,.34);}
+  .blog-slider__dots button[aria-selected="true"]{background:var(--jade);}
+}
 
 .sr-only{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
