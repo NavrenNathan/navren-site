@@ -770,13 +770,13 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .cards article[hidden]{display:none;}
 
 /* ---------- post frame ----------
-   The whole post - banner, byline, article - as one card inset from the
-   browser edges, rather than the banner and the article each running
-   full-bleed. Porcelain shows down both sides of it at any width past a
-   phone, which is the "sitting on a white section, centred in the middle
-   of the site" the frame exists to do. Below 640px it goes back to edge
-   to edge: there's no side to show once the margin itself would be down
-   to a few px. */
+   The whole post - banner, byline, article - as one full-bleed section
+   running edge to edge, the way the rest of the site's sections do. It
+   was briefly inset from the browser edges with visible porcelain margin
+   on both sides, which read as the post not being full screen, so that
+   margin, the rounded corners and the shadow are gone; .post-frame is now
+   just the wrapper the centering and the white-background fix hang off
+   of, with no width or spacing of its own. */
 /* .blog-page .band sets the listing page's post grid onto paper, since
    its white cards need something to read against - but every blog page
    carries that body class, including this one, so the article section
@@ -785,13 +785,6 @@ section{padding:clamp(46px,6vw,78px) 0;}
    them. Restore plain white for the band inside the frame specifically,
    without touching the listing page's grid. */
 .post-frame .band{background:var(--white);}
-
-.post-frame{
-  max-width:1400px;margin:clamp(20px,4vw,48px) auto;
-  border-radius:16px;overflow:hidden;
-  box-shadow:0 30px 70px rgba(14,21,19,.16);
-}
-@media (max-width:640px){ .post-frame{margin:0;border-radius:0;box-shadow:none;} }
 
 .post-hero{background:var(--ink);padding:56px 0 clamp(80px,10vw,120px);}
 /* Crumb, tags and title are centre-aligned text, not left-aligned text in
