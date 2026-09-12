@@ -557,28 +557,29 @@ section{padding:clamp(46px,6vw,78px) 0;}
      white strip its bottom edge simply vanished. The posts section below
      takes the same ground so there is no seam where they meet. */
   .blog-hero{
-    --strip:clamp(72px,8vw,132px);
+    --strip:clamp(64px,7vw,116px);
     background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
                                var(--paper) calc(100% - var(--strip)) 100%);
   }
+  /* Scale comes from the pair being wider than the text column, not from
+     overriding the photo's shape: the slider steps out into the gutter and
+     both blocks grow together, so the photo keeps its 720/500 crop and the
+     card stays sized by its own content. */
+  .blog-slider{margin-inline:clamp(-64px,-4vw,-24px);}
   .blog-slide{
     grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     align-items:start;
-    /* One height drives both blocks, so they read as a matched pair
-       filling the band rather than two offcuts floating in it. */
-    --blk:clamp(420px,38vw,580px);
   }
   .blog-slide__card{
     grid-column:1;grid-row:1;z-index:1;
     margin-top:clamp(56px,7vw,104px);
     /* keep the copy clear of the photo's overhanging edge */
     padding-right:clamp(56px,7vw,104px);
-    min-height:var(--blk);
   }
   .blog-slide__photo{
     grid-column:2;grid-row:1;z-index:2;
     margin-left:clamp(-100px,-6vw,-44px);
-    height:var(--blk);
+    aspect-ratio:720/500;
   }
 }
 .blog-slide__card{
