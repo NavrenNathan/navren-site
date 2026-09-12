@@ -52,14 +52,26 @@ copy, so a failure here loses nothing.
 | `MAILCHIMP_API_KEY` | yes | Mailchimp → Account & billing → Extras → API keys. Paste it whole; the trailing `-us21` style suffix is the datacenter and is parsed out of the key. |
 | `MAILCHIMP_AUDIENCE_ID` | yes | Mailchimp → Audience → Settings → Audience name and defaults |
 | `MAILCHIMP_INBOUND_KEY` | recommended | A value the function requires as `?key=` on the webhook URL (an `x-navren-relay-key` header also works, for curl testing). Netlify's form webhook UI has no custom-header field, only a URL, so the key goes in the query string. Without it, anyone who finds the function's URL can write straight into the audience. |
-| `MAILCHIMP_STATUS` | no | `pending` (default) sends a Mailchimp confirmation email and only counts the person once they click. `subscribed` skips that. |
-| `MAILCHIMP_FORMS` | no | Comma-separated form names allowed to sync. Defaults to `newsletter` alone. |
+| `MAILCHIMP_STATUS` | no | Status used for opted-in signups. `pending` (default) sends a Mailchimp confirmation email and only counts the person once they click; `subscribed` skips that. |
+| `MAILCHIMP_FORMS` | no | Comma-separated form names allowed to sync. Defaults to all four site forms. |
 
-Only the `newsletter` form syncs by default, on purpose: it is the only form on
-the site where submitting is itself a request for marketing email. `contact`,
-`questionnaire` and `small-business-initiative` are people asking a question or
-applying to something. Add those to `MAILCHIMP_FORMS` only alongside a consent
-checkbox on the form itself.
+All four forms are captured, but not everyone is marketable.
+
+`newsletter` submissions go in at `MAILCHIMP_STATUS`, because submitting that
+form *is* a request for marketing email. `contact`, `questionnaire` and
+`small-business-initiative` go in as `transactional` — what Mailchimp's UI
+calls **Non-subscribed**: stored, searchable, taggable and segmentable, but
+excluded from campaigns. Those people asked a question or applied to
+something; they did not ask for a newsletter, and `contact.html` promises in
+so many words that we don't "add you to a mailing list without asking."
+
+Every contact is tagged with the form it came from, so the groups stay
+separable inside the one audience.
+
+To make one of those forms produce real subscribers, add an opt-in checkbox
+named `email_optin` to it. Any ticked value promotes that submission to
+`MAILCHIMP_STATUS`. Nothing is ever demoted: `status_if_new` means an existing
+subscriber who later uses the contact form stays subscribed.
 
 ## Running it locally
 
