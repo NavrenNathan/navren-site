@@ -43,7 +43,7 @@
 <link rel="preload" href="/fonts/karla-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/style.css?v=d0369952" />
+<link rel="stylesheet" href="assets/style.css?v=fca708ad" />
 <script>document.documentElement.className += " js";</script>
 </head>
 <body>
@@ -92,20 +92,45 @@
 
 <main>
 
+  <!-- ============================================================
+       BLOG BANNER + FEATURED SLIDER
+       The page heading is "Blog"; each featured post is an h3 inside a
+       slide. To feature another post, copy one .blog-slide block and edit
+       it - the arrows, the dots and the counter all come from the number
+       of slides, and the whole control strip hides itself while there is
+       only one. Slide one is the post the page is pinning.
+       ============================================================ -->
   <section class="blog-hero">
     <div class="wrap">
-      <p class="eyebrow">Blog</p>
-      <div class="blog-hero-split">
-        <div class="blog-hero-card">
-          <p class="pin">Our most recent post</p>
-          <p class="tags">Strategy &middot; Positioning</p>
-          <h1>You Don’t Need to Go Viral: What Good Marketing Actually Looks Like</h1>
-          <p class="read"><a class="inline" href="blog-you-dont-need-to-go-viral.html">Read more &rarr;</a></p>
+      <h1 class="blog-banner-title">Blog</h1>
+
+      <div class="blog-slider" id="blogSlider">
+        <div class="blog-slider__track">
+
+          <div class="blog-slide" data-slide>
+            <div class="blog-slide__card">
+              <p class="pin">Our most recent post</p>
+              <p class="tags"><span>Strategy</span><span class="tag-div" aria-hidden="true">|</span><span>Positioning</span></p>
+              <h3><a class="block-link" href="blog-you-dont-need-to-go-viral.html">You Don’t Need to Go Viral: What Good Marketing Actually Looks Like</a></h3>
+              <p class="read"><a class="inline" href="blog-you-dont-need-to-go-viral.html" tabindex="-1">Read more &rarr;</a></p>
+            </div>
+            <a class="blog-slide__photo" href="blog-you-dont-need-to-go-viral.html" tabindex="-1" aria-hidden="true">
+              <img src="images/section-1-picture.jpg" srcset="images/section-1-picture-sm.jpg 800w, images/section-1-picture.jpg 1448w"
+                   sizes="(min-width:800px) 55vw, 100vw" alt="" width="1448" height="1086" loading="eager" fetchpriority="high" />
+            </a>
+          </div>
+
         </div>
-        <a class="blog-hero-photo" href="blog-you-dont-need-to-go-viral.html" tabindex="-1" aria-hidden="true">
-          <img src="images/section-1-picture.jpg" srcset="images/section-1-picture-sm.jpg 800w, images/section-1-picture.jpg 1448w"
-               sizes="(min-width:800px) 55vw, 100vw" alt="" width="1448" height="1086" loading="eager" fetchpriority="high" />
-        </a>
+
+        <div class="blog-slider__controls" hidden>
+          <button type="button" class="blog-slider__arrow" data-prev aria-label="Previous featured post">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+          </button>
+          <div class="blog-slider__dots" role="tablist" aria-label="Featured posts"></div>
+          <button type="button" class="blog-slider__arrow" data-next aria-label="Next featured post">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -149,7 +174,7 @@
                  alt="" width="1448" height="1086" loading="lazy" />
           </a>
           <div class="card-in">
-            <p class="tags">Strategy &middot; Positioning</p>
+            <p class="tags"><span>Strategy</span><span class="tag-div" aria-hidden="true">|</span><span>Positioning</span></p>
             <h3>You Don’t Need to Go Viral: What Good Marketing Actually Looks Like</h3>
             <p class="excerpt">Why most businesses do not need to go viral, what the research on audience targeting actually shows, and a four-step framework for marketing that produces outcomes instead of impressions.</p>
             <p class="byline">11 September 2026</p>
@@ -160,8 +185,11 @@
 
       <p class="topic-empty" hidden>Nothing under that topic yet. <button type="button" class="inline" data-reset>Show everything &rarr;</button></p>
 
-      <div class="postrow-foot">
-        <a class="btn-ghost" href="blog.html">View more articles &rarr;</a>
+      <!-- Pagination. Hidden while everything fits on one page; drop the
+           hidden attribute and point the link at blog-page-2.html once
+           there are enough posts to need a second page. -->
+      <div class="postrow-foot" hidden>
+        <a class="btn-ghost" href="blog.html" rel="next">Previous articles &rarr;</a>
       </div>
 
     </div>
@@ -274,6 +302,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=56ac117a"></script>
+<script src="assets/site.js?v=ffb6353e"></script>
 </body>
 </html>

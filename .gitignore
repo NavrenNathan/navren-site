@@ -14,3 +14,9 @@ credentials.json
 serviceAccount.json
 
 .DS_Store
+
+# Saved copies of other people's sites, kept locally as layout reference.
+# These must never be committed: anything in this repo is published, so a
+# competitor's page would end up served from navrenagency.com.
+www_*.html
+*_reference.html

@@ -345,3 +345,80 @@
 
   apply();
 })();
+
+/* ============================================================
+   Featured-post slider (blog)
+   Cross-fades between .blog-slide elements. Progressive: with no
+   JavaScript every slide is visible and the page reads as a plain stack,
+   so the markup alone is still a complete list of featured posts. The
+   control strip ships with a hidden attribute and is only revealed when
+   there is more than one slide, so a blog with a single post shows no
+   arrows and no dots rather than dead ones.
+   ============================================================ */
+(function(){
+  "use strict";
+
+  var root = document.getElementById("blogSlider");
+  if (!root) return;
+
+  var slides = Array.prototype.slice.call(root.querySelectorAll("[data-slide]"));
+  if (!slides.length) return;
+
+  var controls = root.querySelector(".blog-slider__controls");
+  var prev = root.querySelector("[data-prev]");
+  var next = root.querySelector("[data-next]");
+  var dotWrap = root.querySelector(".blog-slider__dots");
+  var dots = [];
+  var i = 0;
+
+  /* One slide needs no controls at all. Show the slide and stop. */
+  if (slides.length < 2){
+    slides[0].classList.add("is-on");
+    return;
+  }
+
+  if (controls) controls.hidden = false;
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, idx){
+      var on = idx === i;
+      s.classList.toggle("is-on", on);
+      /* Keep the offscreen slides out of the tab order entirely. */
+      s.setAttribute("aria-hidden", on ? "false" : "true");
+      Array.prototype.forEach.call(s.querySelectorAll("a"), function(a){
+        if (on) a.removeAttribute("tabindex");
+        else a.setAttribute("tabindex", "-1");
+      });
+    });
+    dots.forEach(function(d, idx){
+      d.setAttribute("aria-selected", idx === i ? "true" : "false");
+    });
+    /* infinite:false, so the ends are dead stops rather than wrapping. */
+    if (prev) prev.disabled = i === 0;
+    if (next) next.disabled = i === slides.length - 1;
+  }
+
+  if (dotWrap){
+    slides.forEach(function(s, idx){
+      var d = document.createElement("button");
+      d.type = "button";
+      d.setAttribute("role", "tab");
+      d.setAttribute("aria-selected", "false");
+      d.setAttribute("aria-label", "Featured post " + (idx + 1) + " of " + slides.length);
+      d.addEventListener("click", function(){ show(idx); });
+      dotWrap.appendChild(d);
+      dots.push(d);
+    });
+  }
+
+  if (prev) prev.addEventListener("click", function(){ show(i - 1); });
+  if (next) next.addEventListener("click", function(){ show(i + 1); });
+
+  root.addEventListener("keydown", function(e){
+    if (e.key === "ArrowLeft"){ show(i - 1); }
+    else if (e.key === "ArrowRight"){ show(i + 1); }
+  });
+
+  show(0);
+})();
