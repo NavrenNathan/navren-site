@@ -230,6 +230,11 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.consent{displ
             </label>
             <p class="err" data-err="consent"></p>
 
+            <label class="consent">
+              <input type="checkbox" id="email_optin" name="email_optin" value="yes" />
+              <span>Send me occasional Navren updates by email. Optional, and you can unsubscribe any time.</span>
+            </label>
+
             <div class="hp" aria-hidden="true">
               <label for="company_url">Leave this blank</label>
               <input type="text" id="company_url" name="company_url" tabindex="-1" autocomplete="off" />
@@ -394,6 +399,7 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.consent{displ
   <input type="text" name="segment" />
   <textarea name="message"></textarea>
   <input type="text" name="source" />
+  <input type="text" name="email_optin" />
 </form>
 
 <script src="assets/site.js?v=ffb6353e"></script>
@@ -427,6 +433,7 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.consent{displ
     }
   }
   function val(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; }
+  function checked(id){ var e = document.getElementById(id); return !!(e && e.checked); }
 
   function validate(){
     var ok = true;
@@ -460,6 +467,10 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.consent{displ
       first: val("first"), last: val("last"), email: val("email"),
       phone: val("phone"), company: val("company"), website: val("website"),
       segment: val("segment"), message: val("message"), source: val("source"),
+      /* Empty rather than "No": the sync function treats any non-empty value
+         as a tick, so a literal "No" would opt everyone in. val() would return
+         the checkbox's value attribute regardless of state, hence .checked. */
+      email_optin: checked("email_optin") ? "Yes" : "",
       company_url: val("company_url")
     };
   }
