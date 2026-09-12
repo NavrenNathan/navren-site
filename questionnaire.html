@@ -173,6 +173,7 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.vh{position:a
   <input type="text" name="contact_name" />
   <input type="email" name="email" />
   <input type="text" name="website" />
+  <input type="text" name="email_optin" />
   <input type="text" name="plan" />
   <input type="text" name="engagement" />
   <input type="text" name="submitted" />
@@ -284,6 +285,7 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.vh{position:a
           <p class="err" data-err="email"></p>
           <label class="sublabel" for="website">Website, if you have one</label>
           <input type="text" id="website" name="website" maxlength="300" placeholder="verdetable.com" autocomplete="url" />
+          <label class="choice"><input type="checkbox" id="email_optin" name="email_optin" value="yes" /><span>Send me occasional Navren updates by email. Optional, and you can unsubscribe any time.</span></label>
           <p class="privacy">We use this to follow up once. We don't sell your details or add you to a mailing list without asking. <a href="privacy.html">How we handle your information</a>.</p>
         </div>
       </section>
@@ -430,6 +432,8 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.vh{position:a
       out[n] = picked ? picked.value : "";
     });
     out.channels = Array.prototype.slice.call(form.querySelectorAll('[name="channels"]:checked')).map(function(el){ return el.value; });
+    var optin = document.getElementById("email_optin");
+    out.email_optin = !!(optin && optin.checked);
     return out;
   }
 
@@ -676,6 +680,9 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.vh{position:a
       contact_name: p.name || "Not given",
       email:        p.email || "Not given",
       website:      p.website || "Not given",
+      /* Empty rather than "No": the sync function treats any non-empty
+         value as a tick, so a literal "No" would opt everyone in. */
+      email_optin:  p.email_optin ? "Yes" : "",
       plan:         (p.plan || []).join("  >  "),
       engagement:   p.estimate || "Not given",
       submitted:    p.submittedAt || ""
@@ -844,6 +851,7 @@ input::placeholder,textarea::placeholder{color:var(--slate-soft);}.vh{position:a
     /* ---- what we send onward: their answers plus what we told them ---- */
     var payload = {
       q1:a.q1, q6:a.q6, name:a.name, email:a.email, website:a.website,
+      email_optin:a.email_optin,
       segment:a.segment, stage:a.stage, value:a.value, channels:a.channels,
       segmentLabel: pretty(a.segment),
       stageLabel:   pretty(a.stage),

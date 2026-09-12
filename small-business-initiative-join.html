@@ -120,6 +120,7 @@
   <input type="text" name="interests" />
   <input type="text" name="help" />
   <input type="text" name="agreed_terms" />
+  <input type="text" name="email_optin" />
   <input type="text" name="submitted" />
 </form>
 
@@ -224,6 +225,10 @@
                 <span>By joining, I hereby agree to the <a href="program-agreement.html">Small Business Initiative Program Agreement</a>.</span>
               </label>
               <p class="jerr" data-jerr="agreed_terms"></p>
+              <label class="jconsent">
+                <input type="checkbox" id="email_optin" name="email_optin" value="yes" />
+                <span>Send me occasional Navren updates by email. Optional, and you can unsubscribe any time.</span>
+              </label>
             </div>
           </section>
 
@@ -385,6 +390,8 @@
     });
     var terms = document.getElementById("agreed_terms");
     out.agreed_terms = !!(terms && terms.checked);
+    var optin = document.getElementById("email_optin");
+    out.email_optin = !!(optin && optin.checked);
     return out;
   }
   function save(){
@@ -548,6 +555,9 @@
       interests:    a.interests.join(", "),
       help:         a.help.join(", "),
       agreed_terms: a.agreed_terms ? "Yes" : "No",
+      /* Empty rather than "No": the sync function treats any non-empty
+         value as a tick, so a literal "No" would opt everyone in. */
+      email_optin:  a.email_optin ? "Yes" : "",
       submitted:    new Date().toISOString()
     };
   }
