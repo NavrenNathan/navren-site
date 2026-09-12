@@ -88,7 +88,18 @@ export default async (req) => {
 
   const inboundKey = env("MAILCHIMP_INBOUND_KEY");
   if (inboundKey) {
-    if (!sameSecret(req.headers.get("x-navren-relay-key") || "", inboundKey)) {
+    /* Netlify's form webhook UI offers a URL and an optional JWS secret and
+       nothing else — there is no custom-header field, unlike what the Sheet
+       relay's comment implies. So the key travels in the query string as
+       ?key=... instead. The header is still accepted, for curl testing and in
+       case a caller can set one. */
+    let presented = req.headers.get("x-navren-relay-key") || "";
+    if (!presented) {
+      try {
+        presented = new URL(req.url).searchParams.get("key") || "";
+      } catch (err) { /* unparseable URL, treat as no key presented */ }
+    }
+    if (!sameSecret(presented, inboundKey)) {
       console.warn("mailchimp-subscribe: refused a request with no or wrong inbound key");
       return new Response("Forbidden", { status: 403 });
     }
