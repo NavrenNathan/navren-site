@@ -573,10 +573,25 @@ section{padding:clamp(46px,6vw,78px) 0;}
      and the heading rides along with it, keeping the label aligned to the
      card's edge. Measured against their page this lands within a few px at
      every width and exactly on 1550 at 1920. */
+  .blog-hero{padding-top:81px;}
   .blog-hero > .wrap{
-    width:min(91.5vw,1550px);max-width:none;
+    width:min(82vw,1395px);max-width:none;
     padding-left:0;padding-right:0;
   }
+  /* Their heading is not aligned to the slide: it sits in its own fixed
+     1170 container centred on the viewport, so it runs flush with the card
+     on a narrow screen and indents from it on a wide one. Taken at their
+     figure rather than scaled with the slide, since the ask was for this
+     one to land exactly where theirs does - which it now does to the pixel
+     at 1280, 1600 and 1920. The margin recentres it on the viewport from
+     inside a wrap that is narrower than it. */
+  .blog-banner-title{
+    --tw:min(1170px,calc(100vw - 40px));
+    width:var(--tw);
+    margin-left:calc(50% - var(--tw) / 2);
+  }
+  /* title baseline to the top of the slide */
+  .blog-slider{margin-top:53px;}
   /* The middle column is the overlap itself, so both blocks are literally
      the same track count wide - 47 + 6 and 6 + 47 - and come out identical
      without any arithmetic. A negative percentage margin cannot do this:
@@ -587,10 +602,10 @@ section{padding:clamp(46px,6vw,78px) 0;}
     align-items:start;
   }
   .blog-slide__card,
-  .blog-slide__photo{height:400px;}
+  .blog-slide__photo{height:360px;}
   .blog-slide__card{
     grid-column:1 / 3;grid-row:1;z-index:1;
-    margin-top:125px;
+    margin-top:113px;
     /* keep the copy clear of the photo's overhanging edge */
     padding-right:clamp(56px,7vw,104px);
   }
@@ -600,7 +615,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 }
 @media (min-width:1400px){
   .blog-slide__card,
-  .blog-slide__photo{height:475px;}
+  .blog-slide__photo{height:428px;}
 }
 .blog-slide__card{
   background:var(--white);padding:clamp(30px,4vw,56px) clamp(24px,3.4vw,44px);
@@ -661,14 +676,15 @@ section{padding:clamp(46px,6vw,78px) 0;}
    same specificity, so order is the only thing deciding it. */
 @media (min-width:900px){
   .blog-slider__controls{display:block;padding:0;}
+  /* Outside the slide, in the band's margin, the way the reference places
+     them - not laid over the card, where a white-stroked arrow disappeared.
+     The 10% trim to the slide is what opens up the room for them. */
   .blog-slider__arrow{
-    position:absolute;top:34%;transform:translateY(-50%);z-index:4;
-    background:rgba(14,21,19,.66);border-color:rgba(255,255,255,.45);
+    position:absolute;top:50%;transform:translateY(-50%);z-index:4;
   }
-  .blog-slider__arrow:hover:not(:disabled){background:rgba(14,21,19,.88);border-color:#5BD3A6;}
-  .blog-slider__arrow:disabled{opacity:.45;}
-  .blog-slider__arrow[data-prev]{left:-8px;}
-  .blog-slider__arrow[data-next]{right:-8px;}
+  .blog-slider__arrow:disabled{opacity:.35;}
+  .blog-slider__arrow[data-prev]{left:-52px;}
+  .blog-slider__arrow[data-next]{right:-52px;}
   .blog-slider__dots{justify-content:center;margin:0;padding:18px 0 4px;}
   .blog-slider__dots button{background:rgba(14,21,19,.34);}
   .blog-slider__dots button[aria-selected="true"]{background:var(--jade);}
