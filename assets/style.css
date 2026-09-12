@@ -285,6 +285,15 @@ section{padding:clamp(46px,6vw,78px) 0;}
     content:"";position:absolute;top:0;
     left:calc(var(--gut) - 27px);width:3px;height:54px;background:var(--jade);
   }
+
+  /* The blog runs without the gutter rule. Its banner is a full-bleed dark
+     band, and the hairline cuts straight through it and past the edge of
+     the featured panel, which reads as an artifact rather than as the
+     structural mark it is on the porcelain pages. */
+  .blog-page section:not(.cta) > .wrap::before,
+  .blog-page section:not(.cta) > .wrap::after,
+  .blog-page main > .wrap::before,
+  .blog-page main > .wrap::after{content:none;}
 }
 
 /* ============================================================
