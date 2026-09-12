@@ -616,17 +616,76 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .post-body .h2 + p{margin-top:12px;}
 .post-body .ticks{margin-top:16px;}
 .post-body b.hl{font-weight:700;}
+.post-body b{color:var(--ink);}
 .post-body code{font-family:var(--mono);font-size:.88em;background:var(--mist);padding:1px 6px;border-radius:3px;color:var(--ink);}
-.post-body .sources{margin-top:14px;display:grid;gap:9px;counter-reset:src;}
+
+/* Underlines in a post carry meaning: the author marks takeaways with them,
+   so they get the jade rule rather than the browser's hairline default. */
+.post-body u{
+  text-decoration:underline;text-decoration-thickness:1.5px;
+  text-underline-offset:3px;text-decoration-color:var(--jade);
+}
+/* Footnote markers. Bold in the source; here they also jump to the entry. */
+.post-body .cite{font-weight:700;color:var(--jade);white-space:nowrap;}
+.post-body .cite:hover{color:var(--jade-deep);}
+
+/* The "We write for the TL;DR crowd" box that opens the piece. Same surface
+   as .panel.accent so a boxed aside reads as the site's, not the PDF's. */
+.post-body .tldr{
+  background:var(--white);border:1px solid var(--line);border-left:3px solid var(--jade);
+  border-radius:0 9px 9px 0;padding:24px 26px;margin-bottom:32px;
+}
+.post-body .tldr p{margin-top:13px;font-size:15.5px;line-height:1.65;}
+.post-body .tldr p:first-child{margin-top:0;}
+
+/* Bulleted list, filled markers, matching the dot used in the legal pages. */
+.post-body ul.dots{margin-top:16px;display:grid;gap:10px;}
+.post-body ul.dots li{
+  color:var(--slate);font-size:16.5px;line-height:1.7;
+  padding-left:22px;position:relative;
+}
+.post-body ul.dots li::before{
+  content:"";position:absolute;left:2px;top:.62em;
+  width:6px;height:6px;border-radius:50%;background:var(--jade);
+}
+
+/* The four-step framework table. Two by two on desktop, stacked on a phone,
+   with the cell rules drawn by the borders rather than a <table>. */
+.post-body .steps{
+  display:grid;grid-template-columns:1fr;margin:28px 0;
+  background:var(--white);border:1px solid var(--line);border-radius:9px;overflow:hidden;
+}
+@media (min-width:720px){ .post-body .steps{grid-template-columns:1fr 1fr;} }
+.post-body .step{padding:22px 24px 24px;border-bottom:1px solid var(--line);}
+.post-body .step:last-child{border-bottom:0;}
+@media (min-width:720px){
+  .post-body .step:nth-child(odd){border-right:1px solid var(--line);}
+  .post-body .step:nth-last-child(-n+2){border-bottom:0;}
+}
+.post-body .step-head{
+  font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--jade);margin:0 0 14px;
+}
+.post-body .step ul{display:grid;gap:10px;}
+.post-body .step li{
+  color:var(--slate);font-size:15.5px;line-height:1.6;
+  padding-left:20px;position:relative;
+}
+/* Hollow rings, the way the source document marks these sub-points. */
+.post-body .step li::before{
+  content:"";position:absolute;left:0;top:.5em;
+  width:7px;height:7px;border-radius:50%;border:1.5px solid var(--jade);
+}
+
+/* The entries carry their own [n] markers, as the source document does, so
+   the list must not also draw the browser's numbering. */
+.post-body .sources{margin-top:14px;display:grid;gap:12px;list-style:none;padding-left:0;}
 .post-body .sources li{
-  font-size:13.5px;color:var(--slate-soft);line-height:1.55;
-  padding-left:24px;position:relative;
+  font-size:13.5px;color:var(--slate-soft);line-height:1.6;
+  overflow-wrap:anywhere;
 }
-.post-body .sources li::before{
-  counter-increment:src;content:"[" counter(src) "]";
-  position:absolute;left:0;top:0;
-  font-family:var(--mono);color:var(--jade);font-size:12px;
-}
+.post-body .sources li b{color:var(--jade);font-family:var(--mono);font-size:12.5px;}
+.post-body .sources .srclink{color:var(--slate);}
 
 .faq details{border-bottom:1px solid var(--line);}
 .faq summary{
