@@ -561,26 +561,46 @@ section{padding:clamp(46px,6vw,78px) 0;}
     background:linear-gradient(var(--ink) 0 calc(100% - var(--strip)),
                                var(--paper) calc(100% - var(--strip)) 100%);
   }
-  /* Scale comes from the pair being wider than the text column, not from
-     overriding the photo's shape: the slider steps out into the gutter and
-     both blocks grow together, so the photo keeps its 720/500 crop and the
-     card stays sized by its own content. */
-  .blog-slider{margin-inline:clamp(-64px,-4vw,-24px);}
+  /* Geometry measured off the reference's own rendered slide. The two
+     blocks are one size there - identical width and height - so they share
+     a ratio instead of each having their own. Each is 53% of the slide and
+     they cross by 6%, which is why 53 + 53 - 6 comes back to 100. The
+     photo sits exactly 125px above the card at every width, and the height
+     is fixed rather than derived, stepping 400 -> 475 around 1400px. */
+  /* Their blocks are a fixed height, so the ratio is set by how wide the
+     slide is. Theirs runs 91.5% of the viewport and caps at 1550, which is
+     wider than this site's 1240 measure - so the hero gets its own width
+     and the heading rides along with it, keeping the label aligned to the
+     card's edge. Measured against their page this lands within a few px at
+     every width and exactly on 1550 at 1920. */
+  .blog-hero > .wrap{
+    width:min(91.5vw,1550px);max-width:none;
+    padding-left:0;padding-right:0;
+  }
+  /* The middle column is the overlap itself, so both blocks are literally
+     the same track count wide - 47 + 6 and 6 + 47 - and come out identical
+     without any arithmetic. A negative percentage margin cannot do this:
+     percentages on a grid item resolve against its own grid area, not the
+     grid, so the offset lands short. */
   .blog-slide{
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-columns:47% 6% 47%;
     align-items:start;
   }
+  .blog-slide__card,
+  .blog-slide__photo{height:400px;}
   .blog-slide__card{
-    grid-column:1;grid-row:1;z-index:1;
-    margin-top:clamp(56px,7vw,104px);
+    grid-column:1 / 3;grid-row:1;z-index:1;
+    margin-top:125px;
     /* keep the copy clear of the photo's overhanging edge */
     padding-right:clamp(56px,7vw,104px);
   }
   .blog-slide__photo{
-    grid-column:2;grid-row:1;z-index:2;
-    margin-left:clamp(-100px,-6vw,-44px);
-    aspect-ratio:720/500;
+    grid-column:2 / 4;grid-row:1;z-index:2;
   }
+}
+@media (min-width:1400px){
+  .blog-slide__card,
+  .blog-slide__photo{height:475px;}
 }
 .blog-slide__card{
   background:var(--white);padding:clamp(30px,4vw,56px) clamp(24px,3.4vw,44px);
