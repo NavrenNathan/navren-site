@@ -529,8 +529,7 @@ section{padding:clamp(46px,6vw,78px) 0;}
 }
 .blog-hero-card .read a{font-weight:700;}
 .blog-hero-photo{display:block;background:var(--mist);min-height:220px;}
-.blog-hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
-.blog-hero-photo:hover img{transform:scale(1.03);}
+.blog-hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 
 .sr-only{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
