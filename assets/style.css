@@ -838,8 +838,11 @@ section{padding:clamp(46px,6vw,78px) 0;}
   text-decoration:underline;text-decoration-thickness:1.5px;
   text-underline-offset:3px;text-decoration-color:var(--ink);
 }
-/* Footnote markers. Bold in the source; here they also jump to the entry. */
-.post-body .cite{font-weight:700;color:var(--jade);white-space:nowrap;}
+/* Footnote markers. Bold in the source; here they also jump to the entry.
+   scroll-margin-top on both ends of the jump (here, and on .sources li
+   below) keeps the sticky nav from landing on top of whichever one a
+   click scrolls to. */
+.post-body .cite{font-weight:700;color:var(--jade);white-space:nowrap;scroll-margin-top:calc(var(--navh) + 16px);}
 .post-body .cite:hover{color:var(--jade-deep);}
 
 /* The "We write for the TL;DR crowd" box that opens the piece. Same surface
@@ -909,9 +912,20 @@ section{padding:clamp(46px,6vw,78px) 0;}
 .post-body .sources li{
   font-size:13.5px;color:var(--slate-soft);line-height:1.6;
   overflow-wrap:anywhere;
+  scroll-margin-top:calc(var(--navh) + 16px);
 }
 .post-body .sources li b{color:var(--jade);font-family:var(--mono);font-size:12.5px;}
 .post-body .sources .srclink{color:var(--slate);}
+/* The return arrow(s) that jump back from a source to where it was cited.
+   Superscript letters (a, b, c) only appear when a source is cited more
+   than once, one arrow per occurrence, so "back" always lands on the
+   exact spot rather than just the first one. */
+.post-body .sources .src-back{
+  color:var(--jade);text-decoration:none;font-weight:700;
+  margin-right:2px;
+}
+.post-body .sources .src-back:hover{color:var(--jade-deep);}
+.post-body .sources .src-back sup{font-family:var(--mono);font-size:.75em;}
 
 .faq details{border-bottom:1px solid var(--line);}
 .faq summary{

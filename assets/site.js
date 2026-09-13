@@ -308,7 +308,11 @@
     var q = search ? search.value.trim().toLowerCase() : "";
     var shown = 0;
     posts.forEach(function(p){
-      var topicMatch = topic === "all" || p.getAttribute("data-topic") === topic;
+      /* A post can carry more than one category, space-separated
+         ("marketing-strategy audience-targeting ..."), so match if the
+         selected topic is any one of them rather than the whole thing. */
+      var postTopics = (p.getAttribute("data-topic") || "").split(/\s+/);
+      var topicMatch = topic === "all" || postTopics.indexOf(topic) !== -1;
       var textMatch = !q || (p.getAttribute("data-search") || p.textContent).toLowerCase().indexOf(q) !== -1;
       var match = topicMatch && textMatch;
       /* Set display directly rather than leaning on the hidden attribute.
