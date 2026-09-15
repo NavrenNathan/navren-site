@@ -22,9 +22,13 @@ www_*.html
 *_reference.html
 
 # Raw drops of a final asset before it's cropped/converted/renamed into the
-# kebab-case JPEG pair the site actually uses. Kept on disk as the source,
-# never committed: filenames like this have spaces (breaks URLs on its own)
-# and these files run tens of MB, which the "full JPEG, sm JPEG" pattern
-# everywhere else in images/ exists specifically to avoid shipping.
-images/* final.png
-images/* final.jpg
+# kebab-case JPEG pair the site actually uses. Every real asset in images/
+# is kebab-case with no spaces (README convention - a space becomes %20 and
+# breaks the URL), so "has a space in the name" is a clean, general test for
+# "this is a drop waiting to be converted," not a site asset. Kept on disk
+# as the source, never committed: these also run tens of MB uncompressed,
+# which the "full JPEG, sm JPEG" pattern everywhere else in images/ exists
+# specifically to avoid shipping.
+images/* *.png
+images/* *.jpg
+images/* *.jpeg
