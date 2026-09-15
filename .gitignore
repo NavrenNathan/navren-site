@@ -20,3 +20,11 @@ serviceAccount.json
 # competitor's page would end up served from navrenagency.com.
 www_*.html
 *_reference.html
+
+# Raw drops of a final asset before it's cropped/converted/renamed into the
+# kebab-case JPEG pair the site actually uses. Kept on disk as the source,
+# never committed: filenames like this have spaces (breaks URLs on its own)
+# and these files run tens of MB, which the "full JPEG, sm JPEG" pattern
+# everywhere else in images/ exists specifically to avoid shipping.
+images/* final.png
+images/* final.jpg
