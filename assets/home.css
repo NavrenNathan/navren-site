@@ -49,7 +49,7 @@
   letter-spacing:-.038em;
   margin:0 0 clamp(24px, 3.4vh, 34px);
 }
-.hero h1 .line{ display:block; white-space:nowrap; overflow:hidden; padding-bottom:.09em; margin-bottom:-.09em; }
+.hero h1 .line{ display:block; width:max-content; white-space:nowrap; overflow:hidden; padding-bottom:.09em; margin-bottom:-.09em; }
 .hero h1 .li{ display:block; }
 .hero h1 .jade{ color:var(--jade-bright); }
 .hero-lede{
@@ -116,7 +116,7 @@ html.js.pre-hero .hero .src, html.js.pre-hero .hero .rail-readout{ opacity:0; }
 }
 @media (max-width: 699px){
   .hero h1{ font-size:clamp(40px, 11.2vw, 64px); }
-  .hero h1 .line{ white-space:normal; }
+  .hero h1 .line{ width:auto; white-space:normal; }
   .hero-ctas .btn{ height:50px; }
 }
 @media (max-width: 479px){
