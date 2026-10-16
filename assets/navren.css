@@ -2189,7 +2189,7 @@ body.page-startups .phero h1 .ln{ display:block; white-space:nowrap; }
 }
 :is(#sbiHero, body.page-about .phero.imgband) .crumb{ color:var(--l-muted); }
 :is(#sbiHero, body.page-about .phero.imgband) .crumb a{ color:var(--jade); }
-:is(#sbiHero, body.page-about .phero.imgband) .eyebrow{ color:#1D8F70; }
+:is(#sbiHero, body.page-about .phero.imgband) .eyebrow{ color:#168264; }
 :is(#sbiHero, body.page-about .phero.imgband) .eyebrow::before{ background:var(--jade-bright); box-shadow:0 0 10px rgba(61,170,136,.6); }
 :is(#sbiHero, body.page-about .phero.imgband) h1{ color:var(--l-ink); }
 #sbiHero h1{ font-size:clamp(42px, 4.73vw, 72.6px); max-width:11em; }
@@ -2211,9 +2211,9 @@ body.page-startups .phero h1 .ln{ display:block; white-space:nowrap; }
   background:var(--l-bg); color:var(--l-body);
   --ink:#FAFBFA; --ink-2:#FFFFFF; --ink-3:#F3F6F4;
   --panel:#FFFFFF; --panel-2:#F4F7F5;
-  --paper:#0B0F0E; --muted:#5B6A65; --faint:#7C8B86;
+  --paper:#0B0F0E; --muted:#5B6A65; --faint:#66756F; --slate:#5B6A65;
   --hair:rgba(11,15,14,.09); --hair-2:rgba(11,15,14,.14); --hair-3:rgba(11,15,14,.24);
-  --jade-bright:#1E9874; --mint:#1E9874; --ok:#16866A; --err:#B4412D;
+  --jade-bright:#168264; --mint:#168264; --ok:#168264; --err:#B4412D;
   --fx-bg:#FFFFFF;
   --fx-line:rgba(11,15,14,.18); --fx-line-hover:rgba(11,15,14,.32);
   --fx-focus:rgba(13,107,84,.7); --fx-glow:rgba(13,107,84,.14);
