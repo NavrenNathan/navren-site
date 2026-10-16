@@ -812,3 +812,4 @@ html.dot-land #nav .word::after{
 
 /* homepage: no faint column-line grid behind the Services, About and CTA sections */
 .gridlines, .sky-grid{ display:none !important; }
+.ag-view .br{ display:none; } /* globe corner brackets removed */

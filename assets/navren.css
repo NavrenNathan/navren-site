@@ -2149,3 +2149,119 @@ section.band .cards > a.seg b{ color:var(--l-ink); }
 section.band .cards > a.seg span{ color:var(--l-body); }
 section.band .cards > a.seg::after{ background:rgba(11,15,14,.12); }
 section.band .cards > a.seg::before{ color:#8A9893; }
+
+/* ---------- Startups page ----------
+   No column-line grid behind the page, no hero corner brackets, and the
+   headline set on three lines: Startups need / more than attention. /
+   They need traction. */
+body.page-startups .phero:has(.hero-vis) h1{ max-width:none; }
+body.page-startups .phero h1 .ln{ display:block; white-space:nowrap; }
+@media (max-width: 520px){
+  body.page-startups .phero h1{ font-size:clamp(28px, 9.4vw, 54px); }
+}
+
+/* ---------- Sitewide: no column-line grid, no corner brackets ----------
+   The faint 12-column lines behind every page, the same lines inside the
+   closing banner, and the corner brackets on page heroes are all off. */
+.gridlines, .sky-grid{ display:none !important; }
+.phero .hud i{ display:none; }
+.blog-slide__photo::after{ display:none; }
+.phero.splitband .split-media::after{ display:none; }
+
+/* Blog: the featured photo sits in front of the "Our most recent post" card.
+   The card keeps its text clear of the part of it the photo now covers. */
+.blog-slide__photo{ z-index:3; }
+.blog-slide__card{ padding-right:calc(clamp(40px, 5vw, 70px) + clamp(28px, 3.4vw, 52px)); }
+@media (max-width: 900px){
+  .blog-slide__card{ padding:calc(26px + 48px) 22px 28px; }
+}
+
+/* ---------- Light photo heroes (Small Business Initiative, About): the photo in its own colours ----------
+   No green duotone, no dark veil. A pale fade sits only behind the text on the
+   left so it stays readable; the right side of the photo is untouched. */
+:is(#sbiHero, body.page-about .phero.imgband){ background:var(--l-bg); border-bottom:1px solid var(--l-hair); }
+:is(#sbiHero, body.page-about .phero.imgband)::before, :is(#sbiHero, body.page-about .phero.imgband)::after{ display:none; }
+:is(#sbiHero, body.page-about .phero.imgband) .shot{ background:none; }
+:is(#sbiHero, body.page-about .phero.imgband) .shot::after{ display:none; }
+:is(#sbiHero, body.page-about .phero.imgband) .shot img{ filter:none; mix-blend-mode:normal; opacity:1; object-position:74% 50%; }
+:is(#sbiHero, body.page-about .phero.imgband) .veil{
+  background:linear-gradient(90deg, rgba(250,251,250,.95) 0%, rgba(250,251,250,.9) 30%, rgba(250,251,250,.55) 46%, rgba(250,251,250,0) 62%);
+}
+:is(#sbiHero, body.page-about .phero.imgband) .crumb{ color:var(--l-muted); }
+:is(#sbiHero, body.page-about .phero.imgband) .crumb a{ color:var(--jade); }
+:is(#sbiHero, body.page-about .phero.imgband) .eyebrow{ color:#1D8F70; }
+:is(#sbiHero, body.page-about .phero.imgband) .eyebrow::before{ background:var(--jade-bright); box-shadow:0 0 10px rgba(61,170,136,.6); }
+:is(#sbiHero, body.page-about .phero.imgband) h1{ color:var(--l-ink); }
+#sbiHero h1{ font-size:clamp(42px, 4.73vw, 72.6px); max-width:11em; }
+:is(#sbiHero, body.page-about .phero.imgband) h1 mark{ color:#2A9A78; text-shadow:0 0 10px rgba(61,170,136,.2); }
+:is(#sbiHero, body.page-about .phero.imgband) .sub{ color:var(--l-body); max-width:30em; }
+:is(#sbiHero, body.page-about .phero.imgband) .note{ color:var(--l-muted); }
+:is(#sbiHero, body.page-about .phero.imgband) .btn{ background:var(--jade-hover); color:#F4F8F6; box-shadow:inset 0 0 0 1px rgba(61,170,136,.7), 0 10px 30px -10px rgba(61,170,136,.6); }
+:is(#sbiHero, body.page-about .phero.imgband) .btn:hover{ background:#138568; box-shadow:inset 0 0 0 1px rgba(61,170,136,.95), 0 12px 36px -10px rgba(61,170,136,.8); }
+@media (max-width: 900px){
+  :is(#sbiHero, body.page-about .phero.imgband) .veil{ background:linear-gradient(180deg, rgba(250,251,250,.94) 0%, rgba(250,251,250,.88) 62%, rgba(250,251,250,.6) 100%); }
+}
+
+
+/* ---------- Light mode for the form pages (contact, questionnaire, join) ----------
+   The header and footer stay dark. Everything between them reads on a light
+   ground, using the same light tokens the rest of the site's light sections use. */
+:is(body.page-contact, body.page-questionnaire, body.page-join) :is(main, .progress){
+  color-scheme:light;
+  background:var(--l-bg); color:var(--l-body);
+  --ink:#FAFBFA; --ink-2:#FFFFFF; --ink-3:#F3F6F4;
+  --panel:#FFFFFF; --panel-2:#F4F7F5;
+  --paper:#0B0F0E; --muted:#5B6A65; --faint:#7C8B86;
+  --hair:rgba(11,15,14,.09); --hair-2:rgba(11,15,14,.14); --hair-3:rgba(11,15,14,.24);
+  --jade-bright:#1E9874; --mint:#1E9874; --ok:#16866A; --err:#B4412D;
+  --fx-bg:#FFFFFF;
+  --fx-line:rgba(11,15,14,.18); --fx-line-hover:rgba(11,15,14,.32);
+  --fx-focus:rgba(13,107,84,.7); --fx-glow:rgba(13,107,84,.14);
+  --fx-err-line:rgba(180,65,45,.6); --fx-err-glow:rgba(180,65,45,.12);
+  --fx-mark:rgba(11,15,14,.42); --fx-body-2:#3E4A46;
+  --fx-chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235B6A65' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+body.page-questionnaire .progress{ background:#FAFBFA; }
+/* the light page sits on a light ground all the way to the dark footer */
+body.page-questionnaire{ background:var(--l-bg); }
+body.page-questionnaire header.top{ background:rgba(11,17,16,.97); }
+body.page-questionnaire footer.foot{ background:var(--ink); }
+body.page-join main .phero h1{ color:var(--paper); }
+:is(body.page-contact, body.page-questionnaire, body.page-join) main
+  :is(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], select, textarea):focus{ background-color:#FFFFFF; }
+:is(body.page-contact, body.page-questionnaire, body.page-join) main a.inline:hover,
+body.page-questionnaire main .privacy a:hover{ color:var(--jade); }
+body.page-contact main #formCard{
+  background:
+    linear-gradient(var(--hair), var(--hair)) 0 var(--strip) / 100% 1px no-repeat,
+    linear-gradient(rgba(11,15,14,.03), rgba(11,15,14,.03)) 0 0 / 100% var(--strip) no-repeat,
+    var(--panel);
+  box-shadow:0 1px 2px rgba(11,15,14,.05), 0 30px 70px -40px rgba(11,15,14,.22);
+}
+body.page-contact main .aside .panel{ background:#FFFFFF; box-shadow:0 1px 2px rgba(11,15,14,.04), 0 24px 60px -40px rgba(11,15,14,.18); }
+body.page-contact main .aside .panel.accent{ background:linear-gradient(180deg, rgba(13,107,84,.06), rgba(13,107,84,0) 60%), #FFFFFF; border-color:rgba(13,107,84,.28); }
+body.page-questionnaire main .choice > span{ background:#FFFFFF; }
+body.page-questionnaire main .choice:hover > span{ background:rgba(11,15,14,.025); }
+body.page-questionnaire main .choice > input:checked + span{ background:rgba(13,107,84,.07); }
+body.page-join main .jchoice > span{ background:#FFFFFF; }
+body.page-join main .jchoice:hover > span{ background:rgba(11,15,14,.025); }
+body.page-join main .jchoice > input:checked + span{ background:rgba(13,107,84,.07); }
+body.page-questionnaire main .answers{ background:#FFFFFF; }
+body.page-questionnaire main .answers summary:hover{ background:rgba(11,15,14,.025); }
+/* the join page's heading block has no dotted ground or glow on a light page */
+body.page-join main .phero{ background:var(--l-bg); border-bottom:0; }
+body.page-join main .phero::before, body.page-join main .phero::after{ display:none; }
+:is(#sbiHero, body.page-about .phero.imgband) .btn-ghost{ color:var(--l-ink); background:rgba(255,255,255,.6); box-shadow:inset 0 0 0 1px var(--l-hair-2); }
+:is(#sbiHero, body.page-about .phero.imgband) .btn-ghost:hover{ background:#fff; box-shadow:inset 0 0 0 1px var(--jade); color:var(--jade); }
+@media (min-width: 901px){
+  :is(#aboutHeroNone, body.page-about .phero.imgband) .veil{
+    background:linear-gradient(90deg, rgba(250,251,250,.94) 0%, rgba(250,251,250,.88) 36%, rgba(250,251,250,.5) 52%, rgba(250,251,250,0) 68%);
+  }
+}
+
+/* ---------- Header and footer details ----------
+   No ">" prompt before the newsletter email field, and no dot above the
+   current page in the header. */
+.foot-news form::before{ display:none; }
+.foot-news input[type="email"]{ padding-left:16px; border-left:1px solid var(--hair-2); border-radius:2px 0 0 2px; }
+.menu-link.current::before{ display:none; }
