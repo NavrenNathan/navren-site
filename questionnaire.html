@@ -41,7 +41,7 @@
 <link rel="preload" href="/fonts/manrope-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/karla-400-latin-v2.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibm-plex-mono-500-latin-v2.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/navren.css?v=7bb86e97">
+<link rel="stylesheet" href="assets/navren.css?v=389b5974">
 <script>document.documentElement.className += " js"</script>
 <!-- schema:start -->
 <script type="application/ld+json">
@@ -105,7 +105,10 @@
 </form>
 <main>
 <div class="shell">
-<h1 class="sr-only">Tell us about your business</h1>
+<div class="q-intro" id="qIntro">
+<h1>Tell us about your business</h1>
+<p>This helps us understand your business before we talk. A few quick questions about what you do, where you are and what you've tried, about two minutes in all. At the end you'll see where we'd start, and you can book a call if you want to talk it through.</p>
+</div>
 <form id="quiz" novalidate="">
 <section class="step" data-step="0">
 <p class="qnum">Question 1</p>
@@ -800,6 +803,7 @@
     deliver(payload);
 
     form.hidden = true;
+    document.getElementById("qIntro").hidden = true;
     actions.hidden = true;
     result.hidden = false;
     bar.style.width = "100%";
@@ -814,6 +818,7 @@
     form.hidden = false;
     actions.hidden = false;
     result.hidden = true;
+    document.getElementById("qIntro").hidden = false;
     timeLbl.textContent = "About two minutes";
     show(0, true);
     window.scrollTo({ top:0, behavior: REDUCED_MOTION ? "auto" : "smooth" });

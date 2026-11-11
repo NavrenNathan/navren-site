@@ -1672,6 +1672,21 @@ body.page-questionnaire .help{
 }
 body.page-questionnaire .help:empty{ display:none; }
 
+/* short intro above the first question: what this is, how long, what happens next */
+body.page-questionnaire .q-intro{
+  padding-top:clamp(40px, 6vw, 72px);
+  padding-bottom:clamp(24px, 3vw, 32px); border-bottom:1px solid var(--hair);
+}
+body.page-questionnaire .q-intro[hidden]{ display:none; }
+body.page-questionnaire .q-intro h1{
+  font:800 clamp(22px, 2.4vw, 28px)/1.15 var(--f-display); letter-spacing:-.02em; color:var(--paper);
+}
+body.page-questionnaire .q-intro p{
+  margin-top:12px; max-width:36em;
+  font-size:clamp(15.5px, 1.1vw, 17px); line-height:1.6; color:var(--muted); text-wrap:pretty;
+}
+body.page-questionnaire .q-intro:not([hidden]) + form .step{ padding-top:clamp(32px, 4vw, 48px); }
+
 body.page-questionnaire .fields{ margin-top:36px; counter-reset:qopt; }
 body.page-questionnaire fieldset.fields{ border:0; padding:0; margin-inline:0; margin-bottom:0; min-width:0; }
 body.page-questionnaire legend.sublabel{ padding:0; margin-bottom:14px; }
