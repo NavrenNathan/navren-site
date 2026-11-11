@@ -1,2 +1,9 @@
 [build]
   functions = "netlify/functions"
+  # Minify the CSS and JS in place at deploy time. The repo keeps the
+  # readable source; only the published copy is minified. The ?v= hashes
+  # from stamp.sh are taken from the source, so they still change whenever
+  # a file does. The scripts are classic (non-module) scripts and esbuild
+  # does not rename top-level names when it isn't bundling, so globals
+  # shared between files and inline scripts survive.
+  command = "npx --yes esbuild@0.24.0 assets/*.js assets/*.css --minify --outdir=assets --allow-overwrite --log-level=warning"
