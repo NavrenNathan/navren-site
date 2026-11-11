@@ -1,3 +1,34 @@
 # outbound.html was renamed when the service became Communications
-/outbound.html   /communications.html   301
-/outbound        /communications.html   301
+/outbound.html   /communications   301
+/outbound        /communications   301
+
+# www and http go straight to the canonical host in one hop
+http://www.navrenagency.com/*   https://navrenagency.com/:splat   301!
+https://www.navrenagency.com/*  https://navrenagency.com/:splat   301!
+
+# Every page answers at its clean URL, which is what the canonicals and the
+# sitemap use. The .html spelling would otherwise serve the same page with
+# a 200, so it redirects. Forced (!) because the .html file does exist.
+/index.html   /   301!
+/about.html   /about   301!
+/approach.html   /approach   301!
+/blog-you-dont-need-to-go-viral.html   /blog-you-dont-need-to-go-viral   301!
+/blog.html   /blog   301!
+/commerce.html   /commerce   301!
+/communications.html   /communications   301!
+/contact.html   /contact   301!
+/content.html   /content   301!
+/disclaimers.html   /disclaimers   301!
+/email.html   /email   301!
+/local-business.html   /local-business   301!
+/privacy.html   /privacy   301!
+/professional-services.html   /professional-services   301!
+/program-agreement.html   /program-agreement   301!
+/questionnaire.html   /questionnaire   301!
+/search.html   /search   301!
+/services.html   /services   301!
+/small-business-initiative-join.html   /small-business-initiative-join   301!
+/small-business-initiative.html   /small-business-initiative   301!
+/startups.html   /startups   301!
+/strategy.html   /strategy   301!
+/who-we-help.html   /who-we-help   301!
