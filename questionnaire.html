@@ -243,7 +243,7 @@
 <span><a href="mailto:hello@navrenagency.com">HELLO@NAVRENAGENCY.COM</a></span>
 </div>
 </footer>
-<script src="assets/navren.js?v=47c9b811"></script>
+<script src="assets/navren.js?v=d317bf59"></script>
 <script>
 (function(){
   "use strict";
@@ -801,6 +801,8 @@
       "&body=" + encodeURIComponent(body);
 
     deliver(payload);
+    /* GA4 conversion: mark generate_lead as a key event in GA */
+    try { if (window.gtag) gtag("event", "generate_lead", { form_name: "questionnaire" }); } catch(e){}
 
     form.hidden = true;
     document.getElementById("qIntro").hidden = true;

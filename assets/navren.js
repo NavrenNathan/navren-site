@@ -270,6 +270,7 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       state.className = "news-state ok";
       state.textContent = "Subscribed. Thank you.";
+      try { if (window.gtag) gtag("event", "sign_up", { method: "newsletter" }); } catch(e){}
       email.value = "";
       btn.disabled = false;
     }).catch(function(){

@@ -294,7 +294,7 @@
 </div>
 </div>
 </footer>
-<script src="assets/navren.js?v=47c9b811"></script>
+<script src="assets/navren.js?v=d317bf59"></script>
 <script>
 (function(){
   "use strict";
@@ -582,6 +582,8 @@
     var a = collect(), p = payload();
     form.hidden = true; actions.hidden = true; prog.hidden = true;
     done.classList.add("on");
+    /* GA4 conversion: mark generate_lead as a key event in GA */
+    try { if (window.gtag) gtag("event", "generate_lead", { form_name: "small-business-initiative" }); } catch(e){}
     document.getElementById("jdoneIntro").textContent =
       "Thanks " + (a.first_name || "") + ". We'll be in touch at " + (a.email || "the address you gave") +
       " when there's a business near you worth knowing about.";
