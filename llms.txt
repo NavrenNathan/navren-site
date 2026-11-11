@@ -14,10 +14,10 @@
 ## Who we help
 
 - [Who we help](https://navrenagency.com/who-we-help): Startups, ecommerce brands, professional services firms and local businesses.
-- [Startups](https://navrenagency.com/startups): SaaS, apps and B2B software. Positioning, content SEO, founder-led LinkedIn and outbound.
-- [Commerce & DTC](https://navrenagency.com/commerce): DTC, retail and subscription brands. Email and SMS lifecycle, product page copy and SEO built around retention.
-- [Professional services](https://navrenagency.com/professional-services): Law, accounting, consulting and real estate firms. Positioning, thought leadership, personal branding and client development.
-- [Local business](https://navrenagency.com/local-business): Hospitality, trades, clinics and studios. Google Business Profile, reviews, reputation management and paid search.
+- [Technology & Startups](https://navrenagency.com/startups): SaaS, apps and B2B software. Positioning, content SEO, founder-led LinkedIn and outbound.
+- [Commerce & Consumer](https://navrenagency.com/commerce): DTC, retail and subscription brands. Email and SMS lifecycle, product page copy and SEO built around retention.
+- [Professional Services](https://navrenagency.com/professional-services): Law, accounting, consulting and real estate firms. Positioning, thought leadership, personal branding and client development.
+- [Local & Service](https://navrenagency.com/local-business): Hospitality, trades, clinics and studios. Google Business Profile, reviews, reputation management and paid search.
 
 ## Programs
 
