@@ -167,6 +167,11 @@ a:hover > .arr{ transform:translateX(4px); }
              linear-gradient(var(--l-hair-2), var(--l-hair-2)) left 100% / 100% 1px no-repeat; }
 .band a.inline:hover{ color:var(--jade); background-size:100% 1px, 100% 1px; }
 
+/* "Related" row closing a page's last content section: next places to go */
+.related{ margin-top:clamp(40px, 5vw, 64px); padding-top:24px; border-top:1px solid color-mix(in srgb, currentColor 12%, transparent); display:flex; flex-wrap:wrap; align-items:baseline; gap:12px 28px; }
+.related ul{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:10px 28px; }
+.related li{ margin:0; }
+
 
 /* ==========================================================================
    10 · HEADER  (#nav — sticky, translucent ink, mega menus, mobile drawer)
