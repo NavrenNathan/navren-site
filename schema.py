@@ -53,6 +53,7 @@ PAGES = {
     "approach": ("Approach", None),
     "blog": ("Blog", None),
     "blog-you-dont-need-to-go-viral": ("You Don't Need to Go Viral", "blog"),
+    "blog-dont-be-camera-shy": ("Don't Be Camera Shy", "blog"),
     "contact": ("Contact", None),
     "questionnaire": ("Questionnaire", None),
     "services": ("Services", None),
@@ -71,6 +72,11 @@ PAGES = {
 }
 SERVICES = {"strategy", "communications", "search", "content", "email"}
 POSTS = {
+    "blog-dont-be-camera-shy": {
+        "published": "2026-11-13",
+        "modified": "2026-11-13",
+        "image": SITE + "/images/blog-dont-be-camera-shy-cover.jpg",
+    },
     "blog-you-dont-need-to-go-viral": {
         "published": "2026-09-11",
         "modified": "2026-11-10",
